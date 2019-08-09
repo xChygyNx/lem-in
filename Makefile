@@ -6,7 +6,7 @@
 #    By: yura <yura@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by yura              #+#    #+#              #
-#    Updated: 2019/08/06 16:44:59 by yura             ###   ########.fr        #
+#    Updated: 2019/08/09 13:07:37 by yura             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SOURCES_PRINTF = ft_putnbr_f.c print_str.c print_pointer.c utility_func.c\
 		   ft_dtoa.c ft_dtoa_2.c ft_dtoa_3.c ft_fprintf.c set_precision.c\
 		   print_binary.c ft_dtoe.c print_scientific.c utility_func_2.c
 
-LEM-IN_SRC = create_anthill.c
+LEM-IN_SOURCES = create_lem.c
+
+LEM_IN_SRC = $(addprefix $(LEM_IN_PATH)/,$(LEM-IN_SOURCES))
 
 SRCS = $(addprefix $(LIBFT_PATH)/,$(SOURCES_LIBFT))
 SRCS += $(addprefix $(PRINTF_PATH)/,$(SOURCES_PRINTF))
@@ -56,7 +58,7 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES_LIBFT:.c=.o))
 OBJ += $(addprefix $(OBJ_PATH)/,$(SOURCES_PRINTF:.c=.o))
 
 all: re
-	@$(CC) $(LFLAGS) $(CFLAGS) -g $(MAIN_PATH)lem-in.c ./src/lem-in/create_anthill.c $(NAME) -o lem-in
+	@$(CC) $(LFLAGS) $(CFLAGS) -g $(MAIN_PATH)lem-in.c  $(LEM_IN_SRC) $(NAME) -o lem-in
 	@$(MAKE) clean
 
 $(NAME): $(OBJ)
