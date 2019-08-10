@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 14:57:27 by yura              #+#    #+#             */
-/*   Updated: 2019/08/10 12:38:15 by pcredibl         ###   ########.fr       */
+/*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
+/*   Updated: 2019/08/10 13:07:26 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ typedef struct 			s_rooms
 
 
 t_rooms					*create_lem(void);
+
+void					check_lem(t_rooms *lem);
 #endif

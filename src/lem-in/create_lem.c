@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_lem.c                                   :+:      :+:    :+:   */
+/*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yura <yura@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 18:10:27 by yura              #+#    #+#             */
-/*   Updated: 2019/08/06 19:55:39 by yura             ###   ########.fr       */
+/*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
+/*   Updated: 2019/08/10 13:06:47 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,11 @@ t_rooms				*create_lem(void)
 	ac = ft_atoi(line);
 	ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
-	while (rooms)
+	check_lem(rooms);
+	/*while (rooms)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
 		rooms = rooms->next;
-	}
+	}*/
 	return (rooms);
 }
