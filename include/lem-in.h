@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by yura              #+#    #+#             */
-/*   Updated: 2019/08/10 11:28:15 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/10 12:38:15 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct 			s_lem
 {
 	struct s_rooms		*rooms;
+	int					ac;
 	int					vc;
 	int					ec;
 	char				**path;
@@ -44,5 +45,5 @@ typedef struct 			s_rooms
 }						t_rooms;
 
 
-void	create_lem(void);
+t_rooms					*create_lem(void);
 #endif

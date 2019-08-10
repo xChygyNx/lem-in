@@ -92,7 +92,7 @@ static t_rooms	*ft_rooms(char **s)
 	return (begin);
 }
 
-void				create_lem(void)
+t_rooms				*create_lem(void)
 {
 	int				ac;
 	char    		*line;
@@ -105,11 +105,10 @@ void				create_lem(void)
 	ac = ft_atoi(line);
 	ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
-	ft_printf("line = %s\n", line);
 	while (rooms)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
 		rooms = rooms->next;
 	}
-
+	return (rooms);
 }
