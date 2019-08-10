@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yura <yura@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by yura              #+#    #+#             */
-/*   Updated: 2019/08/09 16:10:53 by yura             ###   ########.fr       */
+/*   Updated: 2019/08/10 11:28:15 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct 			s_lem
 
 typedef struct 			s_rooms
 {
-	char				**smegh;
+	char				**adj;
 	char				*name;
 	int					x;
 	int					y;

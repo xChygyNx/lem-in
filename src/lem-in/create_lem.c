@@ -56,6 +56,7 @@ static t_rooms	*create_lst(char **tab, int type)
 	temp->type = type;
 	temp->smegh = (char**)malloc(sizeof(char*));
 	temp->next = NULL;
+	//ft_printf("name = %s, x = %d, y = %d, type = %d\n", temp->name, temp->x, temp->y, temp->type);
 	return (temp);
 }
 
@@ -66,19 +67,21 @@ static t_rooms	*ft_rooms(char **s)
 	int			type;
 
 	lst = NULL;
+	begin = NULL;
 	get_next_line(0, s);
 	while ((type = room_info(*s)) != -1)
 	{
-		ft_printf("type = %d\n", type);
-		type > 0 ? get_next_line (0, s): 0;
-		if (room_info(*s) == -1)
+		//ft_printf("type = %d\n", type);
+		type ? get_next_line (0, s): 0;
+		if (type == -1)
 			break ;
+		type = type == 3 ? 0 : type;
 		if (!lst)
 			lst = create_lst(ft_strsplit(*s, ' '), type);
 		else
 			lst->next = create_lst(ft_strsplit(*s, ' '), type);
 		begin = !begin ? lst : begin;
-		lst->next ? lst = lst->next : 0;
+		lst && lst->next ? lst = lst->next : 0;
 		get_next_line(0, s);
 	}
 	return (begin);
@@ -95,8 +98,12 @@ void				create_lem(void)
 		exit(ft_fprintf(2, "Error! Can't allocate memory!\n"));
 	get_next_line(0, &line);
 	ac = ft_atoi(line);
-	ft_printf("ac =%d\n",ac);
+	ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
-	rooms +=0;
+	while (rooms)
+	{
+		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
+		rooms = rooms->next;
+	}
 
 }
