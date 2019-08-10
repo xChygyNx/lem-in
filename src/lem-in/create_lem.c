@@ -54,7 +54,7 @@ static t_rooms	*create_lst(char **tab, int type)
 	temp->x = ft_atoi(tab[1]);
 	temp->y = ft_atoi(tab[2]);
 	temp->type = type;
-	temp->smegh = (char**)malloc(sizeof(char*));
+	temp->adj = (char**)malloc(sizeof(char*));
 	temp->next = NULL;
 	//ft_printf("name = %s, x = %d, y = %d, type = %d\n", temp->name, temp->x, temp->y, temp->type);
 	return (temp);
@@ -73,9 +73,14 @@ static t_rooms	*ft_rooms(char **s)
 	{
 		//ft_printf("type = %d\n", type);
 		type ? get_next_line (0, s): 0;
-		if (type == -1)
+		while (room_info(*s) > 0)
+		{
+			type = type == START || type == END ? type : room_info(*s);
+			get_next_line(0, s);
+		}
+		if (room_info(*s) == -1)
 			break ;
-		type = type == 3 ? 0 : type;
+		type = type == COMMENT ? 0 : type;
 		if (!lst)
 			lst = create_lst(ft_strsplit(*s, ' '), type);
 		else
@@ -100,6 +105,7 @@ void				create_lem(void)
 	ac = ft_atoi(line);
 	ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
+	ft_printf("line = %s\n", line);
 	while (rooms)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
