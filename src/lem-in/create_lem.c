@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/10 13:06:47 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/10 14:36:48 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,12 @@ t_rooms				*create_lem(void)
 	ac = ft_atoi(line);
 	ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
+	ft_edge(rooms, &line);
 	check_lem(rooms);
-	/*while (rooms)
+	while (rooms)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
 		rooms = rooms->next;
-	}*/
+	}
 	return (rooms);
 }

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/10 13:07:26 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/10 15:04:48 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,11 @@ typedef struct 			s_rooms
 
 t_rooms					*create_lem(void);
 
+void					ft_edge(t_rooms *len, char **line);
+
 void					check_lem(t_rooms *lem);
+
+void					size_arr(char **vertexes);
+
+void					exist_vertex(char **vertexes, t_rooms *lem);
 #endif
