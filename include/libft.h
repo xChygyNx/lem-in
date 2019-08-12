@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 17:10:53 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/29 11:27:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/12 13:00:39 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,4 +189,6 @@ int				get_next_line(const int fd, char **line);
 int				ft_atoi_ps(const char *str);
 
 void			page_del(t_list **lst);
+
+void			free_tab(char **tab);
 #endif

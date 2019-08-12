@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/10 14:36:48 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/12 19:06:18 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ static t_rooms	*create_lst(char **tab, int type)
 	temp = (t_rooms*)malloc(sizeof(t_rooms));
 	if (!temp)
 		exit(ft_fprintf(2, "Error\n"));
-	
+	//ft_printf("I'm here\n");
 	temp->name = tab[0];
 	temp->x = ft_atoi(tab[1]);
 	temp->y = ft_atoi(tab[2]);
 	temp->type = type;
-	temp->adj = (char**)malloc(sizeof(char*));
+	temp->adj = (char*)malloc(sizeof(char));
+	temp->adj = "\0";
 	temp->next = NULL;
 	//ft_printf("name = %s, x = %d, y = %d, type = %d\n", temp->name, temp->x, temp->y, temp->type);
 	return (temp);
@@ -88,6 +89,7 @@ static t_rooms	*ft_rooms(char **s)
 		begin = !begin ? lst : begin;
 		lst && lst->next ? lst = lst->next : 0;
 		get_next_line(0, s);
+		//ft_printf("I'm here\n");
 	}
 	return (begin);
 }
@@ -103,7 +105,7 @@ t_rooms				*create_lem(void)
 		exit(ft_fprintf(2, "Error! Can't allocate memory!\n"));
 	get_next_line(0, &line);
 	ac = ft_atoi(line);
-	ft_printf("ac = %d\n",ac);
+	//ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line);
 	ft_edge(rooms, &line);
 	check_lem(rooms);

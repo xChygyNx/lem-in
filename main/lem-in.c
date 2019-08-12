@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/10 12:50:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/12 19:04:18 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,11 @@ int		main(void)
 	t_rooms	*lem;
 
 	lem = create_lem();
-	return (1);
+	while (lem)
+	{
+		ft_printf("-------------------name = %s------------------------------\n", lem->name);
+		ft_printf("adj = %s\n", lem->adj);
+		lem = lem->next;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/10 15:04:48 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/12 18:57:33 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct 			s_lem
 
 typedef struct 			s_rooms
 {
-	char				**adj;
+	char				*adj;
 	char				*name;
 	int					x;
 	int					y;
@@ -51,7 +51,9 @@ void					ft_edge(t_rooms *len, char **line);
 
 void					check_lem(t_rooms *lem);
 
-void					size_arr(char **vertexes);
+void					is_two_vert(char **vertexes);
 
 void					exist_vertex(char **vertexes, t_rooms *lem);
+
+char					**add_elem(char **tab, char *elem);
 #endif
