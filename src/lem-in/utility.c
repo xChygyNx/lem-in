@@ -6,32 +6,32 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/12 18:47:26 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 17:10:30 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-char	**add_elem(char **tab, char *elem)
+t_adj	*ft_addlst(t_adj *adj, char *elem)
 {
-	char	**temp;
-	size_t	size_arr;
-
-	size_arr = 1;
-	ft_printf("tab = %p\n", tab);
-	ft_printf("*tab = %p\n", *tab);
-	while (tab[size_arr - 1])
-		size_arr++;
-	temp = (char**)malloc(sizeof(char*) * (size_arr + 1));
-	temp[size_arr] = "\0";
-	size_arr = 0;
-	while (tab[size_arr])
+	t_adj	*begin;
+	if (adj->name)
 	{
-		//temp[size_arr] = (char*)malloc(sizeof(char) * (ft_strlen(tab[size_arr]) + 1));
-		//temp[size_arr] = ft_strcpy(temp[size_arr], tab[size_arr]);
-		size_arr++;
+		begin = adj;
+		while (adj->next)
+			adj = adj->next;
+		adj->next = (t_adj*)malloc(sizeof(t_adj));
+		adj = adj->next;
+		adj->name = ft_strdup(elem);
+		adj->name = ft_strcpy(adj->name, elem);
+		adj->next = NULL;
 	}
-	temp[size_arr] = (char*)malloc(sizeof(char) * (ft_strlen(elem) + 1));
-	temp[size_arr] = ft_strcpy(temp[size_arr], elem);
-	return(temp);
+	else
+	{
+		begin = (t_adj*)malloc(sizeof(t_adj));
+		begin->name = ft_strdup(elem);
+		begin->name = ft_strcpy(begin->name, elem);
+		begin->next = NULL;
+	}
+	return(begin);
 }

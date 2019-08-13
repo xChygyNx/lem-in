@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/12 19:28:49 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 17:19:37 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,15 @@ static void	add_adj(t_rooms *lem, char **v)
 		{
 			//ft_printf("name = %s, v0 = %s, v1 = %s\n", lem->name, v[0], v[1]);
 			i++;
-			lem->adj = ft_strjoin(lem->adj, " ");
-			//ft_printf("adj = %p, adj = %s\n", lem->adj, lem->adj);
 			lem->adj = !ft_strcmp(lem->name, v[0]) ?\
-			ft_strjoin(lem->adj, v[1]) : ft_strjoin(lem->adj, v[0]);
+			ft_addlst(lem->adj, v[1]) : ft_addlst(lem->adj, v[0]);
 			//ft_printf("adj = %p, adj = %s\n", lem->adj, lem->adj);
 		}
 		lem = lem->next;
 	}
 }
 
-void		ft_edge(t_rooms *lem, char **line)
+void		ft_edge(t_rooms *lem, char **line, int fd)
 {
 	char	**vertexes;
 
@@ -50,6 +48,6 @@ void		ft_edge(t_rooms *lem, char **line)
 			//ft_printf("I'm here\n");
 			add_adj(lem, vertexes);
 		}
-		get_next_line(0, line);
+		get_next_line(fd, line);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/12 18:57:33 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 17:20:39 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define	END 2
 # define 	COMMENT 3
 
+typedef struct 			s_adj
+{
+	char				*name;
+	struct s_adj		*next;
+}						t_adj;
+
+
 typedef struct 			s_lem
 {
 	struct s_rooms		*rooms;
@@ -36,7 +43,7 @@ typedef struct 			s_lem
 
 typedef struct 			s_rooms
 {
-	char				*adj;
+	struct s_adj		*adj;
 	char				*name;
 	int					x;
 	int					y;
@@ -45,9 +52,9 @@ typedef struct 			s_rooms
 }						t_rooms;
 
 
-t_rooms					*create_lem(void);
+t_rooms					*create_lem(int fd);
 
-void					ft_edge(t_rooms *len, char **line);
+void					ft_edge(t_rooms *len, char **line, int fd);
 
 void					check_lem(t_rooms *lem);
 
@@ -55,5 +62,5 @@ void					is_two_vert(char **vertexes);
 
 void					exist_vertex(char **vertexes, t_rooms *lem);
 
-char					**add_elem(char **tab, char *elem);
+t_adj					*ft_addlst(t_adj *adj, char *elem);
 #endif

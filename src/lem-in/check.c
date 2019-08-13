@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/12 20:03:57 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 17:00:46 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	check_vert(t_rooms *lem)
 	{
 		lem = cur->next;
 		//ft_printf("name = %s, adj =%s, len = %zu\n", cur->name, cur->adj, ft_strlen(cur->adj));
-		!ft_strlen(cur->adj) ? exit(ft_fprintf(2, "ERROR (isolate vertex)\n")) : 0;
+		//!ft_strlen(cur->adj) ? exit(ft_fprintf(2, "ERROR (isolate vertex)\n")) : 0;
 		while (lem)
 		{
 			if (!ft_strcmp(cur->name, lem->name) ||\
@@ -50,7 +50,7 @@ static void	check_vert(t_rooms *lem)
 		}
 		cur = cur->next;
 	}
-	!ft_strlen(cur->adj) ? exit(ft_fprintf(2, "ERROR (isolate vertex)\n")) : 0;
+	//!ft_strlen(cur->adj) ? exit(ft_fprintf(2, "ERROR (isolate vertex)\n")) : 0;
 }
 
 void		is_two_vert(char **tab)
