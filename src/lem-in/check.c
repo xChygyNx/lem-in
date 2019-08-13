@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 17:00:46 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 18:22:30 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ void		check_lem(t_rooms *lem)
 	start_end(lem);
 	//ft_printf("name = %s\n", lem->name);
 	check_vert(lem);
+	check_adj(lem);
 }

@@ -6,7 +6,7 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/08/12 13:45:18 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/08/13 18:20:08 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SOURCES_PRINTF = ft_putnbr_f.c print_str.c print_pointer.c utility_func.c\
 		   ft_dtoa.c ft_dtoa_2.c ft_dtoa_3.c ft_fprintf.c set_precision.c\
 		   print_binary.c ft_dtoe.c print_scientific.c utility_func_2.c
 
-LEM-IN_SOURCES = create_lem.c create_lem2.c check.c utility.c
+LEM-IN_SOURCES = create_lem.c create_lem2.c check.c check2.c utility.c
 
 LEM_IN_SRC = $(addprefix $(LEM_IN_PATH)/,$(LEM-IN_SOURCES))
 

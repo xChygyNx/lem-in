@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 17:20:12 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/13 19:54:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static t_rooms	*create_lst(char **tab, int type)
 	temp->type = type;
 	temp->adj = (t_adj*)malloc(sizeof(t_adj));
 	temp->next = NULL;
+	temp->visit = 0;
 	//ft_printf("name = %s, x = %d, y = %d, type = %d\n", temp->name, temp->x, temp->y, temp->type);
 	return (temp);
 }
