@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 20:55:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 21:36:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ void					exist_vertex(char **vertexes, t_rooms *lem);
 t_adj					*ft_addlst(t_adj *adj, char *elem);
 
 t_rooms					*check_adj(t_rooms *lem);
+
+void					unvisit(t_rooms *lem);
 
 #endif

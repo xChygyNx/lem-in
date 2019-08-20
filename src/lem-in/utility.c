@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 17:10:30 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 21:35:36 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,13 @@ t_adj	*ft_addlst(t_adj *adj, char *elem)
 		begin->next = NULL;
 	}
 	return(begin);
+}
+
+void	unvisit(t_rooms *lem)
+{
+	while (lem)
+	{
+		lem->visit = 0;
+		lem = lem->next;
+	}
 }
