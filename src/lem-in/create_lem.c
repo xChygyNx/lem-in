@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 19:54:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 20:57:19 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_rooms				*create_lem(int	fd)
 	//ft_printf("ac = %d\n",ac);
 	rooms = ft_rooms(&line, fd);
 	ft_edge(rooms, &line, fd);
-	check_lem(rooms);
+	rooms = check_lem(rooms);
 	/*while (rooms)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);

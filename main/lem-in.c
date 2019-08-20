@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 18:37:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 20:22:24 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(void)
 
 	fd = open("test", O_RDONLY);
 	lem = create_lem(fd);
-	/*while (lem)
+	while (lem)
 	{
 		ft_printf("name = %s, x = %d, y = %d, type = %d\n", lem->name, lem->x, lem->y, lem->type);
 		while (lem->adj)
@@ -28,6 +28,6 @@ int		main(void)
 			lem->adj = lem->adj->next;
 		}
 		lem = lem->next;
-	}*/
+	}
 	return (0);
 }

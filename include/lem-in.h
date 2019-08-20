@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 19:54:44 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 20:55:58 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_rooms					*create_lem(int fd);
 
 void					ft_edge(t_rooms *len, char **line, int fd);
 
-void					check_lem(t_rooms *lem);
+t_rooms					*check_lem(t_rooms *lem);
 
 void					is_two_vert(char **vertexes);
 
@@ -65,6 +65,6 @@ void					exist_vertex(char **vertexes, t_rooms *lem);
 
 t_adj					*ft_addlst(t_adj *adj, char *elem);
 
-void					check_adj(t_rooms *lem);
+t_rooms					*check_adj(t_rooms *lem);
 
 #endif

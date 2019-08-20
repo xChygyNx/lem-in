@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 18:20:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 20:21:20 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/20 21:08:39 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	find_end(t_adj *cur, t_rooms *begin, int *res)
 {
 	t_rooms *temp;
+	t_adj	*start;
 	
 	usleep(50000);
 	//ft_printf("cur = %s, begin = %s, res = %d\n", cur->name, begin->name, *res);
@@ -29,14 +30,16 @@ static void	find_end(t_adj *cur, t_rooms *begin, int *res)
 	if (*res || temp->visit)
 		return ;
 	temp->visit = 1;
-	while (temp->adj)
+	start = temp->adj;
+	while (temp->adj && !(*res))
 	{
 		find_end(temp->adj, begin, res);
 		temp->adj = temp->adj->next;
 	}
+	temp->adj = start;
 }
 
-void		check_adj(t_rooms *lem)
+t_rooms		*check_adj(t_rooms *lem)
 {
 	t_rooms	*begin;
 	t_rooms	*temp;
@@ -78,4 +81,5 @@ void		check_adj(t_rooms *lem)
 	find_end(lem->adj, lem, &res);
 	//ft_printf("res = %d\n", res);
 	!res ? exit(ft_fprintf(2, "ERROR, (start & end situated in different connected components)\n")) : 0;
+	return (lem);
 }
