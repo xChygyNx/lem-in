@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 21:32:06 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/22 23:08:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(void)
 	t_rooms	*lem;
 	int		fd;
 
-	fd = open("test", O_RDONLY);
+	fd = open("./tests/test00", O_RDONLY);
 	lem = create_lem(fd);
 	while (lem)
 	{

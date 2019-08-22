@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 21:36:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/22 21:37:53 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "libft.h"
 # include "libftprintf.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 
 # define	START 1
 # define	END 2
@@ -30,7 +24,6 @@ typedef struct 			s_adj
 	char				*name;
 	struct s_adj		*next;
 }						t_adj;
-
 
 typedef struct 			s_lem
 {
@@ -51,7 +44,6 @@ typedef struct 			s_rooms
 	struct s_rooms		*next;
 	int					visit;
 }						t_rooms;
-
 
 t_rooms					*create_lem(int fd);
 
