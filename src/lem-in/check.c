@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 21:33:52 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/23 18:33:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static void	start_end(t_rooms *lem)
+static void		start_end(t_rooms *lem)
 {
 	//t_rooms	*begin;
 	int		start;
@@ -31,7 +31,7 @@ static void	start_end(t_rooms *lem)
 	!start || !end ? exit(ft_fprintf(2, "ERROR2\n")) : 0;
 }
 
-static void	check_vert(t_rooms *lem)
+static void		check_vert(t_rooms *lem)
 {
 	t_rooms	*cur;
 
@@ -53,7 +53,7 @@ static void	check_vert(t_rooms *lem)
 	//!ft_strlen(cur->adj) ? exit(ft_fprintf(2, "ERROR (isolate vertex)\n")) : 0;
 }
 
-void		is_two_vert(char **tab)
+void			is_two_vert(char **tab)
 {
 	int		i;
 
@@ -63,7 +63,7 @@ void		is_two_vert(char **tab)
 	i == 2 ? 0 : exit(ft_fprintf(2 , "ERROR3\n"));
 }
 
-void		exist_vertex(char **vertexes, t_rooms *lem)
+void			exist_vertex(char **vertexes, t_rooms *lem)
 {
 	int		v1;
 	int		v2;
@@ -83,7 +83,7 @@ void		exist_vertex(char **vertexes, t_rooms *lem)
 	!v1 || !v2 ? exit(ft_fprintf(2, "ERROR4\n")) : 0;
 }
 
-t_rooms		*check_lem(t_rooms *lem)
+t_rooms			*check_lem(t_rooms *lem)
 {
 	start_end(lem);
 	//ft_printf("name = %s\n", lem->name);

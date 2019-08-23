@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 21:35:36 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/23 20:47:04 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ void	unvisit(t_rooms *lem)
 		lem->visit = 0;
 		lem = lem->next;
 	}
+}
+
+void	ft_free_rooms(t_rooms ** rooms)
+{
+	return ;
+}
+
+int		ft_char_count(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+		return (i);
+	while (*str++)
+	{
+		if (*str == c)
+			++i;
+	}
+	return (i);
 }

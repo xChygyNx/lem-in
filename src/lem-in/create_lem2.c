@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/13 17:19:37 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/23 21:52:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	add_adj(t_rooms *lem, char **v)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < 2)
 	{
@@ -35,12 +35,13 @@ void		ft_edge(t_rooms *lem, char **line, int fd)
 {
 	char	**vertexes;
 
-	lem += 0;
+	lem += 0; // что тут происходит??
 	while (*line[0] && *line)
 	{
 		//ft_printf("I'm here\n");
 		if (*line[0] != '#')
 		{
+			//нужна валидация строки ребра
 			//ft_printf("line = %s,     %p\n", *line, *line);
 			vertexes = ft_strsplit(*line, '-');
 			is_two_vert(vertexes);
@@ -48,6 +49,6 @@ void		ft_edge(t_rooms *lem, char **line, int fd)
 			//ft_printf("I'm here\n");
 			add_adj(lem, vertexes);
 		}
-		get_next_line(fd, line);
+		get_next_line(fd, line); //что будет если вернется -1??
 	}
 }

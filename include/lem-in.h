@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/22 21:37:53 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/23 21:44:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,34 @@
 # define LEM_IN_H
 
 # include "libftprintf.h"
+# include <stdio.h>
 
-# define	START 1
-# define	END 2
-# define 	COMMENT 3
+# define START 1
+# define END 2
+# define COMMENT 3
 
-typedef struct 			s_adj
+/*
+ * Errors from 100 to infinity
+ */
+
+# define INVALID_INPUT 100
+
+typedef struct			s_adj
 {
 	char				*name;
 	struct s_adj		*next;
 }						t_adj;
 
-typedef struct 			s_lem
+typedef struct			s_lem
 {
 	struct s_rooms		*rooms;
-	int					ac;
-	int					vc;
-	int					ec;
-	char				**path;
+	int					ant_c;  //кол-во муравьев
+	int					vert_c;  //кол-во вершин
+	int					edge_c;  //кол-во ребер
+	char				**path; //что будем в пути хранить?
 }						t_lem;
 
-typedef struct 			s_rooms
+typedef struct			s_rooms
 {
 	struct s_adj		*adj;
 	char				*name;
@@ -44,6 +51,8 @@ typedef struct 			s_rooms
 	struct s_rooms		*next;
 	int					visit;
 }						t_rooms;
+
+void					ft_exit(t_rooms **lem, int err);
 
 t_rooms					*create_lem(int fd);
 
@@ -60,5 +69,13 @@ t_adj					*ft_addlst(t_adj *adj, char *elem);
 t_rooms					*check_adj(t_rooms *lem);
 
 void					unvisit(t_rooms *lem);
+
+void					ft_free_rooms(t_rooms **rooms);
+
+/*
+ * UTILITY FUNCTIONS
+ */
+
+int		ft_char_count(char *str, char c);
 
 #endif
