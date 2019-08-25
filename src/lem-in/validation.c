@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 18:23:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/25 18:19:53 by astripeb         ###   ########.fr       */
+/*   Created: 2019/08/25 14:35:59 by astripeb          #+#    #+#             */
+/*   Updated: 2019/08/25 18:30:40 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "lem_in.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+int		ft_validate_room(char **map)
 {
-	size_t i;
+	int i;
 
-	i = 0;
-	while (src[i] != '\0')
+	if (ft_len_arr(map) != 3)
+		return (0);
+	i = 1;
+	while (map[i])
 	{
-		dest[i] = src[i];
+		if (!ft_isdigitstr(map[i]) ||\
+		ft_int_len(ft_atoi(map[i])) != ft_strlen(map[i]))
+		{
+			ft_free_arr(map);
+			return (0);
+		}
 		++i;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (1);
 }

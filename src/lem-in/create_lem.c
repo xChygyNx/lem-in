@@ -3,111 +3,119 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/23 21:47:00 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:31:06 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-static int			room_info(char *s)
+int					room_info(char *s)
 {
-	int				i;
-	char			**tab;
-
 	if (!ft_strcmp(s, "##start"))
 		return (START);
 	if (!ft_strcmp(s, "##end"))
 		return (END);
 	if (*s == '#')
 		return (COMMENT);
-/*
-	Функция должна делать одну определеную вещь, тут же происходит
-	и выдача типа комнаты и валидация строки.
-*/
-	if (ft_char_count(s, ' ') != 2) //если между цифрами больше одного пробела
-		return (-1);				//файл не валидный?
-	i = -1;
-	tab = ft_strsplit(s, ' ');
-	while (++i < 3)
-	{
-		if ((strlen(tab[i]) != ft_int_len(ft_atoi(tab[i]))\
-			|| !ft_isdigit(tab[i][0])) && i != 0) // а если второй символ будет не цифра?
-			return (-1);
-	}
+	if (ft_char_count(s, ' ') != 2)
+		return (-1);
 	return (0);
 }
 
-static t_rooms		*create_lst(char **tab, int type)
+static t_rooms		*create_room(char **tab, int type)
 {
 	t_rooms		*temp;
 
-	//НУЖНО БОЛЬШЕ ЗАЩИТЫ
 	if (!(temp = (t_rooms*)malloc(sizeof(t_rooms))))
-		ft_exit(NULL, MALLOC_FAILURE);
-	temp->name = tab[0];
+		return (NULL);
+	if (!(temp->name = ft_strdup(tab[0])))
+	{
+		free(temp);
+		return (NULL);
+	}
 	temp->x = ft_atoi(tab[1]);
 	temp->y = ft_atoi(tab[2]);
 	temp->type = type;
-	temp->adj = (t_adj*)malloc(sizeof(t_adj)); //ЕЩЕ БОЛЬШЕ ЗАЩИТЫ
+	temp->adj = NULL;
 	temp->next = NULL;
 	temp->visit = 0;
-	//ft_printf("name = %s, x = %d, y = %d, type = %d\n", temp->name, temp->x, temp->y, temp->type);
 	return (temp);
 }
 
-static t_rooms		*ft_rooms(char **s, int fd)
+static int			add_room(t_rooms **begin, char *line, int type)
 {
-	t_rooms		*lst;
-	t_rooms		*begin;
-	int			type;
+	t_rooms		*temp;
+	char		**split;
+	int			flag;
 
-	lst = NULL;
-	begin = NULL;
-	get_next_line(fd, s); //что будет если вернется -1??
-	while ((type = room_info(*s)) != -1)
+	flag = 1;
+	if (!(split = ft_strsplit(line, ' ')) || !ft_validate_room(split))
+		return (0);
+	if (*begin)
 	{
-		type ? get_next_line (fd, s): 0; //что будет если вернется -1??
-		while (room_info(*s) > 0)
-		{
-			type = type == START || type == END ? type : room_info(*s);
-			get_next_line(fd, s); //что будет если вернется -1??
-		}
-		if (room_info(*s) == -1) //еще одна проверка?
-			break ;
-		type = type == COMMENT ? 0 : type;
-		//может сделать чтобы текущую комнату добавлять сразу в конец
-		if (!lst)				//если strsplit вернет NULL??
-			lst = create_lst(ft_strsplit(*s, ' '), type);
-		else						//если strsplit вернет NULL??
-			lst->next = create_lst(ft_strsplit(*s, ' '), type);
-		begin = !begin ? lst : begin; //это можно вынести за цикл
-		lst && lst->next ? lst = lst->next : 0;
-		get_next_line(fd, s); //что будет если вернется -1??
-		//ft_printf("I'm here\n");
+		temp = *begin;
+		while (temp->next)
+			temp = temp->next;
+		if (!(temp->next = create_room(split, type)))
+			flag = 0;
 	}
-	return (begin);
+	else
+	{
+		if (!(*begin = create_room(split, type)))
+			flag = 0;
+	}
+	ft_free_arr(split);
+	return (flag);
 }
 
-t_rooms				*create_lem(int	fd)
+static void			ft_rooms(t_lem *lem, int fd)
 {
-	char    		*line;
-	t_rooms			*rooms;
+	int			type;
 
-	line = NULL;
-	if (get_next_line(fd, &line) <= 0)
-		ft_exit(NULL, INVALID_INPUT);
-	if (!line)
-		ft_exit(NULL, INVALID_INPUT);
-	rooms = ft_rooms(&line, fd); // отдельно комнаты одельно ребра?
-	ft_edge(rooms, &line, fd);
-	rooms = check_lem(rooms);
-	/*while (rooms)
+	type = 0;
+	lem->vert_c = 0;
+	while (get_next_line(fd, &lem->line) > 0 && room_info(lem->line) != -1)
 	{
-		ft_printf("name = %s, x = %d, y = %d, type = %d\n", rooms->name, rooms->x, rooms->y, rooms->type);
-		rooms = rooms->next;
-	}*/
-	return (rooms);
+		if (!(lem->map = ft_strjoin_f(lem->map, "\n"))\
+		|| !(lem->map = ft_strjoin_f(lem->map, lem->line)))
+			ft_exit(&lem, MALLOC_FAILURE);
+		if (room_info(lem->line) > 0)
+		{
+			type = room_info(lem->line) == COMMENT\
+			? type : room_info(lem->line);
+			free(lem->line);
+			continue ;
+		}
+		if (!add_room(&lem->rooms, lem->line, type))
+			ft_exit(&lem, INVALID_INPUT);
+		lem->vert_c += 1;
+		free(lem->line);
+		type = 0;
+	}
+}
+
+t_lem				*create_lem(int fd)
+{
+	t_lem			*lem;
+
+	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
+		ft_exit(NULL, MALLOC_FAILURE);
+	lem->path = NULL;
+	lem->rooms = NULL;
+	lem->line = NULL;
+	lem->map = NULL;
+	if (get_next_line(fd, &lem->line) <= 0 || ft_isdigitstr(lem->line) < 1)
+		ft_exit(&lem, INVALID_INPUT);
+	lem->ant_c = ft_atoi(lem->line);
+	if (ft_int_len(lem->ant_c) != ft_strlen(lem->line))
+		ft_exit(&lem, INVALID_INPUT);
+	if (!(lem->map = ft_strjoin_s("", lem->line)))
+		ft_exit(&lem, MALLOC_FAILURE);
+	ft_rooms(lem, fd);
+	ft_edge(lem, fd);
+	lem->rooms = check_lem(lem->rooms);
+	return (lem);
 }

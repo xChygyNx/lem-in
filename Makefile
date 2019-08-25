@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/08/23 19:02:02 by astripeb         ###   ########.fr        #
+#    Updated: 2019/08/25 18:24:35 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ CFLAGS			= -g -Wall -Wextra -Werror
 LFLAGS			= -I $(INC_PATH)
 LIB				= -L $(LIB_PATH) -lftprintf
 
-SRC 			= lem-in.c create_lem.c create_lem2.c check.c check2.c
-SRC				+= utility.c ft_exit.c
+SRC 			= lem_in.c create_lem.c create_lem2.c check.c check2.c
+SRC				+= utility.c ft_exit.c validation.c
 
 OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 

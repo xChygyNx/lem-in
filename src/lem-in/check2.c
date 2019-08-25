@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 18:20:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/20 21:28:27 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:31:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void	find_end(t_adj *cur, t_rooms *begin, int *res)
 {
 	t_rooms *temp;
 	t_adj	*start;
-	
+
 	usleep(50000);
 	//ft_printf("cur = %s, begin = %s, res = %d\n", cur->name, begin->name, *res);
 	if (*res)

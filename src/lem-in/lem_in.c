@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/23 20:07:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:35:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int		main(void)
 {
-	t_rooms	*lem;
+	t_lem	*lem;
+	t_rooms	*room;
 	int		fd;
 
 	fd = 0;
 	lem = create_lem(fd);
-	while (lem)
-	{
-		ft_printf("name = %s, x = %d, y = %d, type = %d, visit = %d\n", lem->name, lem->x, lem->y, lem->type, lem->visit);
-		while (lem->adj)
-		{
-			ft_printf("adj = %s\n", lem->adj->name);
-			lem->adj = lem->adj->next;
-		}
-		lem = lem->next;
-	}
+//	ft_printf("%s", lem->map);
+	ft_print_lem_info(lem);
+	ft_del_lem(&lem);
 	return (0);
 }

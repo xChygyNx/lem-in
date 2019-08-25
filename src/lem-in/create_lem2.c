@@ -3,52 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/23 21:52:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:31:11 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-static void	add_adj(t_rooms *lem, char **v)
+static int			exist_vertex(t_rooms *room, char **vertexes)
 {
-	int		i;
+	int			v1;
+	int			v2;
 
+	v1 = 0;
+	v2 = 0;
+	while ((!v1 || !v2) && room)
+	{
+		v1 += !ft_strcmp(room->name, vertexes[0]) ? 1 : 0;
+		v2 += !ft_strcmp(room->name, vertexes[1]) ? 1 : 0;
+		if (v1 && v2)
+			break ;
+		room = room->next;
+	}
+	if (!v1 || !v2)
+		return (0);
+	return (1);
+}
+
+static void			add_adj(t_lem *lem, char **v)
+{
+	int			i;
+	int			n;
+	t_rooms		*room;
+
+	room = lem->rooms;
+	if (!exist_vertex(room, v))
+		ft_exit(&lem, INVALID_INPUT);
 	i = 0;
 	while (i < 2)
 	{
-		if (!ft_strcmp(lem->name, v[0]) || !ft_strcmp(lem->name, v[1]))
+		if (!ft_strcmp(room->name, v[0]) || !ft_strcmp(room->name, v[1]))
 		{
-			//ft_printf("name = %s, v0 = %s, v1 = %s\n", lem->name, v[0], v[1]);
 			i++;
-			lem->adj = !ft_strcmp(lem->name, v[0]) ?\
-			ft_addlst(lem->adj, v[1]) : ft_addlst(lem->adj, v[0]);
-			//ft_printf("adj = %p, adj = %s\n", lem->adj, lem->adj);
+			n = !ft_strcmp(room->name, v[0]) ? 1 : 0;
+			if (!(room->adj = ft_addlst(room->adj, v[n])))
+				ft_exit(&lem, MALLOC_FAILURE);
 		}
-		lem = lem->next;
+		room = room->next;
 	}
+	ft_free_arr(v);
+	lem->edge_c += 1;
 }
 
-void		ft_edge(t_rooms *lem, char **line, int fd)
+void				ft_edge(t_lem *lem, int fd)
 {
 	char	**vertexes;
 
-	lem += 0; // что тут происходит??
-	while (*line[0] && *line)
+	lem->edge_c = 0;
+	while (lem->line)
 	{
-		//ft_printf("I'm here\n");
-		if (*line[0] != '#')
+		if (lem->line[0] != '#')
 		{
-			//нужна валидация строки ребра
-			//ft_printf("line = %s,     %p\n", *line, *line);
-			vertexes = ft_strsplit(*line, '-');
-			is_two_vert(vertexes);
-			exist_vertex(vertexes, lem);
-			//ft_printf("I'm here\n");
+			if (!(vertexes = ft_strsplit(lem->line, '-')))
+				ft_exit(&lem, MALLOC_FAILURE);
+			if (ft_len_arr(vertexes) != 2)
+			{
+				ft_free_arr(vertexes);
+				ft_exit(&lem, INVALID_INPUT);
+			}
 			add_adj(lem, vertexes);
 		}
-		get_next_line(fd, line); //что будет если вернется -1??
+		free(lem->line);
+		if (get_next_line(fd, &lem->line) < 1)
+			break ;
+		if (!(lem->map = ft_strjoin_f(lem->map, "\n"))\
+		|| !(lem->map = ft_strjoin_f(lem->map, lem->line)))
+			ft_exit(&lem, MALLOC_FAILURE);
 	}
+	lem->line = NULL;
 }
