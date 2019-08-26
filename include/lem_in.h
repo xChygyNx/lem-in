@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/25 18:31:28 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 00:16:17 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
  */
 
 # define INVALID_INPUT 100
+# define START_END 101
+# define DOUBLE_VRX 102
+# define ONE_COMPONENT 103
 
 typedef struct			s_adj
 {
@@ -60,17 +63,13 @@ t_lem					*create_lem(int fd);
 
 void					ft_edge(t_lem *lem, int fd);
 
-t_rooms					*check_lem(t_rooms *lem);
+void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
 
 t_adj					*ft_addlst(t_adj *adj, char *elem);
 
-t_rooms					*check_adj(t_rooms *lem);
-
 void					unvisit(t_rooms *lem);
-
-int						room_info(char *s);
 
 void					ft_del_lem(t_lem **lem_to_del);
 

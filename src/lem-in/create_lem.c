@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/25 18:31:06 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 00:15:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int					room_info(char *s)
+static int			room_info(char *s)
 {
 	if (!ft_strcmp(s, "##start"))
 		return (START);
@@ -38,6 +38,12 @@ static t_rooms		*create_room(char **tab, int type)
 	}
 	temp->x = ft_atoi(tab[1]);
 	temp->y = ft_atoi(tab[2]);
+	if (temp->x < 0 || temp->y < 0)
+	{
+		free(temp->name);
+		free(temp);
+		return (NULL);
+	}
 	temp->type = type;
 	temp->adj = NULL;
 	temp->next = NULL;
@@ -110,12 +116,12 @@ t_lem				*create_lem(int fd)
 	if (get_next_line(fd, &lem->line) <= 0 || ft_isdigitstr(lem->line) < 1)
 		ft_exit(&lem, INVALID_INPUT);
 	lem->ant_c = ft_atoi(lem->line);
-	if (ft_int_len(lem->ant_c) != ft_strlen(lem->line))
+	if (ft_int_len(lem->ant_c) != ft_strlen(lem->line) || lem->ant_c <= 0)
 		ft_exit(&lem, INVALID_INPUT);
 	if (!(lem->map = ft_strjoin_s("", lem->line)))
 		ft_exit(&lem, MALLOC_FAILURE);
 	ft_rooms(lem, fd);
 	ft_edge(lem, fd);
-	lem->rooms = check_lem(lem->rooms);
+	check_lem(lem);
 	return (lem);
 }
