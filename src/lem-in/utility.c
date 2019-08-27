@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 22:25:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 23:30:26 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ t_adj	*ft_addlst(t_adj *adj, char *elem)
 		if (!(adj->next = (t_adj*)malloc(sizeof(t_adj))))
 			return (NULL);
 		adj = adj->next;
-		adj->name = ft_strdup(elem);
+		if (!(adj->name = ft_strdup(elem)))
+		{
+			free(adj);
+			return (NULL);
+		}
 		adj->next = NULL;
 	}
 	else

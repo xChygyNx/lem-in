@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:35:59 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/27 22:09:42 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 23:57:48 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_validate_vrx(char **map)
 	int i;
 
 	if (ft_len_arr(map) != 3)
+		return (0);
+	if (map[0][0] == 'L' || ft_strchr(map[0], (int)'-'))
 		return (0);
 	i = 1;
 	while (map[i])

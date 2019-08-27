@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 22:32:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 23:33:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void			add_adj(t_lem *lem, char **v)
 	if (!exist_vertex(vrx, v))
 		ft_exit(&lem, INVALID_INPUT);
 	i = 0;
-	while (i < 2)
+	while (i < 2 && vrx)
 	{
 		if (!ft_strcmp(vrx->name, v[0]) || !ft_strcmp(vrx->name, v[1]))
 		{

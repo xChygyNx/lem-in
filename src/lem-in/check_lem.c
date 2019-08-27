@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 22:08:19 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 23:39:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int		check_double_vertex(t_vrx *vrx)
 
 static int		find_end(t_adj *cur, t_vrx *begin)
 {
-	t_vrx *temp;
+	t_vrx	*temp;
 	t_adj	*start;
 
 	if (!cur)
@@ -101,14 +101,13 @@ static int		find_end(t_adj *cur, t_vrx *begin)
 
 void			check_lem(t_lem *lem)
 {
-	first_start(lem);
 	if (!check_start_end(lem->vrx))
 		ft_exit(&lem, START_END);
+	first_start(lem);
 	if (!check_double_vertex(lem->vrx))
 		ft_exit(&lem, DOUBLE_VRX);
 	if (!find_end(lem->vrx->adj, lem->vrx))
 		ft_exit(&lem, ONE_COMPONENT);
-	ft_print_lem_info(lem);
 	unvisit(lem->vrx);
 }
 
