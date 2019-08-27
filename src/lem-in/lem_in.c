@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/25 18:35:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 19:38:02 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 	t_rooms	*room;
 	int		fd;
 
-	fd = 0;
+	fd = open("./tests/bad_test02", O_RDONLY);
 	lem = create_lem(fd);
 //	ft_printf("%s", lem->map);
 	ft_print_lem_info(lem);

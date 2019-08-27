@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 00:14:55 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 19:50:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int		check_double_vertex(t_rooms *room)
 }
 
 static int		find_end(t_adj *cur, t_rooms *begin)
-{
+{//кажется убегает пойнтер в adj
 	t_rooms *temp;
 	t_adj	*start;
 
