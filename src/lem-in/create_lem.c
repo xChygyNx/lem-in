@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 00:15:34 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:12:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			room_info(char *s)
+static int			vrx_info(char *s)
 {
 	if (!ft_strcmp(s, "##start"))
 		return (START);
@@ -25,11 +25,11 @@ static int			room_info(char *s)
 	return (0);
 }
 
-static t_rooms		*create_room(char **tab, int type)
+static t_vrx		*create_vrx(char **tab, int type)
 {
-	t_rooms		*temp;
+	t_vrx		*temp;
 
-	if (!(temp = (t_rooms*)malloc(sizeof(t_rooms))))
+	if (!(temp = (t_vrx*)malloc(sizeof(t_vrx))))
 		return (NULL);
 	if (!(temp->name = ft_strdup(tab[0])))
 	{
@@ -51,51 +51,51 @@ static t_rooms		*create_room(char **tab, int type)
 	return (temp);
 }
 
-static int			add_room(t_rooms **begin, char *line, int type)
+static int			add_vrx(t_vrx **begin, char *line, int type)
 {
-	t_rooms		*temp;
+	t_vrx		*temp;
 	char		**split;
 	int			flag;
 
 	flag = 1;
-	if (!(split = ft_strsplit(line, ' ')) || !ft_validate_room(split))
+	if (!(split = ft_strsplit(line, ' ')) || !ft_validate_vrx(split))
 		return (0);
 	if (*begin)
 	{
 		temp = *begin;
 		while (temp->next)
 			temp = temp->next;
-		if (!(temp->next = create_room(split, type)))
+		if (!(temp->next = create_vrx(split, type)))
 			flag = 0;
 	}
 	else
 	{
-		if (!(*begin = create_room(split, type)))
+		if (!(*begin = create_vrx(split, type)))
 			flag = 0;
 	}
 	ft_free_arr(split);
 	return (flag);
 }
 
-static void			ft_rooms(t_lem *lem, int fd)
+static void			ft_vertex(t_lem *lem, int fd)
 {
 	int			type;
 
 	type = 0;
 	lem->vert_c = 0;
-	while (get_next_line(fd, &lem->line) > 0 && room_info(lem->line) != -1)
+	while (get_next_line(fd, &lem->line) > 0 && vrx_info(lem->line) != -1)
 	{
 		if (!(lem->map = ft_strjoin_f(lem->map, "\n"))\
 		|| !(lem->map = ft_strjoin_f(lem->map, lem->line)))
 			ft_exit(&lem, MALLOC_FAILURE);
-		if (room_info(lem->line) > 0)
+		if (vrx_info(lem->line) > 0)
 		{
-			type = room_info(lem->line) == COMMENT\
-			? type : room_info(lem->line);
+			type = vrx_info(lem->line) == COMMENT\
+			? type : vrx_info(lem->line);
 			free(lem->line);
 			continue ;
 		}
-		if (!add_room(&lem->rooms, lem->line, type))
+		if (!add_vrx(&lem->vrx, lem->line, type))
 			ft_exit(&lem, INVALID_INPUT);
 		lem->vert_c += 1;
 		free(lem->line);
@@ -110,7 +110,7 @@ t_lem				*create_lem(int fd)
 	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
 		ft_exit(NULL, MALLOC_FAILURE);
 	lem->path = NULL;
-	lem->rooms = NULL;
+	lem->vrx = NULL;
 	lem->line = NULL;
 	lem->map = NULL;
 	if (get_next_line(fd, &lem->line) <= 0 || ft_isdigitstr(lem->line) < 1)
@@ -120,7 +120,7 @@ t_lem				*create_lem(int fd)
 		ft_exit(&lem, INVALID_INPUT);
 	if (!(lem->map = ft_strjoin_s("", lem->line)))
 		ft_exit(&lem, MALLOC_FAILURE);
-	ft_rooms(lem, fd);
+	ft_vertex(lem, fd);
 	ft_edge(lem, fd);
 	check_lem(lem);
 	return (lem);

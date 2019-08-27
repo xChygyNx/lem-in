@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/25 18:35:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:25:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,42 @@ t_adj	*ft_addlst(t_adj *adj, char *elem)
 	return (begin);
 }
 
-void	unvisit(t_rooms *lem)
+void	unvisit(t_vrx *vertex)
 {
-	while (lem)
+	while (vertex)
 	{
-		lem->visit = 0;
-		lem = lem->next;
+		vertex->visit = 0;
+		vertex = vertex->next;
 	}
 }
 
 void	ft_print_lem_info(t_lem *lem)
 {
-	t_rooms		*room;
+	t_vrx		*vrx;
 	t_adj		*adj;
 
-	ft_printf("ants  = %d\n", lem->ant_c);
-	ft_printf("rooms = %d\n", lem->vert_c);
-	ft_printf("edges = %d\n", lem->edge_c);
-	room = lem->rooms;
-	while (room)
+	ft_printf("\n-----------------------\n");
+	ft_printf("|ants:     %11d|\n", lem->ant_c);
+	ft_printf("|vertexes: %11d|\n", lem->vert_c);
+	ft_printf("|edges:    %11d|\n", lem->edge_c);
+	vrx = lem->vrx;
+	while (vrx)
 	{
 		ft_printf("-----------------------\n");
-		ft_printf("name = %s\nx = %d\ny = %d\ntype = %d\nvisit = %d\n",\
-		room->name, room->x, room->y, room->type, room->visit);
-		ft_printf("adj_rooms = ");
-		adj = room->adj;
-		while (adj->next)
+		ft_printf("|name:  %14s|\n|x:     %14d|\n|y:     %14d|\n|type:  \
+%14d|\n|visit: %14d|\n", vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit);
+		if (vrx->adj)
 		{
-			ft_printf("%s, ", adj->name);
-			adj = adj->next;
+			ft_printf("|adj:   ");
+			adj = vrx->adj;
+			while (adj->next)
+			{
+				ft_printf("%s, ", adj->name);
+				adj = adj->next;
+			}
+			ft_printf("%s|\n", adj->name);
 		}
-		ft_printf("%s\n", adj->name);
-		room = room->next;
+		vrx = vrx->next;
 	}
 }
 

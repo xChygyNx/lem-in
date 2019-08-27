@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 00:16:17 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:09:56 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct			s_adj
 
 typedef struct			s_lem
 {
-	struct s_rooms		*rooms;
+	struct s_vrx		*vrx;
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
@@ -46,16 +46,16 @@ typedef struct			s_lem
 	char				*line;
 }						t_lem;
 
-typedef struct			s_rooms
+typedef struct			s_vrx
 {
 	struct s_adj		*adj;
 	char				*name;
 	int					x;
 	int					y;
 	int					type;
-	struct s_rooms		*next;
+	struct s_vrx		*next;
 	int					visit;
-}						t_rooms;
+}						t_vrx;
 
 void					ft_exit(t_lem **lem, int err);
 
@@ -69,11 +69,11 @@ void					is_two_vert(char **vertexes);
 
 t_adj					*ft_addlst(t_adj *adj, char *elem);
 
-void					unvisit(t_rooms *lem);
+void					unvisit(t_vrx *vertex);
 
 void					ft_del_lem(t_lem **lem_to_del);
 
-int						ft_validate_room(char **map);
+int						ft_validate_vrx(char **map);
 
 int 					ft_validate_edge(char **map);
 

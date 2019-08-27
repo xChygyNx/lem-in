@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:35:59 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/25 18:30:40 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:09:42 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_validate_room(char **map)
+int		ft_validate_vrx(char **map)
 {
 	int i;
 

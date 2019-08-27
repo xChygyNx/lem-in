@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/27 19:27:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:15:20 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ static void		ft_free_adj(t_adj **adj_to_del)
 	}
 }
 
-static void		ft_free_rooms(t_rooms **room_to_del)
+static void		ft_free_vrxs(t_vrx **vrx_to_del)
 {
-	t_rooms		*room;
-	t_rooms		*temp;
+	t_vrx		*vrx;
+	t_vrx		*temp;
 
-	if (room_to_del)
+	if (vrx_to_del)
 	{
-		room = *room_to_del;
-		while (room)
+		vrx = *vrx_to_del;
+		while (vrx)
 		{
-			temp = room;
-			ft_free_adj(&room->adj);
-			free(room->name);
-			room = room->next;
+			temp = vrx;
+			ft_free_adj(&vrx->adj);
+			free(vrx->name);
+			vrx = vrx->next;
 			free(temp);
 		}
-		room_to_del = NULL;
+		vrx_to_del = NULL;
 	}
 }
 
@@ -75,7 +75,7 @@ void		ft_del_lem(t_lem **lem_to_del)
 	if (lem_to_del)
 	{
 		lem = *lem_to_del;
-		ft_free_rooms(&lem->rooms);
+		ft_free_vrxs(&lem->vrx);
 		lem->path ? ft_free_arr(lem->path) : 0;
 		ft_strdel(&lem->map);
 		ft_strdel(&lem->line);

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_lem2.c                                      :+:      :+:    :+:   */
+/*   add_edges_to_lem.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/25 18:31:11 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:32:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			exist_vertex(t_rooms *room, char **vertexes)
+static int			exist_vertex(t_vrx *vrx, char **vertexes)
 {
 	int			v1;
 	int			v2;
 
 	v1 = 0;
 	v2 = 0;
-	while ((!v1 || !v2) && room)
+	while ((!v1 || !v2) && vrx)
 	{
-		v1 += !ft_strcmp(room->name, vertexes[0]) ? 1 : 0;
-		v2 += !ft_strcmp(room->name, vertexes[1]) ? 1 : 0;
+		v1 += !ft_strcmp(vrx->name, vertexes[0]) ? 1 : 0;
+		v2 += !ft_strcmp(vrx->name, vertexes[1]) ? 1 : 0;
 		if (v1 && v2)
 			break ;
-		room = room->next;
+		vrx = vrx->next;
 	}
 	if (!v1 || !v2)
 		return (0);
@@ -36,22 +36,22 @@ static void			add_adj(t_lem *lem, char **v)
 {
 	int			i;
 	int			n;
-	t_rooms		*room;
+	t_vrx		*vrx;
 
-	room = lem->rooms;
-	if (!exist_vertex(room, v))
+	vrx = lem->vrx;
+	if (!exist_vertex(vrx, v))
 		ft_exit(&lem, INVALID_INPUT);
 	i = 0;
 	while (i < 2)
 	{
-		if (!ft_strcmp(room->name, v[0]) || !ft_strcmp(room->name, v[1]))
+		if (!ft_strcmp(vrx->name, v[0]) || !ft_strcmp(vrx->name, v[1]))
 		{
 			i++;
-			n = !ft_strcmp(room->name, v[0]) ? 1 : 0;
-			if (!(room->adj = ft_addlst(room->adj, v[n])))
+			n = !ft_strcmp(vrx->name, v[0]) ? 1 : 0;
+			if (!(vrx->adj = ft_addlst(vrx->adj, v[n])))
 				ft_exit(&lem, MALLOC_FAILURE);
 		}
-		room = room->next;
+		vrx = vrx->next;
 	}
 	ft_free_arr(v);
 	lem->edge_c += 1;
