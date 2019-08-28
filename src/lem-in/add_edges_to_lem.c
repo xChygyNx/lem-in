@@ -6,13 +6,13 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 14:01:14 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 15:38:54 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			double_pipe(char *str)
+static int			double_hyphen(char *str)
 {
 	char		*begin;
 
@@ -80,7 +80,7 @@ void				ft_edge(t_lem *lem, int fd)
 		{
 			if (!(vertexes = ft_strsplit(lem->line, '-')))
 				ft_exit(&lem, MALLOC_FAILURE);
-			if (ft_len_arr(vertexes) != 2 || double_pipe(lem->line))
+			if (ft_len_arr(vertexes) != 2 || double_hyphen(lem->line))
 			{
 				ft_free_arr(vertexes);
 				ft_exit(&lem, INVALID_INPUT);
