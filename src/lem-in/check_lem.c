@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 23:39:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 13:28:17 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,10 @@ static int		find_end(t_adj *cur, t_vrx *begin)
 
 void			check_lem(t_lem *lem)
 {
+	//ft_printf("I'm come in\n");
 	if (!check_start_end(lem->vrx))
 		ft_exit(&lem, START_END);
+	//ft_printf("I'm come in\n");
 	first_start(lem);
 	if (!check_double_vertex(lem->vrx))
 		ft_exit(&lem, DOUBLE_VRX);

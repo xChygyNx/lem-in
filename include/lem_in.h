@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 22:09:56 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 12:21:38 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define START_END 101
 # define DOUBLE_VRX 102
 # define ONE_COMPONENT 103
+# define WROTE_ANTS 104
 
 typedef struct			s_adj
 {
@@ -41,7 +42,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	char				**path;  //что будем в пути хранить?
+	char				**path;  //что будем в пути хранить? <- задумка была что неперекрывающиеся пути, которые будем использовать
 	char				*map;
 	char				*line;
 }						t_lem;

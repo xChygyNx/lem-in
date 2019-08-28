@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_edges_to_lem.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 23:33:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 13:26:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void				ft_edge(t_lem *lem, int fd)
 {
 	char	**vertexes;
 
+	//ft_printf("I'm here\n");
 	lem->edge_c = 0;
 	while (lem->line)
 	{
@@ -83,4 +84,5 @@ void				ft_edge(t_lem *lem, int fd)
 			ft_exit(&lem, MALLOC_FAILURE);
 	}
 	lem->line = NULL;
+	//ft_printf("lem->line = %p (in ft_edge)\n", lem->line);
 }

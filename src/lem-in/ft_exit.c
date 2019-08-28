@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/27 22:15:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 13:37:35 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void		ft_exit(t_lem **lem, int err)
 	else if (err == ONE_COMPONENT)
 		ft_fprintf(2, "Error: Start & end situated in different \
 connected components\n");
+	else if (err == WROTE_ANTS)
+		ft_fprintf(2, "Error: wrong count of ants\n");
 	else
 		perror("Error: ");
+	//ft_print_lem_info(*lem);
 	exit(err);
 }
 
@@ -75,10 +78,11 @@ void		ft_del_lem(t_lem **lem_to_del)
 	if (lem_to_del)
 	{
 		lem = *lem_to_del;
-		ft_free_vrxs(&lem->vrx);
+		lem->vrx ? ft_free_vrxs(&lem->vrx) : 0;
 		lem->path ? ft_free_arr(lem->path) : 0;
 		ft_strdel(&lem->map);
-		ft_strdel(&lem->line);
+		//ft_printf("lem->line = %p\n", *(lem->line));
+		lem->line && *(lem->line) ? ft_strdel(&lem->line) : 0;
 		free(lem);
 		lem_to_del = NULL;
 	}

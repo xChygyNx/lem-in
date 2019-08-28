@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 13:20:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/12 16:11:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 12:30:05 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t		ft_lstrlen(const int *s)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 23:25:34 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/28 13:37:07 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_lem				*create_lem(int fd)
 	if (!(lem->map = ft_strjoin_s("", lem->line)))
 		ft_exit(&lem, MALLOC_FAILURE);
 	ft_vertex(lem, fd);
+	//ft_printf("lem->line = %p (after vertex)\n", lem->line);
 	ft_edge(lem, fd);
 	check_lem(lem);
 	return (lem);
