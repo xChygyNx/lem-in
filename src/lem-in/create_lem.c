@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 13:37:07 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 17:03:26 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,13 @@ t_lem				*create_lem(int fd)
 	lem->vrx = NULL;
 	lem->line = NULL;
 	lem->map = NULL;
-	if (get_next_line(fd, &lem->line) <= 0 || ft_isdigitstr(lem->line) < 1)
+	while ((get_next_line(fd, &lem->line) > 0) && *(lem->line) == '#'\
+		&& invalid_com(lem->line))
+		;
+	//get_next_line(fd, &lem->line);
+	//ft_printf("len line = %d\n", get_next_line(fd, &lem->line));
+	if (!lem->line || ft_strlen(lem->line) == 0\
+		|| ft_isdigitstr(lem->line) < 1)
 		ft_exit(&lem, INVALID_INPUT);
 	lem->ant_c = ft_atoi(lem->line);
 	if (ft_int_len(lem->ant_c) != ft_strlen(lem->line) || lem->ant_c <= 0)

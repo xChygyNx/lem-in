@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 12:21:38 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 17:04:41 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void					ft_del_lem(t_lem **lem_to_del);
 int						ft_validate_vrx(char **map);
 
 int 					ft_validate_edge(char **map);
+
+int						invalid_com(char *str);
 
 /*
  * UTILITY FUNCTIONS
