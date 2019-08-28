@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:35:59 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/28 17:11:02 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 21:23:40 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		invalid_com(char *s)
 {
-	if (ft_strcmp(s, "##start") && ft_strcmp(s, "##end"))
+	if (*s == '#' && ft_strcmp(s, "##start") && ft_strcmp(s, "##end"))
 		return (1);
 	return (0);
 }

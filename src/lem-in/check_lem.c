@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 13:28:17 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 22:09:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int		check_double_vertex(t_vrx *vrx)
 static int		find_end(t_adj *cur, t_vrx *begin)
 {
 	t_vrx	*temp;
-	t_adj	*start;
+	t_adj	*temp_adj;
 
 	if (!cur)
 		return (0);
@@ -85,17 +85,13 @@ static int		find_end(t_adj *cur, t_vrx *begin)
 	if (temp->visit)
 		return (0);
 	temp->visit = 1;
-	start = temp->adj;
-	while (temp->adj)
+	temp_adj = temp->adj;
+	while (temp_adj)
 	{
-		if (find_end(temp->adj, begin))
-		{
-			temp->adj = start;
+		if (find_end(temp_adj, begin))
 			return (1);
-		}
-		temp->adj = temp->adj->next;
+		temp_adj = temp_adj->next;
 	}
-	temp->adj = start;
 	return (0);
 }
 

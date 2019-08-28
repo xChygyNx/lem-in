@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 17:03:26 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 21:40:31 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,8 @@ t_lem				*create_lem(int fd)
 	lem->vrx = NULL;
 	lem->line = NULL;
 	lem->map = NULL;
-	while ((get_next_line(fd, &lem->line) > 0) && *(lem->line) == '#'\
-		&& invalid_com(lem->line))
+	while ((get_next_line(fd, &lem->line) > 0) && invalid_com(lem->line))
 		;
-	//get_next_line(fd, &lem->line);
-	//ft_printf("len line = %d\n", get_next_line(fd, &lem->line));
 	if (!lem->line || ft_strlen(lem->line) == 0\
 		|| ft_isdigitstr(lem->line) < 1)
 		ft_exit(&lem, INVALID_INPUT);
@@ -127,7 +124,6 @@ t_lem				*create_lem(int fd)
 	if (!(lem->map = ft_strjoin_s("", lem->line)))
 		ft_exit(&lem, MALLOC_FAILURE);
 	ft_vertex(lem, fd);
-	//ft_printf("lem->line = %p (after vertex)\n", lem->line);
 	ft_edge(lem, fd);
 	check_lem(lem);
 	return (lem);

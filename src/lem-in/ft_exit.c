@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/28 13:37:35 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 21:47:06 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,10 @@ void		ft_del_lem(t_lem **lem_to_del)
 	if (lem_to_del)
 	{
 		lem = *lem_to_del;
-		lem->vrx ? ft_free_vrxs(&lem->vrx) : 0;
+		ft_free_vrxs(&lem->vrx);
 		lem->path ? ft_free_arr(lem->path) : 0;
 		ft_strdel(&lem->map);
-		//ft_printf("lem->line = %p\n", *(lem->line));
-		lem->line && *(lem->line) ? ft_strdel(&lem->line) : 0;
+		ft_strdel(&lem->line);
 		free(lem);
 		lem_to_del = NULL;
 	}
