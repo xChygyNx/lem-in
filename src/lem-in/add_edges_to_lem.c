@@ -6,11 +6,23 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 13:26:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/28 14:01:14 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int			double_pipe(char *str)
+{
+	char		*begin;
+
+	begin = str;
+	while (*(++str))
+		if (*str == '-' && *(str - 1) == '-')
+			return (1);
+	str = begin;
+	return (0);
+}
 
 static int			exist_vertex(t_vrx *vrx, char **vertexes)
 {
@@ -61,7 +73,6 @@ void				ft_edge(t_lem *lem, int fd)
 {
 	char	**vertexes;
 
-	//ft_printf("I'm here\n");
 	lem->edge_c = 0;
 	while (lem->line)
 	{
@@ -69,7 +80,7 @@ void				ft_edge(t_lem *lem, int fd)
 		{
 			if (!(vertexes = ft_strsplit(lem->line, '-')))
 				ft_exit(&lem, MALLOC_FAILURE);
-			if (ft_len_arr(vertexes) != 2)
+			if (ft_len_arr(vertexes) != 2 || double_pipe(lem->line))
 			{
 				ft_free_arr(vertexes);
 				ft_exit(&lem, INVALID_INPUT);
@@ -84,5 +95,4 @@ void				ft_edge(t_lem *lem, int fd)
 			ft_exit(&lem, MALLOC_FAILURE);
 	}
 	lem->line = NULL;
-	//ft_printf("lem->line = %p (in ft_edge)\n", lem->line);
 }
