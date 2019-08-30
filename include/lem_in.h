@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 17:04:41 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/30 15:00:53 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct			s_adj
 {
 	char				*name;
 	struct s_adj		*next;
+	char				weight;
 }						t_adj;
 
 typedef struct			s_lem
@@ -53,9 +54,10 @@ typedef struct			s_vrx
 	char				*name;
 	int					x;
 	int					y;
-	int					type;
+	char				type;
 	struct s_vrx		*next;
-	int					visit;
+	char				visit;
+	char				sep;
 }						t_vrx;
 
 void					ft_exit(t_lem **lem, int err);
@@ -68,7 +70,7 @@ void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem);
+t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
 
 void					unvisit(t_vrx *vertex);
 

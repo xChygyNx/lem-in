@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 18:10:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 17:03:26 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:43:07 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_vrx		*create_vrx(char **tab, int type)
 	temp->adj = NULL;
 	temp->next = NULL;
 	temp->visit = 0;
+	temp->sep = 0;
 	return (temp);
 }
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/27 23:30:26 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/30 17:17:38 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_adj	*ft_addlst(t_adj *adj, char *elem)
+t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
 {
 	t_adj	*begin;
 
@@ -24,20 +24,20 @@ t_adj	*ft_addlst(t_adj *adj, char *elem)
 		if (!(adj->next = (t_adj*)malloc(sizeof(t_adj))))
 			return (NULL);
 		adj = adj->next;
-		if (!(adj->name = ft_strdup(elem)))
-		{
-			free(adj);
-			return (NULL);
-		}
-		adj->next = NULL;
 	}
 	else
 	{
 		if (!(begin = (t_adj*)malloc(sizeof(t_adj))))
 			return (NULL);
-		begin->name = ft_strdup(elem);
-		begin->next = NULL;
+		adj = begin;
 	}
+	if (!(adj->name = ft_strdup(elem)))
+	{
+		free(adj);
+		return (NULL);
+	}
+	adj->next = NULL;
+	adj->weight = weight; 
 	return (begin);
 }
 
@@ -63,18 +63,18 @@ void	ft_print_lem_info(t_lem *lem)
 	while (vrx)
 	{
 		ft_printf("-----------------------\n");
-		ft_printf("|name:  %14s|\n|x:     %14d|\n|y:     %14d|\n|type:  \
-%14d|\n|visit: %14d|\n", vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit);
+		ft_printf("|name:  %14s|\n|x:     %14d|\n|y:     %14d|\n|type:  %14d|\
+			\n|visit: %14d|\n", vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit);
 		if (vrx->adj)
 		{
 			ft_printf("|adj:   ");
 			adj = vrx->adj;
 			while (adj->next)
 			{
-				ft_printf("%s, ", adj->name);
+				ft_printf("%s (%d), ", adj->name, adj->weight);
 				adj = adj->next;
 			}
-			ft_printf("%s|\n", adj->name);
+			ft_printf("%s (%d)|\n", adj->name, adj->weight);
 		}
 		vrx = vrx->next;
 	}
