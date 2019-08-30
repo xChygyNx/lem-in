@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 17:17:38 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/30 19:02:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
-{
-	t_adj	*begin;
-
-	if (adj)
-	{
-		begin = adj;
-		while (adj->next)
-			adj = adj->next;
-		if (!(adj->next = (t_adj*)malloc(sizeof(t_adj))))
-			return (NULL);
-		adj = adj->next;
-	}
-	else
-	{
-		if (!(begin = (t_adj*)malloc(sizeof(t_adj))))
-			return (NULL);
-		adj = begin;
-	}
-	if (!(adj->name = ft_strdup(elem)))
-	{
-		free(adj);
-		return (NULL);
-	}
-	adj->next = NULL;
-	adj->weight = weight; 
-	return (begin);
-}
 
 void	unvisit(t_vrx *vertex)
 {
@@ -71,7 +42,7 @@ void	ft_print_lem_info(t_lem *lem)
 			adj = vrx->adj;
 			while (adj->next)
 			{
-				ft_printf("%s (%d), ", adj->name, adj->weight);
+				ft_printf("%s (w:%d, d:%d), ", adj->name, adj->weight, adj->dir);
 				adj = adj->next;
 			}
 			ft_printf("%s (%d)|\n", adj->name, adj->weight);

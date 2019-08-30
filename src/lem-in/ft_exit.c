@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/28 21:47:06 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/30 18:40:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ connected components\n");
 		ft_fprintf(2, "Error: wrong count of ants\n");
 	else
 		perror("Error: ");
-	//ft_print_lem_info(*lem);
 	exit(err);
 }
 
@@ -44,7 +43,7 @@ static void		ft_free_adj(t_adj **adj_to_del)
 		{
 			temp = adj;
 			adj = adj->next;
-			free(temp->name);
+			temp->name ? free(temp->name) : 0;
 			free(temp);
 		}
 		adj_to_del = NULL;

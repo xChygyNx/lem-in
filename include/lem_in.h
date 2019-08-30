@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 15:00:53 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/30 19:22:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define START 1
 # define END 2
 # define COMMENT 3
+
+# define ON 1
+# define OFF 0
 
 /*
  * Errors from 100 to infinity
@@ -35,6 +38,7 @@ typedef struct			s_adj
 	char				*name;
 	struct s_adj		*next;
 	char				weight;
+	char				dir;
 }						t_adj;
 
 typedef struct			s_lem
@@ -80,7 +84,15 @@ int						ft_validate_vrx(char **map);
 
 int 					ft_validate_edge(char **map);
 
+int						exist_vertex(t_vrx *vrx, char **vertexes);
+
 int						invalid_com(char *str);
+
+t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
+
+void					add_adj(t_lem *lem, char **v);
+
+void					change_dir(t_lem *lem, char *start, char *end);
 
 /*
  * UTILITY FUNCTIONS
