@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/08/27 22:33:00 by astripeb         ###   ########.fr        #
+#    Updated: 2019/08/28 21:51:04 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ all: $(NAME)
 #вставить CFLAGS перед сдачей
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIB_PATH)
-	$(CC) $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
+	$(CC) -g $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
 #вставить CFLAGS перед сдачей
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	$(CC) $(LFLAGS) -o $@ -c $<
+	$(CC) -g $(LFLAGS) -o $@ -c $<
 
 norm:
 	norminette $(LIB_PATH) | grep "E"
