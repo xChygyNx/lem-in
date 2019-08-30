@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:02:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/30 21:13:23 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ void	unvisit(t_vrx *vertex)
 		vertex->visit = 0;
 		vertex = vertex->next;
 	}
+}
+
+void	print_dijk(t_dijk *dijk)
+{
+	ft_printf("\n------------------------\n");
+	ft_printf("|       DIJKSTRA        |\n");
+	ft_printf("------------------------\n");
+	ft_printf("|name        %10s|\n", dijk->vrx);
+	ft_printf("|ancestor    %10s|\n", dijk->anc);
+	ft_printf("|distantion  %10d|\n", dijk->dist);
+	ft_printf("\n------------------------\n");
 }
 
 void	ft_print_lem_info(t_lem *lem)

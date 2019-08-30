@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:22:00 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/30 21:11:11 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define ON 1
 # define OFF 0
+
+# define MAX_INT 2147483647
 
 /*
  * Errors from 100 to infinity
@@ -64,6 +66,14 @@ typedef struct			s_vrx
 	char				sep;
 }						t_vrx;
 
+typedef struct			s_dijk
+{
+	char				*vrx;
+	char				*anc;
+	int					dist;
+	struct s_dijk		*next;
+}						t_dijk;
+
 void					ft_exit(t_lem **lem, int err);
 
 t_lem					*create_lem(int fd);
@@ -94,6 +104,8 @@ void					add_adj(t_lem *lem, char **v);
 
 void					change_dir(t_lem *lem, char *start, char *end);
 
+void					dijkstra(t_lem *lem);
+
 /*
  * UTILITY FUNCTIONS
  */
@@ -103,5 +115,7 @@ int						ft_char_count(char *str, char c);
 int						ft_len_arr(char **arr);
 
 void					ft_print_lem_info(t_lem *lem);
+
+void					print_dijk(t_dijk *dijk);
 
 #endif

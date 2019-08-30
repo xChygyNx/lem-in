@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:17:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/30 21:06:09 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(void)
 	ft_print_lem_info(lem);
 	change_dir(lem, "end", "3");
 	ft_print_lem_info(lem);
+	dijkstra(lem);
 	ft_del_lem(&lem);
 	return (0);
 }
