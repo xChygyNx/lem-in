@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 21:11:11 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 15:44:28 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ void					add_adj(t_lem *lem, char **v);
 void					change_dir(t_lem *lem, char *start, char *end);
 
 void					dijkstra(t_lem *lem);
+
+int						all_visit(t_vrx *vrx);
+
+t_dijk					*find_dijk(char *name, t_dijk *dijk);
+
+int						dist_vrx(char *name, t_dijk *dijk);
 
 /*
  * UTILITY FUNCTIONS

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 21:06:09 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 16:00:30 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		main(void)
 	t_lem	*lem;
 	int		fd;
 
-	lem = create_lem(0);
-//	ft_printf("%s", lem->map);
+	fd = open("test_d", O_RDONLY);
+	lem = create_lem(fd);
 	ft_print_lem_info(lem);
 	change_dir(lem, "end", "3");
 	ft_print_lem_info(lem);

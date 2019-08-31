@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/30 18:40:34 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/31 16:01:05 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		ft_exit(t_lem **lem, int err)
+void			ft_exit(t_lem **lem, int err)
 {
 	ft_del_lem(lem);
 	if (err == INVALID_INPUT)
@@ -33,8 +33,8 @@ connected components\n");
 
 static void		ft_free_adj(t_adj **adj_to_del)
 {
-	t_adj	*adj;
-	t_adj	*temp;
+	t_adj		*adj;
+	t_adj		*temp;
 
 	if (adj_to_del)
 	{
@@ -70,9 +70,9 @@ static void		ft_free_vrxs(t_vrx **vrx_to_del)
 	}
 }
 
-void		ft_del_lem(t_lem **lem_to_del)
+void			ft_del_lem(t_lem **lem_to_del)
 {
-	t_lem	*lem;
+	t_lem		*lem;
 
 	if (lem_to_del)
 	{

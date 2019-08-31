@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   adj_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/30 19:20:51 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/31 15:55:55 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			add_adj(t_lem *lem, char **v)
+void		add_adj(t_lem *lem, char **v)
 {
-	int			i;
-	int			n;
-	t_vrx		*vrx;
+	int		i;
+	int		n;
+	t_vrx	*vrx;
 
 	vrx = lem->vrx;
 	if (!exist_vertex(vrx, v))
@@ -37,7 +37,7 @@ void			add_adj(t_lem *lem, char **v)
 	lem->edge_c += 1;
 }
 
-t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
+t_adj		*ft_addlst(t_adj *adj, char *elem, char weight)
 {
 	t_adj	*begin;
 
@@ -67,14 +67,14 @@ t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
 
 void		change_dir(t_lem *lem, char *start, char *end)
 {
-	t_vrx	*t_vrx;
-	t_adj	*t_adj;
+	t_vrx	*vrx;
+	t_adj	*adj;
 
-	t_vrx = lem->vrx;
-	while (t_vrx && ft_strcmp(start, t_vrx->name))
-		t_vrx = t_vrx->next;
-	t_adj = t_vrx ? t_vrx->adj : NULL;
-	while (t_adj && ft_strcmp(end, t_adj->name))
-		t_adj = t_adj->next;
-	t_adj ? t_adj->dir = OFF : 0;
+	vrx = lem->vrx;
+	while (vrx && ft_strcmp(start, vrx->name))
+		vrx = vrx->next;
+	adj = vrx ? vrx->adj : NULL;
+	while (adj && ft_strcmp(end, adj->name))
+		adj = adj->next;
+	adj ? adj->dir = OFF : 0;
 }

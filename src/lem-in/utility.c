@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 21:13:23 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 16:01:37 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	print_dijk(t_dijk *dijk)
 	ft_printf("|name        %10s|\n", dijk->vrx);
 	ft_printf("|ancestor    %10s|\n", dijk->anc);
 	ft_printf("|distantion  %10d|\n", dijk->dist);
-	ft_printf("\n------------------------\n");
 }
 
 void	ft_print_lem_info(t_lem *lem)
