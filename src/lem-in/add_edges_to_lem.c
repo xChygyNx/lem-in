@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:03:28 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/08/31 16:42:33 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				ft_edge(t_lem *lem, int fd)
 	char	**vertexes;
 
 	lem->edge_c = 0;
-	while (lem->line)
+	while (lem->line && lem->line[0])
 	{
 		if (lem->line[0] != '#')
 		{

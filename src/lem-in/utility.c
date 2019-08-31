@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 16:01:37 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 17:03:33 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_print_lem_info(t_lem *lem)
 				ft_printf("%s (w:%d, d:%d), ", adj->name, adj->weight, adj->dir);
 				adj = adj->next;
 			}
-			ft_printf("%s (%d)|\n", adj->name, adj->weight);
+			ft_printf("%s (w:%d, d:%d)|\n", adj->name, adj->weight, adj->dir);
 		}
 		vrx = vrx->next;
 	}

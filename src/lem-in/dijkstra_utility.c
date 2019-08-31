@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dijkstra_utility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 15:38:33 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 15:57:41 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 17:55:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		dist_vrx(char *name, t_dijk *dijk)
 	t_dijk	*temp;
 
 	temp = find_dijk(name, dijk);
-	ft_printf("vrx name = %s, vrx distance = %d\n", temp->vrx, temp->dist);
 	return (temp->dist);
 }
 
@@ -47,4 +46,24 @@ int		all_visit(t_vrx *vrx)
 	}
 	vrx = begin;
 	return (1);
+}
+
+void	free_dijkstra(t_dijk **dijk)
+{
+	t_dijk		*first;
+	t_dijk		*second;
+
+	if (dijk)
+	{
+		first = *dijk;
+		while (first)
+		{
+			second = first;
+			first = first->next;
+			second->vrx ? free(second->vrx) : 0;
+			second->anc ? free(second->anc) : 0;
+			free(second);
+		}
+		dijk = NULL;
+	}
 }

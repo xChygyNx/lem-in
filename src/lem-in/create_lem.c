@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:51:12 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 17:32:32 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			vrx_info(char *s)
+static char			vrx_info(char *s)
 {
 	if (!ft_strcmp(s, "##start"))
 		return (START);
@@ -25,7 +25,7 @@ static int			vrx_info(char *s)
 	return (0);
 }
 
-static t_vrx		*create_vrx(char **tab, int type)
+static t_vrx		*create_vrx(char **tab, char type)
 {
 	t_vrx		*temp;
 
@@ -52,7 +52,7 @@ static t_vrx		*create_vrx(char **tab, int type)
 	return (temp);
 }
 
-static int			add_vrx(t_vrx **begin, char *line, int type)
+static int			add_vrx(t_vrx **begin, char *line, char type)
 {
 	t_vrx		*temp;
 	char		**split;

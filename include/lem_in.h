@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 15:44:28 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/08/31 17:48:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,15 @@ void					add_adj(t_lem *lem, char **v);
 
 void					change_dir(t_lem *lem, char *start, char *end);
 
-void					dijkstra(t_lem *lem);
+char					*dijkstra(t_lem *lem);
 
 int						all_visit(t_vrx *vrx);
 
 t_dijk					*find_dijk(char *name, t_dijk *dijk);
 
 int						dist_vrx(char *name, t_dijk *dijk);
+
+void					redirect_lem(t_lem *lem, char *shortest_path);
 
 /*
  * UTILITY FUNCTIONS
@@ -123,5 +125,7 @@ int						ft_len_arr(char **arr);
 void					ft_print_lem_info(t_lem *lem);
 
 void					print_dijk(t_dijk *dijk);
+
+void					free_dijkstra(t_dijk **dijk);
 
 #endif
