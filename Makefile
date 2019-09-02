@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/08/31 16:33:44 by astripeb         ###   ########.fr        #
+#    Updated: 2019/09/02 17:12:07 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIB				= -L $(LIB_PATH) -lftprintf
 
 SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
 SRC				+= adj_func.c utility.c ft_exit.c validation.c dijkstra.c
-SRC				+= dijkstra_utility.c direction.c
+SRC				+= dijkstra_utility.c direction.c separate_vrx.c
 OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 all: $(NAME)

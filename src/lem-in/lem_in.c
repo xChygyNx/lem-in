@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 17:58:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:17:28 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		main(void)
 	path = dijkstra(lem);
 	ft_printf("path = %s", path);
 	free(path);
-//	redirect_lem(lem, path);
-//	unvisit(lem->vrx);
+	redirect_lem(lem, path);
+	unvisit(lem->vrx);
 	ft_print_lem_info(lem);
 	ft_del_lem(&lem);
 	return (0);

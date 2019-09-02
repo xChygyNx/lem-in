@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 20:42:46 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/31 15:46:04 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:49:35 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,22 @@ static void			separate_vrxs(t_lem *lem, char *shortest_path)
 
 	int		i;
 
+	ft_printf("\nshortest path = %s\n", shortest_path);
 	if (!(vrxs = ft_strsplit(shortest_path, '|')))
 		ft_exit(&lem, MALLOC_FAILURE);
 	i = ft_len_arr(vrxs) - 2;
 	vrx_t = lem->vrx;
+	ft_printf("vrx = %s, i = %d\n", vrx_t->name, i);
 	while (vrx_t && i > 0)
 	{
 		vrx_t = lem->vrx;
-		while (ft_strcmp(vrxs[i], vrx_t->name))
+		while (vrx_t && ft_strcmp(vrxs[i], vrx_t->name))
 			vrx_t = vrx_t->next;
+		ft_printf("vrx_t name = %s, vrxs[%d] = %s\n", vrx_t->name, i, vrxs[i]);
 		if (vrx_t && !ft_strcmp(vrxs[i], vrx_t->name))
-			vrx_t->sep = ON;
+		//ft_printf("\n+++++++++++++++++++++I'm here++++++++++++++++++++\n");
+			//vrx_t->sep = ON;
+			vrx_in_out(vrxs[i], vrxs, lem->vrx);
 		--i;
 	}
 	ft_free_arr(vrxs);
@@ -53,7 +58,12 @@ void			redirect_lem(t_lem *lem, char *shortest_path)
 {
 	char	**vrxs;
 	int		i;
+	char	*begin;
 
+	if (!(begin = ft_strdup(shortest_path)))
+		ft_exit(&lem, MALLOC_FAILURE);
+	//ft_printf("\nshortest path = %s\n", begin);
+	//ft_printf("\npath = %s\n", shortest_path);
 	if (!(vrxs = ft_strsplit(shortest_path, '|')))
 		ft_exit(&lem, MALLOC_FAILURE);
 	i = ft_len_arr(vrxs) - 1;
@@ -65,5 +75,6 @@ void			redirect_lem(t_lem *lem, char *shortest_path)
 		--i;
 	}
 	ft_free_arr(vrxs);
-	separate_vrxs(lem, shortest_path);
+	//ft_printf("\nshortest path = %s\n", begin);
+	separate_vrxs(lem, begin);
 }

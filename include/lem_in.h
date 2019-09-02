@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 17:48:58 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:13:20 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ void					ft_print_lem_info(t_lem *lem);
 void					print_dijk(t_dijk *dijk);
 
 void					free_dijkstra(t_dijk **dijk);
+
+void					vrx_in_out(char *name, char** path, t_vrx *all);
 
 #endif
