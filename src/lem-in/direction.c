@@ -58,23 +58,17 @@ void			redirect_lem(t_lem *lem, char *shortest_path)
 {
 	char	**vrxs;
 	int		i;
-	char	*begin;
 
-	if (!(begin = ft_strdup(shortest_path)))
-		ft_exit(&lem, MALLOC_FAILURE);
-	//ft_printf("\nshortest path = %s\n", begin);
-	//ft_printf("\npath = %s\n", shortest_path);
 	if (!(vrxs = ft_strsplit(shortest_path, '|')))
 		ft_exit(&lem, MALLOC_FAILURE);
 	i = ft_len_arr(vrxs) - 1;
 	while (i > 0)
 	{
-		change_dir(lem, vrxs[i], vrxs[i - 1]);
-		change_eds_wght(lem, vrxs[i], vrxs[i - 1], 0);
-		change_eds_wght(lem, vrxs[i - 1], vrxs[i], -1);
+//		change_dir(lem, vrxs[i], vrxs[i - 1]);
+//		change_eds_wght(lem, vrxs[i], vrxs[i - 1], 0);
+//		change_eds_wght(lem, vrxs[i - 1], vrxs[i], -1);
 		--i;
 	}
 	ft_free_arr(vrxs);
-	//ft_printf("\nshortest path = %s\n", begin);
-	separate_vrxs(lem, begin);
+	separate_vrxs(lem, shortest_path);
 }

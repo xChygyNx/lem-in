@@ -50,12 +50,12 @@ void	ft_print_lem_info(t_lem *lem)
 		{
 			ft_printf("|adj:   ");
 			adj = vrx->adj;
-			while (adj)
+			while (adj->next)
 			{
 				ft_printf("%s (w:%d, d:%d), ", adj->name, adj->weight, adj->dir);
 				adj = adj->next;
 			}
-			//ft_printf("%s (w:%d, d:%d)|\n", adj->name, adj->weight, adj->dir);
+			ft_printf("%s (w:%d, d:%d)|\n", adj->name, adj->weight, adj->dir);
 		}
 		vrx = vrx->next;
 	}
