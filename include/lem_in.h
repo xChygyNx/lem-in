@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 15:18:05 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/03 23:00:15 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
+t_adj					*ft_addlst(t_adj *adj, char *elem, char weight, char dir);
 
 void					unvisit(t_vrx *vertex);
 
@@ -100,8 +100,6 @@ int 					ft_validate_edge(char **map);
 int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
-
-t_adj					*ft_addlst(t_adj *adj, char *elem, char dir);
 
 void					add_adj(t_lem *lem, char **v);
 
@@ -128,6 +126,10 @@ void					rewrite_adj(t_vrx *vrx, char *name);
 /*
  * UTILITY FUNCTIONS
  */
+
+t_vrx					*get_vrx(t_vrx *begin, char *name);
+
+t_adj					*get_adj(t_adj *begin, char *name);
 
 int						ft_char_count(char *str, char c);
 

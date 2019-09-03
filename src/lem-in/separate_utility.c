@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   separate_utility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 12:56:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 16:24:30 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/03 22:43:56 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	add_adj_sep (t_vrx *src, char *name, int mode)
 	adj_name = mode == IN ? ft_strjoin(name, "_in") :\
 		ft_strjoin(name, "_out");
 	//ft_printf("adj = %p\n", src->adj);
-	src->adj = ft_addlst(src->adj, adj_name, 0);
+	src->adj = ft_addlst(src->adj, adj_name, 0, 0);
 	free(adj_name);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 20:42:46 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/03 16:24:59 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/03 21:55:56 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void			redirect_lem(t_lem *lem, char *shortest_path)
 	i = ft_len_arr(vrxs) - 1;
 	while (i > 0)
 	{
-//		change_dir(lem, vrxs[i], vrxs[i - 1]);
-//		change_eds_wght(lem, vrxs[i], vrxs[i - 1], 0);
-//		change_eds_wght(lem, vrxs[i - 1], vrxs[i], -1);
+		change_dir(lem, vrxs[i], vrxs[i - 1]);
+		change_eds_wght(lem, vrxs[i], vrxs[i - 1], 0);
+		change_eds_wght(lem, vrxs[i - 1], vrxs[i], -1);
 		--i;
 	}
 	ft_free_arr(vrxs);
