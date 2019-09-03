@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/02 17:11:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/03 14:56:43 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ void		add_adj(t_lem *lem, char **v)
 	lem->edge_c += 1;
 }
 
-t_adj		*ft_addlst(t_adj *adj, char *elem, char weight)
+t_adj		*ft_addlst(t_adj *adj, char *elem, char dir)
 {
 	t_adj	*begin;
 
+	ft_printf("elem = %s\n", elem);
 	if (adj)
 	{
 		begin = adj;
+		//ft_printf("I'm here\n");
 		while (adj->next)
 			adj = adj->next;
 		if (!(adj->next = (t_adj*)malloc(sizeof(t_adj))))
@@ -60,8 +62,8 @@ t_adj		*ft_addlst(t_adj *adj, char *elem, char weight)
 	if (!(adj->name = ft_strdup(elem)))
 		return (NULL);
 	adj->next = NULL;
-	adj->weight = weight;
-	adj->dir = ON;
+	adj->weight = 1;
+	adj->dir = dir;
 	return (begin);
 }
 

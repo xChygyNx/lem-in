@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/31 17:03:33 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/03 14:18:24 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ void	ft_print_lem_info(t_lem *lem)
 	vrx = lem->vrx;
 	while (vrx)
 	{
-		ft_printf("-----------------------\n");
+		ft_printf("\n-----------------------\n");
 		ft_printf("|name:  %14s|\n|x:     %14d|\n|y:     %14d|\n|type:  %14d|\
 			\n|visit: %14d|\n", vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit);
 		if (vrx->adj)
 		{
 			ft_printf("|adj:   ");
 			adj = vrx->adj;
-			while (adj->next)
+			while (adj)
 			{
 				ft_printf("%s (w:%d, d:%d), ", adj->name, adj->weight, adj->dir);
 				adj = adj->next;
 			}
-			ft_printf("%s (w:%d, d:%d)|\n", adj->name, adj->weight, adj->dir);
+			//ft_printf("%s (w:%d, d:%d)|\n", adj->name, adj->weight, adj->dir);
 		}
 		vrx = vrx->next;
 	}

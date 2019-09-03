@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/02 17:13:20 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/03 15:18:05 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define OFF 0
 
 # define MAX_INT 2147483647
+
+# define IN 1
+# define OUT 2
 
 /*
  * Errors from 100 to infinity
@@ -98,7 +101,7 @@ int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
+t_adj					*ft_addlst(t_adj *adj, char *elem, char dir);
 
 void					add_adj(t_lem *lem, char **v);
 
@@ -114,6 +117,14 @@ int						dist_vrx(char *name, t_dijk *dijk);
 
 void					redirect_lem(t_lem *lem, char *shortest_path);
 
+void					free_dijkstra(t_dijk **dijk);
+
+void					vrx_in_out(char *name, char** path, t_vrx *all);
+
+void					add_adj_sep(t_vrx *src, char *name, int mode);
+
+void					rewrite_adj(t_vrx *vrx, char *name);
+
 /*
  * UTILITY FUNCTIONS
  */
@@ -125,9 +136,5 @@ int						ft_len_arr(char **arr);
 void					ft_print_lem_info(t_lem *lem);
 
 void					print_dijk(t_dijk *dijk);
-
-void					free_dijkstra(t_dijk **dijk);
-
-void					vrx_in_out(char *name, char** path, t_vrx *all);
 
 #endif
