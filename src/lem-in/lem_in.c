@@ -21,9 +21,9 @@ int		main(void)
 	fd = open("tests/test_direction", O_RDONLY);
 	lem = create_lem(fd);
 	path = dijkstra(lem);
-	ft_printf("path = %s", path);
-	free(path);
+	ft_print_lem_info(lem);
 	redirect_lem(lem, path);
+	free(path);
 	unvisit(lem->vrx);
 	ft_print_lem_info(lem);
 	ft_del_lem(&lem);

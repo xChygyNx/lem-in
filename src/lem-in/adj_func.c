@@ -41,11 +41,9 @@ t_adj		*ft_addlst(t_adj *adj, char *elem, char dir)
 {
 	t_adj	*begin;
 
-	ft_printf("elem = %s\n", elem);
 	if (adj)
 	{
 		begin = adj;
-		//ft_printf("I'm here\n");
 		while (adj->next)
 			adj = adj->next;
 		if (!(adj->next = (t_adj*)malloc(sizeof(t_adj))))

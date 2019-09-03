@@ -44,4 +44,5 @@ void	add_adj_sep (t_vrx *src, char *name, int mode)
 		ft_strjoin(name, "_out");
 	//ft_printf("adj = %p\n", src->adj);
 	src->adj = ft_addlst(src->adj, adj_name, 0);
+	free(adj_name);
 }
