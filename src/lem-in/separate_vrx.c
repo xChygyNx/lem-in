@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   separate_vrx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:48:14 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 23:04:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/05 10:26:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static int	in_path(char *name, char **path)
-{
-	int		i;
-
-	i = -1;
-	while (path[++i])
-		if (!ft_strcmp(name, path[i]))
-			return(1);
-	return (0);
-}
-
-static t_vrx	*vrx_copy (t_vrx *src, t_vrx *all_vrx)
-{
-	t_vrx	*copy;
-
-	copy = (t_vrx*)malloc(sizeof(t_vrx));
-	copy->x = src->x;
-	copy->y = src->y;
-	copy->type = src->type;
-	copy->visit = src->visit;
-	copy->sep = src->sep;
-	copy->next = src;
-	copy->adj = NULL;
-//	add_adj_sep (copy, src->name, OUT);
-	copy->name = ft_strjoin(src->name, "_in");
-	return (copy);
-}
 
 static void	add_in(t_vrx *vrx, char **path, t_vrx *all_vrx)
 {

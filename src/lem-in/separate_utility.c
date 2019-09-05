@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   separate_utility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 12:56:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 22:43:56 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/05 10:26:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,32 @@ void	add_adj_sep (t_vrx *src, char *name, int mode)
 	//ft_printf("adj = %p\n", src->adj);
 	src->adj = ft_addlst(src->adj, adj_name, 0, 0);
 	free(adj_name);
+}
+
+t_vrx	*vrx_copy (t_vrx *src, t_vrx *all_vrx)
+{
+	t_vrx	*copy;
+
+	copy = (t_vrx*)malloc(sizeof(t_vrx));
+	copy->x = src->x;
+	copy->y = src->y;
+	copy->type = src->type;
+	copy->visit = src->visit;
+	copy->sep = src->sep;
+	copy->next = src;
+	copy->adj = NULL;
+//	add_adj_sep (copy, src->name, OUT);
+	copy->name = ft_strjoin(src->name, "_in");
+	return (copy);
+}
+
+int	in_path(char *name, char **path)
+{
+	int		i;
+
+	i = -1;
+	while (path[++i])
+		if (!ft_strcmp(name, path[i]))
+			return(1);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 23:00:15 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/05 10:26:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,10 @@ void					vrx_in_out(char *name, char** path, t_vrx *all);
 void					add_adj_sep(t_vrx *src, char *name, int mode);
 
 void					rewrite_adj(t_vrx *vrx, char *name);
+
+t_vrx					*vrx_copy(t_vrx *src, t_vrx *all_vrs);
+
+int						in_path(char *name, char **path);
 
 /*
  * UTILITY FUNCTIONS
