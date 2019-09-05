@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/05 10:26:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/05 15:29:55 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,15 @@ void					vrx_in_out(char *name, char** path, t_vrx *all);
 
 void					add_adj_sep(t_vrx *src, char *name, int mode);
 
-void					rewrite_adj(t_vrx *vrx, char *name);
+void					rewrite_adj(t_vrx *vrx, char **path);
 
 t_vrx					*vrx_copy(t_vrx *src, t_vrx *all_vrs);
 
 int						in_path(char *name, char **path);
+
+void					del_adj(t_vrx *xrx, char *name);
+
+void					path_adj(t_vrx *vrx, char **path);
 
 /*
  * UTILITY FUNCTIONS

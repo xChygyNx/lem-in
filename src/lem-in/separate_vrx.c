@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:48:14 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/05 10:26:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/05 13:22:23 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	add_in(t_vrx *vrx, char **path, t_vrx *all_vrx)
 		temp = temp->next;
 	new = vrx_copy(vrx, all_vrx);
 	temp->next = new;
-	rewrite_adj(all_vrx, vrx->name);
 }
 
 static void	add_out(t_vrx *out, char **path)
@@ -53,6 +52,7 @@ void    	vrx_in_out(char *vrx_name, char **vrx_path, t_vrx *all_vrx)
     temp = all_vrx;
     while (ft_strcmp(temp->name, vrx_name))
 		temp = temp->next;
+	//rewrite_adj(all_vrx, vrx->name, path);
 	vrx_out = temp;
 	add_in(vrx_out, vrx_path, all_vrx);
 	add_out(vrx_out, vrx_path);

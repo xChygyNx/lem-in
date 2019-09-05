@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/03 23:01:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/05 12:58:26 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,26 @@ int		ft_len_arr(char **arr)
 	while (arr[i])
 		++i;
 	return (i);
+}
+
+void	del_adj(t_vrx *vrx, char *name)
+{
+	t_adj	*temp;
+	t_adj	*temp2;
+
+	temp = vrx->adj;
+	if (!ft_strcmp(temp->name, name))
+	{
+		vrx->adj = temp->next;
+		temp->next = NULL;
+		free(temp);
+	}
+	else
+	{
+		while (temp && temp->next && ft_strcmp(name, temp->next->name))
+			temp = temp->next;
+		temp2 = temp->next;
+		temp->next = temp->next ? temp->next->next : NULL;
+		temp2 ? free(temp2) : 0;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/05 11:01:52 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/05 11:16:13 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 	int		fd;
 	char	*path;
 
-	fd = open("tests/test_direction", O_RDONLY);
+	fd = open("tests/sferical_test_in_vacuum", O_RDONLY);
 	lem = create_lem(fd);
 	path = dijkstra(lem);
 //	ft_print_lem_info(lem);
