@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 16:03:46 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:37:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void					redirect_lem(t_lem *lem, char *shortest_path);
 t_vrx					*get_vrx(t_vrx *vrx, char *name);
 
 t_adj					*get_adj(t_adj *adj, char *name);
+
+int						dfs(t_lem *lem, char *name);
 
 /*
  * UTILITY FUNCTIONS

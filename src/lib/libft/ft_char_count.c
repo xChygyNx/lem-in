@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_char_count.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 17:01:20 by astripeb         ###   ########.fr       */
+/*   Created: 2019/09/06 16:45:23 by astripeb          #+#    #+#             */
+/*   Updated: 2019/09/06 16:45:45 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(void)
+int		ft_char_count(char *str, char c)
 {
-	t_lem	*lem;
-	int		fd;
+	int i;
 
-	fd = open("tests/test_from_smight", O_RDONLY);
-	lem = create_lem(fd);
-	redirect_lem(lem, "end|2|1|start");
-	ft_print_lem_info(lem);
-	ft_del_lem(&lem);
-	return (0);
+	i = 0;
+	if (!str)
+		return (i);
+	while (*str++)
+	{
+		if (*str == c)
+			++i;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 15:34:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:47:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,4 @@ void	ft_print_lem_info(t_lem *lem)
 		}
 		vrx = vrx->next;
 	}
-}
-
-int		ft_char_count(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (i);
-	while (*str++)
-	{
-		if (*str == c)
-			++i;
-	}
-	return (i);
-}
-
-int		ft_len_arr(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		++i;
-	return (i);
 }

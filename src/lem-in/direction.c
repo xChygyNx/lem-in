@@ -6,25 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/06 15:48:57 by astripeb         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   direction.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/30 20:42:46 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/05 13:58:30 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/06 17:39:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		change_eds_wght(t_lem *lem, char *start, char *end, int weight)
+static void	change_eds_wght(t_lem *lem, char *start, char *end, int weight)
 {
 	t_vrx	*vrx_t;
 	t_adj	*adj_t;
@@ -36,10 +24,10 @@ static void		change_eds_wght(t_lem *lem, char *start, char *end, int weight)
 	}
 }
 
-static void			separate_vrxs(t_lem *lem, char **vrxs)
+static void	separate_vrxs(t_lem *lem, char **vrxs)
 {
 	t_vrx	*vrx_t;
- 	int		i;
+	int		i;
 
 	i = ft_len_arr(vrxs) - 2;
 	while (i > 0)
@@ -62,7 +50,7 @@ void		change_dir(t_lem *lem, char *start, char *end, char dir)
 	}
 }
 
-void			redirect_lem(t_lem *lem, char *shortest_path)
+void		redirect_lem(t_lem *lem, char *shortest_path)
 {
 	char	**vrxs;
 	int		i;

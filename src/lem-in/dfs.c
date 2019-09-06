@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   dfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 17:01:20 by astripeb         ###   ########.fr       */
+/*   Created: 2019/09/06 16:12:12 by astripeb          #+#    #+#             */
+/*   Updated: 2019/09/06 16:39:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main(void)
+int		dfs(t_lem *lem, char *name)
 {
-	t_lem	*lem;
-	int		fd;
+	t_vrx *vrx_t;
+	t_adj *adj_t;
 
-	fd = open("tests/test_from_smight", O_RDONLY);
-	lem = create_lem(fd);
-	redirect_lem(lem, "end|2|1|start");
-	ft_print_lem_info(lem);
-	ft_del_lem(&lem);
+	if (!(vrx_t = get_vrx(lem->vrx, name)))
+		return (0);
+	if (vrx_t->visit)
+		return (0);
+	if (vrx_t->type == END)
+		return (1);
+	vrx_t->visit = 1;
+	adj_t = vrx_t->adj;
+	while (adj_t)
+	{
+		if (dfs(lem, adj_t->name))
+			return (1);
+		adj_t = adj_t->next;
+	}
 	return (0);
 }

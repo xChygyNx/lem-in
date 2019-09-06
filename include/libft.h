@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 17:10:53 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/25 10:33:40 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:46:48 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,4 +193,8 @@ void			page_del(t_list **lst);
 void			free_tab(char **tab);
 
 int				ft_isdigitstr(char *str);
+
+int				ft_char_count(char *str, char c);
+
+int				ft_len_arr(char **tab);
 #endif

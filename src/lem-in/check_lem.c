@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/28 22:09:47 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 17:37:55 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ static int		check_start_end(t_vrx *vrx)
 	end = 0;
 	while (vrx)
 	{
-		start +=vrx->type == START ? 1 : 0;
+		start += vrx->type == START ? 1 : 0;
 		end += vrx->type == END ? 1 : 0;
 		if (start == 2 || end == 2)
 			return (0);
 		vrx = vrx->next;
-
 	}
 	return (!start || !end ? 0 : 1);
 }
@@ -70,67 +69,14 @@ static int		check_double_vertex(t_vrx *vrx)
 	return (1);
 }
 
-static int		find_end(t_adj *cur, t_vrx *begin)
-{
-	t_vrx	*temp;
-	t_adj	*temp_adj;
-
-	if (!cur)
-		return (0);
-	temp = begin;
-	while (ft_strcmp(temp->name, cur->name))
-		temp = temp->next;
-	if (temp->type == END)
-		return (1);
-	if (temp->visit)
-		return (0);
-	temp->visit = 1;
-	temp_adj = temp->adj;
-	while (temp_adj)
-	{
-		if (find_end(temp_adj, begin))
-			return (1);
-		temp_adj = temp_adj->next;
-	}
-	return (0);
-}
-
 void			check_lem(t_lem *lem)
 {
-	//ft_printf("I'm come in\n");
 	if (!check_start_end(lem->vrx))
 		ft_exit(&lem, START_END);
-	//ft_printf("I'm come in\n");
 	first_start(lem);
 	if (!check_double_vertex(lem->vrx))
 		ft_exit(&lem, DOUBLE_VRX);
-	if (!find_end(lem->vrx->adj, lem->vrx))
+	if (!dfs(lem, lem->vrx->name))
 		ft_exit(&lem, ONE_COMPONENT);
 	unvisit(lem->vrx);
 }
-
-/*
-static void		find_end(t_adj *cur, t_vrx *begin, int *res)
-{
-	t_vrx *temp;
-	t_adj	*start;
-
-	usleep(50000);
-	if (*res || !cur)
-		return ;
-	temp = begin;
-	while (ft_strcmp(temp->name, cur->name))
-		temp = temp->next;
-	*res = temp->type == 2 ? 1 : *res;
-	if (*res || temp->visit)
-		return ;
-	temp->visit = 1;
-	start = temp->adj;
-	while (temp->adj && !(*res))
-	{
-		find_end(temp->adj, begin, res);
-		temp->adj = temp->adj->next;
-	}
-	temp->adj = start;
-}
-*/
