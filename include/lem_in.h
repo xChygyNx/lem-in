@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 15:47:58 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:03:46 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ typedef struct			s_vrx
 	char				visit;
 	char				sep;
 }						t_vrx;
+
+typedef struct			s_bfs
+{
+	char				*name;
+	char				*anc;
+	struct s_bfs		*next;
+}						t_bfs;
+
+typedef struct			s_queue
+{
+	char				*name;
+	struct s_queue		*next;
+}						t_queue;
+
 
 void					ft_exit(t_lem **lem, int err);
 
