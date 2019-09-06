@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 15:34:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 21:17:22 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ t_adj	*get_adj(t_adj *adj, char *name)
 	while (adj && ft_strcmp(name, adj->name))
 		adj = adj->next;
 	return (adj);
+}
+
+t_bfs	*find_bfs(char *name, t_bfs *bfs)
+{
+	t_bfs	*temp;
+
+	temp = bfs;
+	while (temp && ft_strcmp(name, temp->name))
+		temp = temp->next;
+	return (temp);
 }
 
 void	ft_print_lem_info(t_lem *lem)

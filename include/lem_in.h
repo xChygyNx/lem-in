@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 16:03:46 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/06 21:37:07 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ void					redirect_lem(t_lem *lem, char *shortest_path);
 t_vrx					*get_vrx(t_vrx *vrx, char *name);
 
 t_adj					*get_adj(t_adj *adj, char *name);
+
+t_bfs					*find_bfs(char *name, t_bfs *bfs);
+
+char					*bfs(t_lem *lem);
 
 /*
  * UTILITY FUNCTIONS
