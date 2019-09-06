@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 21:17:22 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/06 21:56:30 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,4 @@ void	ft_print_lem_info(t_lem *lem)
 		}
 		vrx = vrx->next;
 	}
-}
-
-int		ft_char_count(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (i);
-	while (*str++)
-	{
-		if (*str == c)
-			++i;
-	}
-	return (i);
-}
-
-int		ft_len_arr(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		++i;
-	return (i);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/22 22:04:52 by astripeb          #+#    #+#              #
-#    Updated: 2019/08/25 10:34:09 by astripeb         ###   ########.fr        #
+#    Updated: 2019/09/06 16:47:39 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SOURCES_LIBFT 	= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 		   ft_putchar_utf8_fd.c ft_llitoa.c ft_strjoin_f.c ft_strjoin_s.c\
 		   ft_putstr_utf8.c ft_putstr_utf8_fd.c ft_to_uppercase.c ft_lstrlen.c\
 		   ft_putnstr_utf8_fd.c ft_lenwchar.c page_del.c free_tab.c word_len.c\
-		   word_count.c ft_isdigitstr.c
+		   word_count.c ft_isdigitstr.c ft_char_count.c ft_len_arr.c
 
 SOURCES_PRINTF = ft_putnbr_f.c print_str.c print_pointer.c utility_func.c\
 			print_num.c print_char.c ft_printf.c parse_mod.c print_double.c\

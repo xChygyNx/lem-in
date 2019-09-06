@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/06 15:41:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 17:36:55 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			add_adj(t_lem *lem, char **v)
+void		add_adj(t_lem *lem, char **v)
 {
 	int			i;
 	int			n;
@@ -37,7 +37,7 @@ void			add_adj(t_lem *lem, char **v)
 	lem->edge_c += 1;
 }
 
-t_adj	*ft_addlst(t_adj *adj, char *elem, char weight, char dir)
+t_adj		*ft_addlst(t_adj *adj, char *elem, char weight, char dir)
 {
 	t_adj	*begin;
 
