@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/08/30 19:22:00 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 15:47:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
+t_adj					*ft_addlst(t_adj *adj, char *elem, char wght, char dir);
 
 void					unvisit(t_vrx *vertex);
 
@@ -88,11 +88,15 @@ int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem, char weight);
-
 void					add_adj(t_lem *lem, char **v);
 
-void					change_dir(t_lem *lem, char *start, char *end);
+void					change_dir(t_lem *lem, char *start, char *end, char dir);
+
+void					redirect_lem(t_lem *lem, char *shortest_path);
+
+t_vrx					*get_vrx(t_vrx *vrx, char *name);
+
+t_adj					*get_adj(t_adj *adj, char *name);
 
 /*
  * UTILITY FUNCTIONS

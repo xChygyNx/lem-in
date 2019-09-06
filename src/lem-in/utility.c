@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 14:09:59 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/06 15:34:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@ void	unvisit(t_vrx *vertex)
 		vertex->visit = 0;
 		vertex = vertex->next;
 	}
+}
+
+t_vrx	*get_vrx(t_vrx *vrx, char *name)
+{
+	while (vrx && ft_strcmp(name, vrx->name))
+		vrx = vrx->next;
+	return (vrx);
+}
+
+t_adj	*get_adj(t_adj *adj, char *name)
+{
+	while (adj && ft_strcmp(name, adj->name))
+		adj = adj->next;
+	return (adj);
 }
 
 void	ft_print_lem_info(t_lem *lem)
@@ -34,18 +48,22 @@ void	ft_print_lem_info(t_lem *lem)
 	while (vrx)
 	{
 		ft_printf("-----------------------\n");
-		ft_printf("|name:  %14s|\n|x:     %14d|\n|y:     %14d|\n|type:  %14d|\
-			\n|visit: %14d|\n", vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit);
+		ft_printf("|name:  {red}%14s{eoc}|\n|x:     %14d|\n|y:     %14d|\n\
+|type:  %14d|\n|visit: %14d|\n|sep:   %14s|\n",\
+		 vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit,\
+		 vrx->sep ? "YES" : "NO");
 		if (vrx->adj)
 		{
 			ft_printf("|adj:   ");
 			adj = vrx->adj;
 			while (adj->next)
 			{
-				ft_printf("%s (w:%d, d:%d), ", adj->name, adj->weight, adj->dir);
+				ft_printf("{green}%s{eoc} (w:%d, d:%d), ",\
+				adj->name, adj->weight, adj->dir);
 				adj = adj->next;
 			}
-			ft_printf("%s (%d)|\n", adj->name, adj->weight);
+			ft_printf("{green}%s{eoc} (w:%d, d:%d)|\n",\
+			adj->name, adj->weight, adj->dir);
 		}
 		vrx = vrx->next;
 	}
@@ -75,4 +93,3 @@ int		ft_len_arr(char **arr)
 		++i;
 	return (i);
 }
- //удОлить

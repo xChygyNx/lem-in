@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/08/30 19:20:51 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/06 15:41:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			add_adj(t_lem *lem, char **v)
 		{
 			i++;
 			n = !ft_strcmp(vrx->name, v[0]) ? 1 : 0;
-			if (!(vrx->adj = ft_addlst(vrx->adj, v[n], 1)))
+			if (!(vrx->adj = ft_addlst(vrx->adj, v[n], 1, 1)))
 				ft_exit(&lem, MALLOC_FAILURE);
 		}
 		vrx = vrx->next;
@@ -37,7 +37,7 @@ void			add_adj(t_lem *lem, char **v)
 	lem->edge_c += 1;
 }
 
-t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
+t_adj	*ft_addlst(t_adj *adj, char *elem, char weight, char dir)
 {
 	t_adj	*begin;
 
@@ -63,18 +63,4 @@ t_adj	*ft_addlst(t_adj *adj, char *elem, char weight)
 	adj->weight = weight;
 	adj->dir = ON;
 	return (begin);
-}
-
-void		change_dir(t_lem *lem, char *start, char *end)
-{
-	t_vrx	*t_vrx;
-	t_adj	*t_adj;
-
-	t_vrx = lem->vrx;
-	while (t_vrx && ft_strcmp(start, t_vrx->name))
-		t_vrx = t_vrx->next;
-	t_adj = t_vrx ? t_vrx->adj : NULL;
-	while (t_adj && ft_strcmp(end, t_adj->name))
-		t_adj = t_adj->next;
-	t_adj ? t_adj->dir = OFF : 0;
 }
