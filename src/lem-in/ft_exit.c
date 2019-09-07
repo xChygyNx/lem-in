@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/07 13:30:31 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:23:25 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static void		ft_free_vrxs(t_vrx **vrx_to_del)
 }
 
 
-void			ft_free_path(t_listpath **listpath_to_del)
+void			ft_free_path(t_path **listpath_to_del)
 {
-	t_listpath	*path;
-	t_listpath	*temp;
+	t_path	*path;
+	t_path	*temp;
 
 	if (listpath_to_del)
 	{

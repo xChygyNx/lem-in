@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 13:43:22 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:24:50 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_adj					*get_adj(t_adj *adj, char *name);
 
 t_bfs					*find_bfs(char *name, t_bfs *bfs);
 
-char					*bfs(t_lem *lem);
+char					*bfs(t_lem *lem, t_bfs **bfs);
 
 int						dfs(t_lem *lem, char *name);
 
@@ -131,6 +131,22 @@ void					full_renovation_lem(t_lem *lem);
 void					ft_free_path(t_path **listpath_to_del);
 
 t_path					*add_path(t_path *begin, char *path);
+
+void					free_bfs(t_bfs *bfs);
+
+t_bfs					*add_bfs(char *name, char *anc, t_bfs *bfs, t_lem *lem);
+
+t_bfs					*new_bfs(t_lem *lem);
+
+void					free_qu(t_queue *qu);
+
+void					del_elem_qu(t_queue **queue);
+
+t_queue					*add_qu(t_queue *queue, char *name);
+
+t_queue					*new_queue(t_lem *lem);
+
+
 
 /*
  * UTILITY FUNCTIONS
