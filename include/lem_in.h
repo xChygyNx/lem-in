@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 10:40:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 12:11:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void					add_adj(t_lem *lem, char **v);
 
 void					change_dir(t_lem *lem, char *start, char *end, char dir);
 
-void					redirect_lem(t_lem *lem, char *shortest_path);
+void					redirect_lem(t_lem *lem, char *shortest_path, char tumbler);
 
 t_vrx					*get_vrx(t_vrx *vrx, char *name);
 
@@ -128,14 +128,16 @@ void					renovation_one_to_two_dir(t_lem *lem);
 
 void					full_renovation_lem(t_lem *lem);
 
+void					ft_free_path(t_listpath **listpath_to_del);
+
+t_listpath				*add_path(t_listpath *begin, char *path);
+
 /*
  * UTILITY FUNCTIONS
  */
 
-int						ft_char_count(char *str, char c);
-
-int						ft_len_arr(char **arr);
-
 void					ft_print_lem_info(t_lem *lem);
+
+void					ft_print_paths(t_listpath *listpath);
 
 #endif

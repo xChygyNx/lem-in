@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/06 21:12:41 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 12:15:40 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	change_eds_wght(t_lem *lem, char *start, char *end, int weight)
 	}
 }
 
-static void	separate_vrxs(t_lem *lem, char **vrxs)
+static void	separate_vrxs(t_lem *lem, char **vrxs, char tumbler)
 {
 	t_vrx	*vrx_t;
 	int		i;
@@ -33,7 +33,7 @@ static void	separate_vrxs(t_lem *lem, char **vrxs)
 	while (i > 0)
 	{
 		if ((vrx_t = get_vrx(lem->vrx, vrxs[i])))
-			vrx_t->sep = ON;
+			vrx_t->sep = tumbler;
 		--i;
 	}
 }
@@ -50,7 +50,7 @@ void		change_dir(t_lem *lem, char *start, char *end, char dir)
 	}
 }
 
-void		redirect_lem(t_lem *lem, char *shortest_path)
+void		redirect_lem(t_lem *lem, char *shortest_path, char tumbler)
 {
 	char	**vrxs;
 	int		i;
@@ -60,11 +60,11 @@ void		redirect_lem(t_lem *lem, char *shortest_path)
 	i = ft_len_arr(vrxs) - 1;
 	while (i > 0)
 	{
-		change_dir(lem, vrxs[i], vrxs[i - 1], OFF);
-		change_eds_wght(lem, vrxs[i], vrxs[i - 1], 0);
-		change_eds_wght(lem, vrxs[i - 1], vrxs[i], -1);
+		change_dir(lem, vrxs[i], vrxs[i - 1], tumbler);
+		change_eds_wght(lem, vrxs[i], vrxs[i - 1], !tumbler ? OFF : ON);
+		change_eds_wght(lem, vrxs[i - 1], vrxs[i], !tumbler ? -1 : 1);
 		--i;
 	}
-	separate_vrxs(lem, vrxs);
+	separate_vrxs(lem, vrxs, !tumbler ? ON : OFF);
 	ft_free_arr(vrxs);
 }
