@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 15:22:37 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:11:44 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 
 	fd = open("tests/spherical_test_in_vacuum", O_RDONLY);
 	lem = create_lem(fd);
-	bfs_src = (t_bfs*)malloc(sizeof(t_queue));
+	bfs_src = NULL;
 	path = bfs(lem, &bfs_src);;
 	ft_printf("path = %s\n", path);
 //	redirect_lem(lem, path, OFF);
