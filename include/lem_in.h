@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 21:56:30 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/07 10:40:20 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	char				**path;  //что будем в пути хранить? <- задумка была что неперекрывающиеся пути, которые будем использовать
+	struct s_listpath	*path;   //связный список непересекающихся путей
 	char				*map;
 	char				*line;
 }						t_lem;
@@ -77,6 +77,12 @@ typedef struct			s_queue
 	struct s_queue		*next;
 }						t_queue;
 
+typedef struct 			s_listpath
+{
+	char				**path;
+	int					path_len;
+	struct	s_listpath	*next;
+}						t_listpath;
 
 void					ft_exit(t_lem **lem, int err);
 
@@ -115,6 +121,12 @@ t_adj					*get_adj(t_adj *adj, char *name);
 t_bfs					*find_bfs(char *name, t_bfs *bfs);
 
 char					*bfs(t_lem *lem);
+
+int						dfs(t_lem *lem, char *name);
+
+void					renovation_one_to_two_dir(t_lem *lem);
+
+void					full_renovation_lem(t_lem *lem);
 
 /*
  * UTILITY FUNCTIONS

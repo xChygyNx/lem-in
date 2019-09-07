@@ -6,19 +6,12 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/06 21:49:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 10:38:14 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "lem_in.h"
-
-typedef struct 			s_listpath
-{
-	char				**path;
-	int					path_len;
-	struct	s_listpath	*next;
-}						t_listpath;
 
 t_listpath 			*new_path(char	 *path)
 {
