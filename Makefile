@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/09/07 15:25:31 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/09/07 17:36:22 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIB				= -L $(LIB_PATH) -lftprintf
 SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
 SRC				+= adj_func.c utility.c ft_exit.c validation.c
 SRC				+= direction.c dfs.c bfs.c path_func.c bfs_utility.c
-SRC				+= queue.c
+SRC				+= queue.c suurballe.c renovation.c
 OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 all: $(NAME)

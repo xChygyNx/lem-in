@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs_utility.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:57:21 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 15:07:31 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:43:11 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_bfs	*add_bfs(char *name, char *anc, t_bfs *bfs, t_lem *lem)
 
 t_bfs	*new_bfs(t_lem *lem)
 {
-	t_bfs	*begin;
 	t_bfs	*bfs;
 	t_vrx	*temp_vrx;
 

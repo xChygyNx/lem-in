@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 15:24:50 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:35:15 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ t_queue					*add_qu(t_queue *queue, char *name);
 
 t_queue					*new_queue(t_lem *lem);
 
-
+void					suurballe(t_lem *lem);
 
 /*
  * UTILITY FUNCTIONS

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 17:27:20 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:56:04 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_bfs		*bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 		temp_adj = temp_vrx->adj;
 		while (temp_adj)
 		{
+			//здесь безконечный цикл
 			if (!temp_adj->dir)
 				continue ;
 			if (prev_w == -1 && temp_vrx->sep && temp_adj->weight > 0)
@@ -76,9 +77,7 @@ char				*bfs(t_lem *lem, t_bfs **bfs_src)
 	bfs = *bfs_src ? *bfs_src : new_bfs(lem);
 	queue = new_queue(lem);
 	bfs = bfs_algo(lem, queue, bfs);
-	//if (!(path = print_short_path(lem->vrx, bfs)))
-		//ft_exit(&lem, MALLOC_FAILURE);
 	path = shortest_path(lem->vrx, bfs);
-	//free_bfs(bfs);
+	unvisit(lem->vrx);
 	return (path);
 }
