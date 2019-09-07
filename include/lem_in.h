@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 12:11:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 13:43:22 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	struct s_listpath	*path;   //связный список непересекающихся путей
+	struct s_path	*path;   //связный список непересекающихся путей
 	char				*map;
 	char				*line;
 }						t_lem;
@@ -77,12 +77,12 @@ typedef struct			s_queue
 	struct s_queue		*next;
 }						t_queue;
 
-typedef struct 			s_listpath
+typedef struct 			s_path
 {
 	char				**path;
 	int					path_len;
-	struct	s_listpath	*next;
-}						t_listpath;
+	struct	s_path	*next;
+}						t_path;
 
 void					ft_exit(t_lem **lem, int err);
 
@@ -128,9 +128,9 @@ void					renovation_one_to_two_dir(t_lem *lem);
 
 void					full_renovation_lem(t_lem *lem);
 
-void					ft_free_path(t_listpath **listpath_to_del);
+void					ft_free_path(t_path **listpath_to_del);
 
-t_listpath				*add_path(t_listpath *begin, char *path);
+t_path					*add_path(t_path *begin, char *path);
 
 /*
  * UTILITY FUNCTIONS
@@ -138,6 +138,6 @@ t_listpath				*add_path(t_listpath *begin, char *path);
 
 void					ft_print_lem_info(t_lem *lem);
 
-void					ft_print_paths(t_listpath *listpath);
+void					ft_print_paths(t_path *listpath);
 
 #endif

@@ -6,17 +6,17 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/07 11:36:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 13:43:40 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_listpath 			*new_path(char	 *path)
+t_path 			*new_path(char	 *path)
 {
-	t_listpath *new;
+	t_path *new;
 
-	if (!(new = (t_listpath*)malloc(sizeof(t_listpath))))
+	if (!(new = (t_path*)malloc(sizeof(t_path))))
 		return (NULL);
 	if (!(new->path = ft_strsplit(path, '|')))
 	{
@@ -28,9 +28,9 @@ t_listpath 			*new_path(char	 *path)
 	return (new);
 }
 
-t_listpath			*add_path(t_listpath *begin, char *path)
+t_path			*add_path(t_path *begin, char *path)
 {
-	t_listpath *temp;
+	t_path *temp;
 
 	if (!begin)
 	{
@@ -51,7 +51,7 @@ t_listpath			*add_path(t_listpath *begin, char *path)
 	return (begin);
 }
 
-void				ft_print_paths(t_listpath *listpath)
+void				ft_print_paths(t_path *listpath)
 {
 	int	i;
 	int	j;

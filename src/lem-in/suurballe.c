@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/07 13:25:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/07 13:44:23 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void		suurbale(t_lem *lem)
 		}
 		//если длина пути больше количества муравьев,
 		//то не имеет смысла дальше искать пути (!ТРЕБУЕТ ПРОВЕРКИ!)
-		if (ft_char_count(path, '|') + 1 < lem->ant_c)
+		if (ft_char_count(path, '|') + 1 > lem->ant_c)
+		{
+			free(path);
 			break ;
+		}
 		free(path);
 	}
 	//восстанавливаем наш граф (weight = 1 и dir = 1),
@@ -76,7 +79,7 @@ void		suurbale(t_lem *lem)
 //w - колличество путей.
 int		count_steps(t_lem *lem)
 {
-	t_listpath	*path_t;
+	t_path	*path_t;
 	int			a;
 	int			w;
 	int			z;
