@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/09 23:01:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/09 23:38:03 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct			s_bfs
 
 typedef struct			s_queue
 {
-	char				*name;
 	char				weight;
+	char				*name;
 	struct s_queue		*next;
 }						t_queue;
 

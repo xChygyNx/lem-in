@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/09 23:10:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 00:23:18 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ char	del_one_queue(t_queue **queue)
 	if (queue && *queue)
 	{
 		temp_q = *queue;
-		*queue = (*queue)->next;
+		*queue = temp_q->next;
 		weight = temp_q->weight;
 		free(temp_q->name);
+		temp_q->next = NULL;
 		free(temp_q);
 	}
 	else
@@ -51,18 +52,18 @@ char	del_one_queue(t_queue **queue)
 
 t_queue	*new_queue(char *name, char weight)
 {
-	t_queue		*queue;
+	t_queue		*new_q;
 
-	if (!(queue = (t_queue*)malloc(sizeof(t_queue))))
+	if (!(new_q = (t_queue*)malloc(sizeof(t_queue))))
 		return (NULL);
-	if (!(queue->name = ft_strdup(name)))
+	if (!(new_q->name = ft_strdup(name)))
 	{
-		free(queue);
+		free(new_q);
 		return (NULL);
 	}
-	queue->weight = weight;
-	queue->next = NULL;
-	return (queue);
+	new_q->weight = weight;
+	new_q->next = NULL;
+	return (new_q);
 }
 
 void	add_queue(t_queue **queue, char *name, char weight)
@@ -70,18 +71,20 @@ void	add_queue(t_queue **queue, char *name, char weight)
 	t_queue		*new_q;
 
 
-	new_q = *queue;
-	if (new_q)
+	if (queue)
 	{
-		while (new_q->next)
-			new_q = new_q->next;
-		if (!(new_q = new_queue(name, weight)))
-			free_queue(queue);
+		new_q = *queue;
+		if (new_q)
+		{
+			while (new_q->next)
+				new_q = new_q->next;
+			if (!(new_q->next = new_queue(name, weight)))
+				free_queue(queue);
+		}
+		else
+		{
+			if (!(*queue = new_queue(name, weight)))
+				free_queue(queue);
+		}
 	}
-	else
-	{
-		if (!(*queue = new_queue(name, weight)))
-			free_queue(queue);
-	}
-
 }
