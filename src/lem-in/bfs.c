@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 17:56:04 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/09 23:10:40 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,45 @@
 
 static t_bfs		*bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 {
-	t_vrx			*temp_vrx;
-	t_vrx			*temp2_vrx;
-	t_adj			*temp_adj;
+	t_vrx			*vrx_s;
+	t_vrx			*vrx_e;
+	t_adj			*adj_t;
 	char			prev_w;
 
 	prev_w = 1;
 	while (queue)
 	{
-		temp_vrx = get_vrx(lem->vrx, queue->name);
-		if (temp_vrx->type == END)
+		vrx_s = get_vrx(lem->vrx, queue->name);
+		if (vrx_s->type == END)
 			break ;
-		temp_adj = temp_vrx->adj;
-		while (temp_adj)
+		adj_t = vrx_s->adj;
+		while (adj_t)
 		{
-			//здесь безконечный цикл
-			if (!temp_adj->dir)
+/*
+			if (!adj_t->dir)
+			{
+				adj_t = adj_t->next;
 				continue ;
-			if (prev_w == -1 && temp_vrx->sep && temp_adj->weight > 0)
+			}
+			if (prev_w == -1 && vrx_s->sep && adj_t->weight > 0)
+			{
+				adj_t = adj_t->next;
 				continue ;
-			temp2_vrx = get_vrx(lem->vrx, temp_adj->name);
-			queue = !temp2_vrx->visit ? add_qu(queue, temp_adj->name) : queue;
-			bfs = !temp2_vrx->visit ? add_bfs(temp_adj->name, temp_vrx->name, bfs, lem) : bfs;
-			temp2_vrx->visit = 1;
-			temp_adj = temp_adj->next;
+			}
+*/
+			vrx_e = get_vrx(lem->vrx, adj_t->name);
+			if (!vrx_e->visit)
+			{
+
+				add_queue(&queue, adj_t->name, adj_t->weight);
+				bfs = add_bfs(adj_t->name, vrx_s->name, bfs, lem);
+				vrx_e->visit = 1;
+			}
+			adj_t = adj_t->next;
 		}
-		del_elem_qu(&queue);
-		}
-	free_qu(queue);
+		prev_w = del_one_queue(&queue);
+	}
+	free_queue(&queue);
 	return (bfs);
 }
 
@@ -74,8 +85,13 @@ char				*bfs(t_lem *lem, t_bfs **bfs_src)
 	t_bfs			*bfs;
 	t_queue			*queue;
 
+	queue = NULL;
+
 	bfs = *bfs_src ? *bfs_src : new_bfs(lem);
-	queue = new_queue(lem);
+	add_queue(&queue, lem->vrx->name, 1);
+//	if (!(queue = new_queue(lem->vrx->name, 1)))
+//		return (NULL);
+	lem->vrx->visit = 1;
 	bfs = bfs_algo(lem, queue, bfs);
 	path = shortest_path(lem->vrx, bfs);
 	unvisit(lem->vrx);

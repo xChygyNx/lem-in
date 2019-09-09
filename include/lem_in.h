@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 17:35:15 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/09 23:01:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	struct s_path	*path;   //связный список непересекающихся путей
+	struct s_path		*path;   //связный список непересекающихся путей
 	char				*map;
 	char				*line;
 }						t_lem;
@@ -74,6 +74,7 @@ typedef struct			s_bfs
 typedef struct			s_queue
 {
 	char				*name;
+	char				weight;
 	struct s_queue		*next;
 }						t_queue;
 
@@ -81,24 +82,32 @@ typedef struct 			s_path
 {
 	char				**path;
 	int					path_len;
-	struct	s_path	*next;
+	struct	s_path		*next;
 }						t_path;
 
 void					ft_exit(t_lem **lem, int err);
+
+/*
+ * CREATE LEM FUNCTIONS
+ */
 
 t_lem					*create_lem(int fd);
 
 void					ft_edge(t_lem *lem, int fd);
 
+t_adj					*ft_addlst(t_adj *adj, char *elem, char wght, char dir);
+
+void					add_adj(t_lem *lem, char **v);
+
+void					ft_del_lem(t_lem **lem_to_del);
+
+/*
+ * CHECK & VALIDATE FUNCTIONS
+ */
+
 void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
-
-t_adj					*ft_addlst(t_adj *adj, char *elem, char wght, char dir);
-
-void					unvisit(t_vrx *vertex);
-
-void					ft_del_lem(t_lem **lem_to_del);
 
 int						ft_validate_vrx(char **map);
 
@@ -108,52 +117,73 @@ int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
 
-void					add_adj(t_lem *lem, char **v);
+/*
+ * DIRECTION FUNCTIONS
+ */
 
 void					change_dir(t_lem *lem, char *start, char *end, char dir);
 
-void					redirect_lem(t_lem *lem, char *shortest_path, char tumbler);
-
-t_vrx					*get_vrx(t_vrx *vrx, char *name);
-
-t_adj					*get_adj(t_adj *adj, char *name);
-
-t_bfs					*find_bfs(char *name, t_bfs *bfs);
-
-char					*bfs(t_lem *lem, t_bfs **bfs);
-
-int						dfs(t_lem *lem, char *name);
+void					redirect_lem(t_lem *lem, char *short_path, char tumbler);
 
 void					renovation_one_to_two_dir(t_lem *lem);
 
 void					full_renovation_lem(t_lem *lem);
 
+void					unvisit(t_vrx *vertex);
+
+/*
+ * DEEP-FIRST SEARCH FUNCTIONS
+ */
+
+int						dfs(t_lem *lem, char *name);
+
+/*
+ * PATH FUNCTIONS
+ */
+
 void					ft_free_path(t_path **listpath_to_del);
 
 t_path					*add_path(t_path *begin, char *path);
 
-void					free_bfs(t_bfs *bfs);
+/*
+ * BREADTH-FIRST SEARCH FUNCTIONS
+ */
+
+char					*bfs(t_lem *lem, t_bfs **bfs);
 
 t_bfs					*add_bfs(char *name, char *anc, t_bfs *bfs, t_lem *lem);
 
 t_bfs					*new_bfs(t_lem *lem);
 
-void					free_qu(t_queue *qu);
+void					free_bfs(t_bfs *bfs);
 
-void					del_elem_qu(t_queue **queue);
+t_bfs					*find_bfs(char *name, t_bfs *bfs);
 
-t_queue					*add_qu(t_queue *queue, char *name);
+/*
+ * QUEUE FUNCTIONS
+ */
 
-t_queue					*new_queue(t_lem *lem);
+t_queue					*new_queue(char *name, char weight);
 
-void					suurballe(t_lem *lem);
+void					add_queue(t_queue **queue, char *name, char weight);
+
+void					free_queue(t_queue **queue);
+
+char					del_one_queue(t_queue **queue);
 
 /*
  * UTILITY FUNCTIONS
  */
 
+t_vrx					*get_vrx(t_vrx *vrx, char *name);
+
+t_adj					*get_adj(t_adj *adj, char *name);
+
 void					ft_print_lem_info(t_lem *lem);
 
 void					ft_print_paths(t_path *listpath);
+
+
+void					suurballe(t_lem *lem);
 
 #endif

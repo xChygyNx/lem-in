@@ -3,64 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 15:41:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/09 23:10:30 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_qu(t_queue *qu)
+void	free_queue(t_queue **queue)
 {
-	t_queue	*temp_q;
-	while (qu)
+	t_queue		*first;
+	t_queue		*second;
+
+	if (queue)
 	{
-		temp_q = qu->next;
-		free(qu->name);
-		qu->next = NULL;
-		free(qu);
-		qu = temp_q;
+		first = *queue;
+		while (first)
+		{
+			second = first;
+			first = first->next;
+			free(second->name);
+			free(second);
+		}
+		*queue = NULL;
 	}
 }
 
-void	del_elem_qu(t_queue **queue)
+char	del_one_queue(t_queue **queue)
 {
-	t_queue	*temp_q;
+	t_queue		*temp_q;
+	char		weight;
 
-	temp_q = *queue;
-	*queue = (*queue)->next;
-	free(temp_q->name);
-	temp_q ? temp_q->next = NULL : 0;
-	temp_q ? free(temp_q) : 0;
-	temp_q = NULL;
+	if (queue && *queue)
+	{
+		temp_q = *queue;
+		*queue = (*queue)->next;
+		weight = temp_q->weight;
+		free(temp_q->name);
+		free(temp_q);
+	}
+	else
+		return (0);
+	return (weight);
 }
 
-t_queue	*add_qu(t_queue *queue, char *name)
+t_queue	*new_queue(char *name, char weight)
 {
-	t_queue	*start;
+	t_queue		*queue;
 
-	start = queue;
-	while (queue && queue->next)
-		queue = queue->next;
-	queue->next = (t_queue*)malloc(sizeof(t_queue));
-	queue = queue->next;
-	queue->name = ft_strdup(name);
-	queue->next = NULL;
-	return(start);
-}
-
-t_queue	*new_queue (t_lem *lem)
-{
-	t_queue	*queue;
-	char	*name;
-
-	queue = (t_queue*)malloc(sizeof(t_queue));
-	if (!(name = ft_strdup(lem->vrx->name)))
-		ft_exit (&lem, MALLOC_FAILURE);
-	lem->vrx->visit = 1;
-	queue->name = name;
+	if (!(queue = (t_queue*)malloc(sizeof(t_queue))))
+		return (NULL);
+	if (!(queue->name = ft_strdup(name)))
+	{
+		free(queue);
+		return (NULL);
+	}
+	queue->weight = weight;
 	queue->next = NULL;
 	return (queue);
+}
+
+void	add_queue(t_queue **queue, char *name, char weight)
+{
+	t_queue		*new_q;
+
+
+	new_q = *queue;
+	if (new_q)
+	{
+		while (new_q->next)
+			new_q = new_q->next;
+		if (!(new_q = new_queue(name, weight)))
+			free_queue(queue);
+	}
+	else
+	{
+		if (!(*queue = new_queue(name, weight)))
+			free_queue(queue);
+	}
+
 }
