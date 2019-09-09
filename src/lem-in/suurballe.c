@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/10 00:12:50 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 00:30:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		suurballe(t_lem *lem)
 			free(path);
 			break ;
 		}
+		unvisit(lem->vrx);
 		free(path);
 	}
 	//восстанавливаем наш граф (weight = 1 и dir = 1),

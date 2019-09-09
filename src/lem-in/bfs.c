@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 00:24:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 00:34:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static t_bfs		*bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 				adj_t = adj_t->next;
 				continue ;
 			}
+			//тут нужно перестроить логику
 			if (prev_w == -1 && vrx_s->sep && adj_t->weight > 0)
 			{
 				adj_t = adj_t->next;
 				continue ;
 			}
 			vrx_e = get_vrx(lem->vrx, adj_t->name);
-			ft_printf("%s-%s, weight = %d prev = %d\n", vrx_s->name, vrx_e->name, adj_t->weight, prev_w);
 			if (!vrx_e->visit)
 			{
 				add_queue(&queue, adj_t->name, adj_t->weight);
