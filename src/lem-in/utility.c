@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 16:43:41 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/10 23:47:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_adj	*get_adj(t_adj *adj, char *name)
 	return (adj);
 }
 
-t_bfs	*find_bfs(char *name, t_bfs *bfs)
+t_bfs	*get_bfs(t_bfs *bfs, char *name)
 {
 	while (bfs && ft_strcmp(name, bfs->name))
 		bfs = bfs->next;

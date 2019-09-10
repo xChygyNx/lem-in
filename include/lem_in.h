@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 19:39:21 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/11 00:34:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,12 @@ typedef struct			s_vrx
 typedef struct			s_bfs
 {
 	char				*name;
-	char				*anc;
+	struct s_bfs		*anc;
 	struct s_bfs		*next;
 }						t_bfs;
 
 typedef struct			s_queue
 {
-	char				weight;
 	char				*name;
 	struct s_queue		*next;
 }						t_queue;
@@ -152,13 +151,17 @@ t_path					*add_path(t_path *begin, char *path);
 
 char					*bfs(t_lem *lem, t_bfs **bfs);
 
-t_bfs					*add_bfs(char *name, char *anc, t_bfs *bfs, t_lem *lem);
+t_bfs					*bfs_list(t_lem *lem);
 
-t_bfs					*new_bfs(t_lem *lem);
+t_bfs					*new_bfs(char *name);
 
-void					free_bfs(t_bfs *bfs);
+void					add_anc(t_bfs *bfs, char *name, char *anc);
 
-t_bfs					*find_bfs(char *name, t_bfs *bfs);
+void					clean_anc(t_bfs *bfs);
+
+void					free_bfs(t_bfs **bfs);
+
+t_bfs					*get_bfs(t_bfs *bfs, char *name);
 
 /*
  * QUEUE FUNCTIONS
@@ -183,6 +186,8 @@ t_adj					*get_adj(t_adj *adj, char *name);
 void					ft_print_lem_info(t_lem *lem);
 
 void					ft_print_paths(t_path *listpath);
+
+void					ft_print_queue(t_queue *queue);
 
 
 void					suurballe(t_lem *lem);

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 21:12:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/07 12:09:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 21:54:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		renovation_one_to_two_dir(t_lem *lem)
 	while (vrx_t)
 	{
 		vrx_t->sep = OFF;
+		vrx_t->by_pos = OFF;
 		adj_t = vrx_t->adj;
 		while(adj_t)
 		{

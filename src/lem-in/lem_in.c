@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 17:39:12 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/11 00:55:03 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	lem = create_lem(fd);
 	suurballe(lem);
 	ft_print_paths(lem->path);
-	ft_print_lem_info(lem);
+//	ft_print_lem_info(lem);
 	ft_del_lem(&lem);
 	return (0);
 }

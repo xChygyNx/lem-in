@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 15:50:50 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/10 22:31:44 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_queue	*new_queue(char *name, char weight)
 		free(new_q);
 		return (NULL);
 	}
-	new_q->weight = weight;
 	new_q->next = NULL;
 	return (new_q);
 }
@@ -83,4 +82,15 @@ void	add_queue(t_queue **queue, char *name, char weight)
 				free_queue(queue);
 		}
 	}
+}
+
+void				ft_print_queue(t_queue *queue)
+{
+	ft_printf("queue : |");
+	while (queue->next)
+	{
+		ft_printf("{red}%s{eoc}, ", queue->name);
+		queue = queue->next;
+	}
+	ft_printf("{red}%s{eoc}|\n", queue->name);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/10 19:39:21 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/11 00:54:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	add_path(t_lem *lem, char *path)
 	paths_copy(lem->path, new_paths, lem);
 	free_tab(lem->path);
 	lem->path = new_paths;
-	
+
 
 }*/
 
@@ -67,11 +67,10 @@ void		suurballe(t_lem *lem)
 	//вызываем поиск в ширину, и ищем пути пока они есть
 	while ((path = bfs(lem, &bfs_src)))
 	{
-		ft_printf("path = %s\n", path);
+		ft_printf("path#1 = %s\n", path);
 		//находим наикратчайший путь
 		//удаляем направление пути, а обратное делаем с весом -1
 		redirect_lem(lem, path, OFF);
-		//add_path(lem, path);
 		//если после удаления ребра у нас получается несвязный граф
 		if (!dfs(lem, lem->vrx->name))
 		{
@@ -79,24 +78,14 @@ void		suurballe(t_lem *lem)
 			redirect_lem(lem, path, ON);
 			break ;
 		}
-		//если длина пути больше количества муравьев,
-		//то не имеет смысла дальше искать пути (!ТРЕБУЕТ ПРОВЕРКИ!)
-		//ЗАМЕЧАНИЕ: в сферическом тесте в вакууме второй путь находит
-		//H|G|F|E|D|C|B|A, и если это условие ща сработает, то дальше ничего
-		//искаться не будет если муравьев к примеру 7, хотя по идее есть 2 пути 
-		//каждый длиной 5
-		if (ft_char_count(path, '|') + 1 > lem->ant_c)
-		{
-			free(path);
-			break ;
-		}
 		unvisit(lem->vrx);
 		free(path);
 	}
+
 	//восстанавливаем наш граф (weight = 1 и dir = 1),
 	//кроме тех ребер в коротрых отключены оба направления
+	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
-
 	//ВТОРОЙ ПРОХОД
 	//у нас получился граф с исключенными ребрами найденными в разных BFS
 	//вызываем поиск в ширину, и ищем пути пока они есть
@@ -104,6 +93,8 @@ void		suurballe(t_lem *lem)
 	///!!bfs_src после первого прохода NULL
 	while ((path = bfs(lem, &bfs_src)))
 	{
+		ft_printf("path#2 = %s\n", path);
+		redirect_lem(lem, path, OFF);
 		//если длина пути больше количества муравьев,
 		//то не имеет смысла дальше искать пути (!ТРЕБУЕТ ПРОВЕРКИ!)
 		if (!i && ft_char_count(path, '|') + 1 > lem->ant_c)
