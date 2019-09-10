@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/09 23:38:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 19:39:21 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct			s_vrx
 	struct s_vrx		*next;
 	char				visit;
 	char				sep;
+	char				by_pos;		//сокращено от by positive, флаг включается когда в разделенную вершину пришли по положительному ребру
 }						t_vrx;
 
 typedef struct			s_bfs
@@ -169,7 +170,7 @@ void					add_queue(t_queue **queue, char *name, char weight);
 
 void					free_queue(t_queue **queue);
 
-char					del_one_queue(t_queue **queue);
+void					del_one_queue(t_queue **queue);
 
 /*
  * UTILITY FUNCTIONS

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/07 15:43:38 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:43:41 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bfs	*find_bfs(char *name, t_bfs *bfs)
 {
 	while (bfs && ft_strcmp(name, bfs->name))
 		bfs = bfs->next;
-	return (bfs);
+	return (bfs ? bfs : NULL);
 }
 
 void	ft_print_lem_info(t_lem *lem)

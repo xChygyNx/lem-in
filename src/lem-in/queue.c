@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 00:23:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/10 15:50:50 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_queue(t_queue **queue)
 	}
 }
 
-char	del_one_queue(t_queue **queue)
+void	del_one_queue(t_queue **queue)
 {
 	t_queue		*temp_q;
 	char		weight;
@@ -40,14 +40,10 @@ char	del_one_queue(t_queue **queue)
 	{
 		temp_q = *queue;
 		*queue = temp_q->next;
-		weight = temp_q->weight;
 		free(temp_q->name);
 		temp_q->next = NULL;
 		free(temp_q);
 	}
-	else
-		return (0);
-	return (weight);
 }
 
 t_queue	*new_queue(char *name, char weight)
