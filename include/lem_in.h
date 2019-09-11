@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/11 00:34:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 00:36:37 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct			s_bfs
 typedef struct			s_queue
 {
 	char				*name;
+	char				weight;
 	struct s_queue		*next;
 }						t_queue;
 
@@ -171,7 +172,7 @@ t_queue					*new_queue(char *name, char weight);
 
 void					add_queue(t_queue **queue, char *name, char weight);
 
-void					free_queue(t_queue **queue);
+int						free_queue(t_queue **queue);
 
 void					del_one_queue(t_queue **queue);
 

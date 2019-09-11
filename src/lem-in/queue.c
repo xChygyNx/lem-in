@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 22:31:44 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 00:36:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_queue(t_queue **queue)
+int		free_queue(t_queue **queue)
 {
 	t_queue		*first;
 	t_queue		*second;
@@ -29,6 +29,7 @@ void	free_queue(t_queue **queue)
 		}
 		*queue = NULL;
 	}
+	return (1);
 }
 
 void	del_one_queue(t_queue **queue)
@@ -36,6 +37,7 @@ void	del_one_queue(t_queue **queue)
 	t_queue		*temp_q;
 	char		weight;
 
+	weight = 0;
 	if (queue && *queue)
 	{
 		temp_q = *queue;
@@ -57,6 +59,7 @@ t_queue	*new_queue(char *name, char weight)
 		free(new_q);
 		return (NULL);
 	}
+	new_q->weight = weight;
 	new_q->next = NULL;
 	return (new_q);
 }
@@ -64,7 +67,6 @@ t_queue	*new_queue(char *name, char weight)
 void	add_queue(t_queue **queue, char *name, char weight)
 {
 	t_queue		*new_q;
-
 
 	if (queue)
 	{

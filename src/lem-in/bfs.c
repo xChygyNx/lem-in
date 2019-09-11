@@ -6,14 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/11 00:53:32 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 00:38:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 //возвращает 1 если нашел конец 0 - нет
-
 static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 {
 	t_vrx			*vrx_s; //start vrx
@@ -25,10 +24,7 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 //		ft_print_queue(queue);
 		vrx_s = get_vrx(lem->vrx, queue->name);
 		if (vrx_s->type == END)
-		{
-			free_queue(&queue);
-			return (1);
-		}
+			return (free_queue(&queue));
 		adj_t = vrx_s->adj;
 		while (adj_t)
 		{
@@ -38,17 +34,26 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 				continue ;
 			}
 			vrx_e = get_vrx(lem->vrx, adj_t->name);
-			if (adj_t->weight > 0 && vrx_e->sep)
-				vrx_e->by_pos = ON;
-			if (!vrx_e->visit && (!vrx_s->by_pos || adj_t->weight < 0))
+			if (!vrx_e->visit)
 			{
-				add_queue(&queue, adj_t->name, adj_t->weight);
-				add_anc(bfs, adj_t->name, vrx_s->name);
-				vrx_e->visit = 1;
+				if (vrx_s->sep)
+				{
+					if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
+					{
+						add_queue(&queue, adj_t->name, adj_t->weight);
+						add_anc(bfs, adj_t->name, vrx_s->name);
+						vrx_e->visit = 1;
+					}
+				}
+				else
+				{
+					add_queue(&queue, adj_t->name, adj_t->weight);
+					add_anc(bfs, adj_t->name, vrx_s->name);
+					vrx_e->visit = 1;
+				}
 			}
 			adj_t = adj_t->next;
 		}
-		vrx_s->by_pos = OFF;
 		del_one_queue(&queue);
 	}
 	return (0);
