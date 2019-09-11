@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/11 19:21:32 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/11 20:20:44 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	del_one_queue(t_queue **queue)
 	{
 		temp_q = *queue;
 		*queue = temp_q->next;
-		free(temp_q->from);
 		temp_q->from = NULL;
 		free(temp_q->name);
 		temp_q->next = NULL;
