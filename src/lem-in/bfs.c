@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/11 00:53:32 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/11 19:45:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 	t_vrx			*vrx_s; //start vrx
 	t_vrx			*vrx_e; //end vrx
 	t_adj			*adj_t;
+	int				exist_out;
 
 	while (queue)
 	{
@@ -29,26 +30,32 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 			free_queue(&queue);
 			return (1);
 		}
-		adj_t = vrx_s->adj;
-		while (adj_t)
+		exist_out = 0;
+		vrx_s->visit && vrx_s->type != START ? add_anc(bfs, vrx_s->name, queue->from->name) : 0;
+		if (!vrx_s->visit || vrx_s->type == START)
 		{
-			if (!adj_t->dir)
+			adj_t = vrx_s->adj;
+			while (adj_t)
 			{
+				if (!adj_t->dir)
+				{
+					adj_t = adj_t->next;
+					continue ;
+				}
+				vrx_e = get_vrx(lem->vrx, adj_t->name);
+				if (adj_t->weight > 0 && vrx_e->sep)
+					vrx_e->by_pos = ON;
+				if (!vrx_e->visit && (!vrx_s->by_pos || adj_t->weight < 0))
+				{
+					add_queue(&queue, adj_t->name, vrx_s);
+					add_anc(bfs, adj_t->name, vrx_s->name);
+					exist_out = 1;
+				}
 				adj_t = adj_t->next;
-				continue ;
 			}
-			vrx_e = get_vrx(lem->vrx, adj_t->name);
-			if (adj_t->weight > 0 && vrx_e->sep)
-				vrx_e->by_pos = ON;
-			if (!vrx_e->visit && (!vrx_s->by_pos || adj_t->weight < 0))
-			{
-				add_queue(&queue, adj_t->name, adj_t->weight);
-				add_anc(bfs, adj_t->name, vrx_s->name);
-				vrx_e->visit = 1;
-			}
-			adj_t = adj_t->next;
 		}
 		vrx_s->by_pos = OFF;
+		vrx_s->visit = exist_out ? 1 : 0;
 		del_one_queue(&queue);
 	}
 	return (0);
@@ -84,7 +91,7 @@ char				*bfs(t_lem *lem, t_bfs **bfs_src)
 	t_queue			*queue;
 
 	bfs = *bfs_src ? *bfs_src : bfs_list(lem);
-	if (!(queue = new_queue(lem->vrx->name, 1)))
+	if (!(queue = new_queue(lem->vrx->name, NULL)))
 		return (NULL);
 	lem->vrx->visit = 1;
 	path = NULL;

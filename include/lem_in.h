@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/11 00:34:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/11 19:32:41 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct			s_queue
 {
 	char				*name;
 	struct s_queue		*next;
+	struct s_vrx		*from;	
 }						t_queue;
 
 typedef struct 			s_path
@@ -167,9 +168,9 @@ t_bfs					*get_bfs(t_bfs *bfs, char *name);
  * QUEUE FUNCTIONS
  */
 
-t_queue					*new_queue(char *name, char weight);
+t_queue					*new_queue(char *name, t_vrx *from);
 
-void					add_queue(t_queue **queue, char *name, char weight);
+void					add_queue(t_queue **queue, char *name, t_vrx *from);
 
 void					free_queue(t_queue **queue);
 

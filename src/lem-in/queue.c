@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 22:31:44 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/11 19:21:32 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_queue(t_queue **queue)
 		{
 			second = first;
 			first = first->next;
+			second->from = NULL;
 			free(second->name);
 			free(second);
 		}
@@ -40,18 +41,21 @@ void	del_one_queue(t_queue **queue)
 	{
 		temp_q = *queue;
 		*queue = temp_q->next;
+		free(temp_q->from);
+		temp_q->from = NULL;
 		free(temp_q->name);
 		temp_q->next = NULL;
 		free(temp_q);
 	}
 }
 
-t_queue	*new_queue(char *name, char weight)
+t_queue	*new_queue(char *name, t_vrx *from)
 {
 	t_queue		*new_q;
 
 	if (!(new_q = (t_queue*)malloc(sizeof(t_queue))))
 		return (NULL);
+	new_q->from = from;
 	if (!(new_q->name = ft_strdup(name)))
 	{
 		free(new_q);
@@ -61,7 +65,7 @@ t_queue	*new_queue(char *name, char weight)
 	return (new_q);
 }
 
-void	add_queue(t_queue **queue, char *name, char weight)
+void	add_queue(t_queue **queue, char *name, t_vrx *from)
 {
 	t_queue		*new_q;
 
@@ -73,12 +77,12 @@ void	add_queue(t_queue **queue, char *name, char weight)
 		{
 			while (new_q->next)
 				new_q = new_q->next;
-			if (!(new_q->next = new_queue(name, weight)))
+			if (!(new_q->next = new_queue(name, from)))
 				free_queue(queue);
 		}
 		else
 		{
-			if (!(*queue = new_queue(name, weight)))
+			if (!(*queue = new_queue(name, from)))
 				free_queue(queue);
 		}
 	}
