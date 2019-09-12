@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 00:38:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:46:48 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 	t_vrx			*vrx_s; //start vrx
 	t_vrx			*vrx_e; //end vrx
 	t_adj			*adj_t;
+	int				exist_out;
 
 	while (queue)
 	{
 //		ft_print_queue(queue);
 		vrx_s = get_vrx(lem->vrx, queue->name);
-		if (vrx_s->type == END)
-			return (free_queue(&queue));
+		//if (vrx_s->type == END)
+		//	return (free_queue(&queue));
 		adj_t = vrx_s->adj;
+		exist_out = 0;
 		while (adj_t)
 		{
 			if (!adj_t->dir)
@@ -42,16 +44,20 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 					{
 						add_queue(&queue, adj_t->name, adj_t->weight);
 						add_anc(bfs, adj_t->name, vrx_s->name);
-						vrx_e->visit = 1;
+						exist_out = 1;
 					}
 				}
 				else
 				{
 					add_queue(&queue, adj_t->name, adj_t->weight);
 					add_anc(bfs, adj_t->name, vrx_s->name);
-					vrx_e->visit = 1;
+					exist_out = 1;
 				}
 			}
+			//ft_printf("name = %s\n", last_vrx_in_queue(queue, lem->vrx)->name);
+			if (last_vrx_in_queue(queue, lem->vrx)->type == END)
+				return (free_queue(&queue));
+			vrx_s->visit = exist_out || vrx_s->visit ? 1 : 0;
 			adj_t = adj_t->next;
 		}
 		del_one_queue(&queue);

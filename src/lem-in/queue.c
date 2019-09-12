@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 00:36:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:45:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ void				ft_print_queue(t_queue *queue)
 		queue = queue->next;
 	}
 	ft_printf("{red}%s{eoc}|\n", queue->name);
+}
+
+t_vrx				*last_vrx_in_queue(t_queue *qu, t_vrx *vrx)
+{
+	t_vrx	*vrx_t;
+
+	while (qu->next)
+		qu = qu->next;
+	vrx_t = get_vrx(vrx, qu->name);
+	return (vrx_t);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 00:36:37 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:31:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,8 @@ void					add_queue(t_queue **queue, char *name, char weight);
 int						free_queue(t_queue **queue);
 
 void					del_one_queue(t_queue **queue);
+
+t_vrx					*last_vrx_in_queue(t_queue *qu, t_vrx *vrx);
 
 /*
  * UTILITY FUNCTIONS
