@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 18:09:46 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:33:21 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 					if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
 					{
 						add_queue(&queue, adj_t->name, adj_t->weight);
-						!get_bfs(bfs, vrx_e->name)->anc ? add_anc(bfs, adj_t->name, vrx_s->name) : 0;
+						add_anc(bfs, adj_t->name, vrx_s->name);
 						exist_out = 1;
 					}
 				}

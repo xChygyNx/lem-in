@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 16:45:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:09:00 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	add_queue(t_queue **queue, char *name, char weight)
 		{
 			while (new_q->next)
 				new_q = new_q->next;
+			//if (!in_queue(*queue, new_q->name))
 			if (!(new_q->next = new_queue(name, weight)))
 				free_queue(queue);
 		}

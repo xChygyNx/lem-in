@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 23:47:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:09:46 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ t_bfs	*get_bfs(t_bfs *bfs, char *name)
 		bfs = bfs->next;
 	return (bfs ? bfs : NULL);
 }
+
+/*int		in_queue(t_queue *qu, char *name)
+{
+	while (qu)
+		{
+			if (!ft_strcmp(name, qu->name))
+				return (1);
+			qu = qu->next;
+		}
+	return (0);
+}*/
 
 void	ft_print_lem_info(t_lem *lem)
 {
