@@ -3,60 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 19:33:21 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 23:03:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_bfs *bfs, t_queue *queue)
+{
+	char	exist_out;
+
+	exist_out = 0;
+	if (vrx_s->sep)
+	{
+		if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
+		{
+			add_queue(&queue, adj_t->name, adj_t->weight);
+			add_anc(bfs, adj_t->name, vrx_s->name);
+			exist_out = 1;
+		}
+	}
+	else
+	{
+		add_queue(&queue, adj_t->name, adj_t->weight);
+		if (!get_bfs(bfs, adj_t->name)->anc)
+			add_anc(bfs, adj_t->name, vrx_s->name);
+	}
+	return (exist_out);
+}
+
 //возвращает 1 если нашел конец 0 - нет
-static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
+static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 {
 	t_vrx			*vrx_s; //start vrx
-	t_vrx			*vrx_e; //end vrx
+//	t_vrx			*vrx_e; //end vrx
 	t_adj			*adj_t;
-	int				exist_out;
+	char			exist_out;
 
 	while (queue)
 	{
-//		ft_print_queue(queue);
 		vrx_s = get_vrx(lem->vrx, queue->name);
-		//if (vrx_s->type == END)
-		//	return (free_queue(&queue));
 		adj_t = vrx_s->adj;
 		exist_out = 0;
 		while (adj_t)
 		{
-			if (!adj_t->dir)
+			if (adj_t->dir)
 			{
-				adj_t = adj_t->next;
-				continue ;
+//				vrx_e = get_vrx(lem->vrx, adj_t->name);
+				if (!(get_vrx(lem->vrx, adj_t->name)->visit))
+					exist_out = there_is_way(vrx_s, adj_t, bfs, queue);
+				if (last_vrx_in_queue(queue, lem->vrx)->type == END)
+					return (free_queue(&queue));
 			}
-			vrx_e = get_vrx(lem->vrx, adj_t->name);
-			if (!vrx_e->visit)
-			{
-				if (vrx_s->sep)
-				{
-					if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
-					{
-						add_queue(&queue, adj_t->name, adj_t->weight);
-						add_anc(bfs, adj_t->name, vrx_s->name);
-						exist_out = 1;
-					}
-				}
-				else
-				{
-					add_queue(&queue, adj_t->name, adj_t->weight);
-					!get_bfs(bfs, vrx_e->name)->anc ? add_anc(bfs, adj_t->name, vrx_s->name) : 0;
-					//vrx_s->visit = 1;
-				}
-			}
-			//ft_printf("name = %s\n", last_vrx_in_queue(queue, lem->vrx)->name);
-			if (last_vrx_in_queue(queue, lem->vrx)->type == END)
-				return (free_queue(&queue));
 			adj_t = adj_t->next;
 		}
 		vrx_s->visit = exist_out || vrx_s->visit || !vrx_s->sep ? 1 : 0;
@@ -65,7 +66,7 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 	return (0);
 }
 
-static char			*shortest_path(t_vrx *vrx, t_bfs *bfs)
+static char	*shortest_path(t_vrx *vrx, t_bfs *bfs)
 {
 	t_bfs		*temp_bfs;
 	char		*path;
@@ -88,7 +89,7 @@ static char			*shortest_path(t_vrx *vrx, t_bfs *bfs)
 	return (path);
 }
 
-char				*bfs(t_lem *lem, t_bfs **bfs_src)
+char		*bfs(t_lem *lem, t_bfs **bfs_src)
 {
 	char			*path;
 	t_bfs			*bfs;

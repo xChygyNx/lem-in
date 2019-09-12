@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 19:09:31 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 23:10:41 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct			s_vrx
 	struct s_vrx		*next;
 	char				visit;
 	char				sep;
-	char				by_pos;		//сокращено от by positive, флаг включается когда в разделенную вершину пришли по положительному ребру
 }						t_vrx;
 
 typedef struct			s_bfs
@@ -178,8 +177,6 @@ void					del_one_queue(t_queue **queue);
 
 t_vrx					*last_vrx_in_queue(t_queue *qu, t_vrx *vrx);
 
-//int						in_queue(t_queue *qu, char *name);
-
 /*
  * UTILITY FUNCTIONS
  */
@@ -194,6 +191,9 @@ void					ft_print_paths(t_path *listpath);
 
 void					ft_print_queue(t_queue *queue);
 
+/*
+ * PUSH THE BUTTON
+ */
 
 void					suurballe(t_lem *lem);
 

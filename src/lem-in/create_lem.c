@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/10 13:54:18 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 23:09:53 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static t_vrx		*create_vrx(char **tab, int type)
 	temp->next = NULL;
 	temp->visit = 0;
 	temp->sep = OFF;
-	temp->by_pos = OFF;
 	return (temp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/11 23:57:12 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/12 23:09:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 		dst[i] = ft_strcpy(src[i]);
 
 	}
-
-
 }
 
 static int	count_path(char **paths)
@@ -52,8 +50,6 @@ static void	add_path(t_lem *lem, char *path)
 	paths_copy(lem->path, new_paths, lem);
 	free_tab(lem->path);
 	lem->path = new_paths;
-
-
 }*/
 
 void		suurballe(t_lem *lem)
@@ -111,6 +107,7 @@ void		suurballe(t_lem *lem)
 	}
 	//восставналиваем полностью граф
 	full_renovation_lem(lem);
+	free_bfs(&bfs_src);
 	//после выполнения этой функции в струтуру lem
 	//должно записаться N количество путей в зависимости от количества муравьев
 }
