@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 16:46:48 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 18:09:46 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ static int		bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 					if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
 					{
 						add_queue(&queue, adj_t->name, adj_t->weight);
-						add_anc(bfs, adj_t->name, vrx_s->name);
+						!get_bfs(bfs, vrx_e->name)->anc ? add_anc(bfs, adj_t->name, vrx_s->name) : 0;
 						exist_out = 1;
 					}
 				}
 				else
 				{
 					add_queue(&queue, adj_t->name, adj_t->weight);
-					add_anc(bfs, adj_t->name, vrx_s->name);
-					exist_out = 1;
+					!get_bfs(bfs, vrx_e->name)->anc ? add_anc(bfs, adj_t->name, vrx_s->name) : 0;
+					//vrx_s->visit = 1;
 				}
 			}
 			//ft_printf("name = %s\n", last_vrx_in_queue(queue, lem->vrx)->name);
 			if (last_vrx_in_queue(queue, lem->vrx)->type == END)
 				return (free_queue(&queue));
-			vrx_s->visit = exist_out || vrx_s->visit ? 1 : 0;
 			adj_t = adj_t->next;
 		}
+		vrx_s->visit = exist_out || vrx_s->visit || !vrx_s->sep ? 1 : 0;
 		del_one_queue(&queue);
 	}
 	return (0);
