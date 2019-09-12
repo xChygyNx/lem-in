@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 15:09:53 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/12 18:33:28 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(void)
 	t_lem	*lem;
 	int		fd;
 
-	fd = open("tests/order_edge", O_RDONLY);
+	fd = open("tests/test_three_ways", O_RDONLY);
 	lem = create_lem(fd);
 	suurballe(lem);
 	ft_print_paths(lem->path);
