@@ -37,7 +37,8 @@ typedef struct			s_adj
 {
 	char				*name;
 	struct s_adj		*next;
-	char				weight;
+	struct s_vrx		*vrx; 	 //добавил в adj указатель на t_vrx
+	char				weight;  //можно обращаться к данным вершины вот так: adj_t->vrx->var
 	char				dir;
 }						t_adj;
 
@@ -98,6 +99,8 @@ void					ft_edge(t_lem *lem, int fd);
 t_adj					*ft_addlst(t_adj *adj, char *elem, char wght, char dir);
 
 void					add_adj(t_lem *lem, char **v);
+
+void					add_link_adj_to_vrx(t_lem *lem);
 
 void					ft_del_lem(t_lem **lem_to_del);
 

@@ -55,12 +55,30 @@ t_adj		*ft_addlst(t_adj *adj, char *elem, char weight, char dir)
 		if (!(begin = (t_adj*)malloc(sizeof(t_adj))))
 			return (NULL);
 		adj = begin;
-		adj->name = NULL;
 	}
 	if (!(adj->name = ft_strdup(elem)))
 		return (NULL);
 	adj->next = NULL;
 	adj->weight = weight;
+	adj->vrx = NULL;
 	adj->dir = ON;
 	return (begin);
+}
+
+void		add_link_adj_to_vrx(t_lem *lem)
+{
+	t_adj *adj;
+	t_vrx *vrx;
+
+	vrx = lem->vrx;
+	while (vrx)
+	{
+		adj = vrx->adj;
+		while (adj)
+		{
+			adj->vrx = get_vrx(lem->vrx, adj->name);
+			adj = adj->next;
+		}
+		vrx = vrx->next;
+	}
 }

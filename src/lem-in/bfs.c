@@ -38,8 +38,7 @@ static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_bfs *bfs, t_queue *queue)
 //возвращает 1 если нашел конец 0 - нет
 static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 {
-	t_vrx			*vrx_s; //start vrx
-//	t_vrx			*vrx_e; //end vrx
+	t_vrx			*vrx_s;
 	t_adj			*adj_t;
 	char			exist_out;
 
@@ -52,10 +51,10 @@ static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 		{
 			if (adj_t->dir)
 			{
-//				vrx_e = get_vrx(lem->vrx, adj_t->name);
-				if (!(get_vrx(lem->vrx, adj_t->name)->visit))
+				if (!adj_t->vrx->visit)
 					exist_out = there_is_way(vrx_s, adj_t, bfs, queue);
-				if (last_vrx_in_queue(queue, lem->vrx)->type == END)
+				if (adj_t->vrx->type == END &&\
+				((vrx_s->sep && exist_out) || !vrx_s->sep))
 					return (free_queue(&queue));
 			}
 			adj_t = adj_t->next;

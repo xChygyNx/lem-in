@@ -126,6 +126,7 @@ t_lem				*create_lem(int fd)
 		ft_exit(&lem, MALLOC_FAILURE);
 	ft_vertex(lem, fd);
 	ft_edge(lem, fd);
+	add_link_adj_to_vrx(lem);
 	check_lem(lem);
 	return (lem);
 }

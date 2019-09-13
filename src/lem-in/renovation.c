@@ -49,7 +49,6 @@ void		renovation_one_to_two_dir(t_lem *lem)
 	while (vrx_t)
 	{
 		vrx_t->sep = OFF;
-		vrx_t->by_pos = OFF;
 		adj_t = vrx_t->adj;
 		while(adj_t)
 		{
