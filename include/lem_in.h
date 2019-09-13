@@ -48,7 +48,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	struct s_path		*path;   //связный список непересекающихся путей
+	struct s_listpath	*path;   //связный список непересекающихся путей
 	char				*map;
 	char				*line;
 }						t_lem;
@@ -63,6 +63,7 @@ typedef struct			s_vrx
 	struct s_vrx		*next;
 	char				visit;
 	char				sep;
+	int					ant;
 }						t_vrx;
 
 typedef struct			s_bfs
@@ -79,13 +80,27 @@ typedef struct			s_queue
 	struct s_queue		*next;
 }						t_queue;
 
+typedef struct 			s_listpath
+{
+	int					path_len;
+	struct	s_path		*path;
+	struct	s_listpath	*next;
+}						t_listpath;
+
+typedef struct 			s_path
+{
+	struct	s_vrx		*vrx;
+	struct	s_path		*next;
+}						t_path;
+
+/*
 typedef struct 			s_path
 {
 	char				**path;
 	int					path_len;
 	struct	s_path		*next;
 }						t_path;
-
+*/
 void					ft_exit(t_lem **lem, int err);
 
 /*
@@ -144,9 +159,9 @@ int						dfs(t_lem *lem, char *name);
  * PATH FUNCTIONS
  */
 
-void					ft_free_path(t_path **listpath_to_del);
+void					ft_free_path(t_listpath **listpath_to_del);
 
-t_path					*add_path(t_path *begin, char *path);
+t_listpath				*add_path(t_lem *lem, t_listpath *begin, char *path);
 
 /*
  * BREADTH-FIRST SEARCH FUNCTIONS
@@ -190,7 +205,7 @@ t_adj					*get_adj(t_adj *adj, char *name);
 
 void					ft_print_lem_info(t_lem *lem);
 
-void					ft_print_paths(t_path *listpath);
+void					ft_print_paths(t_listpath *listpath);
 
 void					ft_print_queue(t_queue *queue);
 

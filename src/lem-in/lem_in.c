@@ -17,7 +17,7 @@ int		main(void)
 	t_lem	*lem;
 	int		fd;
 
-	fd = open("tests/only_long_way", O_RDONLY);
+	fd = open("tests/test_from_smight", O_RDONLY);
 	lem = create_lem(fd);
 	suurballe(lem);
 	ft_print_paths(lem->path);

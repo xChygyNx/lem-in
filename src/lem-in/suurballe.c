@@ -94,13 +94,13 @@ void		suurballe(t_lem *lem)
 		redirect_lem(lem, path, OFF);
 		//если длина пути больше количества муравьев,
 		//то не имеет смысла дальше искать пути (!ТРЕБУЕТ ПРОВЕРКИ!)
-		if (!i && ft_char_count(path, '|') + 1 > lem->ant_c)
+		if (i && ft_char_count(path, '|') + 1 > lem->ant_c)
 		{
 			free(path);
 			break ;
 		}
 		//добавляем в структуру очередной путь
-		if (!(lem->path = add_path(lem->path, path)))
+		if (!(lem->path = add_path(lem, lem->path, path)))
 			ft_exit(&lem, MALLOC_FAILURE);
 		free(path);
 		++i;
@@ -121,7 +121,7 @@ void		suurballe(t_lem *lem)
 //w - колличество путей.
 int		count_steps(t_lem *lem)
 {
-	t_path	*path_t;
+	t_listpath	*path_t;
 	int			a;
 	int			w;
 	int			z;

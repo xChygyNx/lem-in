@@ -70,8 +70,8 @@ static void		ft_free_vrxs(t_vrx **vrx_to_del)
 	}
 }
 
-
-void			ft_free_path(t_path **listpath_to_del)
+/*
+void			ft_free_path(t_listpath **listpath_to_del)
 {
 	t_path	*path;
 	t_path	*temp;
@@ -84,6 +84,44 @@ void			ft_free_path(t_path **listpath_to_del)
 			temp = path;
 			path = path->next;
 			ft_free_arr(temp->path);
+			free(temp);
+		}
+		*listpath_to_del = NULL;
+	}
+}
+*/
+
+void			ft_free_one_path(t_path **path_to_del)
+{
+	t_path	*path;
+	t_path	*temp;
+
+	if (path_to_del)
+	{
+		path = *path_to_del;
+		while (path)
+		{
+			temp = path;
+			path = path->next;
+			free(temp);
+		}
+		*path_to_del = NULL;
+	}
+}
+
+void			ft_free_path(t_listpath **listpath_to_del)
+{
+	t_listpath	*path;
+	t_listpath	*temp;
+
+	if (listpath_to_del)
+	{
+		path = *listpath_to_del;
+		while (path)
+		{
+			temp = path;
+			path = path->next;
+			ft_free_one_path(&temp->path);
 			free(temp);
 		}
 		*listpath_to_del = NULL;
