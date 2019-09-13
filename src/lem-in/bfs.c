@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 23:03:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/13 15:11:04 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 				((vrx_s->sep && exist_out) || !vrx_s->sep))
 					return (free_queue(&queue));
 			}
+			vrx_s->visit = exist_out || vrx_s->visit || !vrx_s->sep ? 1 : 0;
 			adj_t = adj_t->next;
 		}
-		vrx_s->visit = exist_out || vrx_s->visit || !vrx_s->sep ? 1 : 0;
 		del_one_queue(&queue);
 	}
 	return (0);
