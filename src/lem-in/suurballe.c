@@ -100,8 +100,7 @@ void		suurballe(t_lem *lem)
 			break ;
 		}
 		//добавляем в структуру очередной путь
-		if (!(lem->path = add_path(lem, lem->path, path)))
-			ft_exit(&lem, MALLOC_FAILURE);
+		add_listpath(lem, path);
 		free(path);
 		++i;
 	}
@@ -128,7 +127,7 @@ int		count_steps(t_lem *lem)
 
 	a = 0;
 	w = 0;
-	path_t = lem->path;
+	path_t = lem->listpath;
 	while (path_t)
 	{
 		a += (path_t->path_len - 1);

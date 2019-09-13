@@ -136,7 +136,7 @@ void			ft_del_lem(t_lem **lem_to_del)
 	{
 		lem = *lem_to_del;
 		ft_free_vrxs(&lem->vrx);
-		ft_free_path(&lem->path);
+		ft_free_path(&lem->listpath);
 		ft_strdel(&lem->map);
 		ft_strdel(&lem->line);
 		free(lem);

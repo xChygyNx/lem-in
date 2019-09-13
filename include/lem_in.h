@@ -48,7 +48,7 @@ typedef struct			s_lem
 	int					ant_c;   //кол-во муравьев
 	int					vert_c;  //кол-во вершин
 	int					edge_c;  //кол-во ребер
-	struct s_listpath	*path;   //связный список непересекающихся путей
+	struct s_listpath	*listpath;   //связный список непересекающихся путей
 	char				*map;
 	char				*line;
 }						t_lem;
@@ -161,7 +161,9 @@ int						dfs(t_lem *lem, char *name);
 
 void					ft_free_path(t_listpath **listpath_to_del);
 
-t_listpath				*add_path(t_lem *lem, t_listpath *begin, char *path);
+void					ft_free_one_path(t_path **path_to_del);
+
+void					add_listpath(t_lem *lem, char *path);
 
 /*
  * BREADTH-FIRST SEARCH FUNCTIONS

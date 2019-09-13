@@ -110,7 +110,7 @@ t_lem				*create_lem(int fd)
 
 	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
 		ft_exit(NULL, MALLOC_FAILURE);
-	lem->path = NULL;
+	lem->listpath = NULL;
 	lem->vrx = NULL;
 	lem->line = NULL;
 	lem->map = NULL;
