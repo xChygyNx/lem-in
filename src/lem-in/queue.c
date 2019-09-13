@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 19:09:00 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/13 18:40:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	add_queue(t_queue **queue, char *name, char weight)
 	}
 }
 
-void				ft_print_queue(t_queue *queue)
+void	ft_print_queue(t_queue *queue)
 {
 	ft_printf("queue : |");
 	while (queue->next)
@@ -98,7 +98,7 @@ void				ft_print_queue(t_queue *queue)
 	ft_printf("{red}%s{eoc}|\n", queue->name);
 }
 
-t_vrx				*last_vrx_in_queue(t_queue *qu, t_vrx *vrx)
+t_vrx	*last_vrx_in_queue(t_queue *qu, t_vrx *vrx)
 {
 	t_vrx	*vrx_t;
 

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 20:53:05 by astripeb         ###   ########.fr       */
+/*   Created: 2019/09/13 20:06:37 by astripeb          #+#    #+#             */
+/*   Updated: 2019/09/13 20:29:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main(void)
+char		*read_from_file_to_var(int fd)
 {
-	t_lem	*lem;
-	int		fd;
+	char	buf[BUFF_SIZE + 1];
+	char	*text;
+	int		n;
 
-//	fd = open("tests/the_loops_and_multiedges", O_RDONLY);
-	lem = create_lem(0);
-	suurballe(lem);
-	ft_print_paths(lem->listpath);
-//	ft_print_lem_info(lem);
-	ft_del_lem(&lem);
-	return (0);
+	if (!(text = ft_strnew(0)))
+		return (NULL);
+	while ((n = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[n] = '\0';
+		if (!(text = ft_strjoin_f(text, buf)))
+			return (NULL);
+	}
+	return (text);
 }
-
-
-

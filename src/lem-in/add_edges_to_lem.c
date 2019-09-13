@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 17:36:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/13 20:52:21 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,26 @@ int					exist_vertex(t_vrx *vrx, char **vertexes)
 	return (1);
 }
 
-void				ft_edge(t_lem *lem, int fd)
+void				ft_edge(t_lem *lem, char **lines)
 {
 	char	**vertexes;
+	int		i;
 
 	lem->edge_c = 0;
-	while (lem->line && lem->line[0])
+	i = 0;
+	while (lines[i] && lines[i][0])
 	{
-		if (lem->line[0] != '#')
+		if (lines[i][0] != '#')
 		{
-			if (!(vertexes = ft_strsplit(lem->line, '-')))
+			if (!(vertexes = ft_strsplit(lines[i], '-')))
 				ft_exit(&lem, MALLOC_FAILURE);
-			if (ft_len_arr(vertexes) != 2 || double_hyphen(lem->line))
+			if (ft_len_arr(vertexes) != 2 || double_hyphen(lines[i]))
 			{
 				ft_free_arr(vertexes);
 				ft_exit(&lem, INVALID_INPUT);
 			}
 			add_adj(lem, vertexes);
 		}
-		free(lem->line);
-		if (get_next_line(fd, &lem->line) < 1)
-			break ;
-		if (!(lem->map = ft_strjoin_f(lem->map, "\n"))\
-		|| !(lem->map = ft_strjoin_f(lem->map, lem->line)))
-			ft_exit(&lem, MALLOC_FAILURE);
+		++i;
 	}
-	lem->line = NULL;
 }

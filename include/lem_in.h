@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 23:10:41 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/13 20:59:38 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct			s_lem
 	int					edge_c;  //кол-во ребер
 	struct s_listpath	*listpath;   //связный список непересекающихся путей
 	char				*map;
-	char				*line;
 }						t_lem;
 
 typedef struct			s_vrx
@@ -109,7 +108,7 @@ void					ft_exit(t_lem **lem, int err);
 
 t_lem					*create_lem(int fd);
 
-void					ft_edge(t_lem *lem, int fd);
+void					ft_edge(t_lem *lem, char **lines);
 
 t_adj					*ft_addlst(t_adj *adj, char *elem, char wght, char dir);
 
@@ -217,4 +216,5 @@ void					ft_print_queue(t_queue *queue);
 
 void					suurballe(t_lem *lem);
 
+char					*read_from_file_to_var(int fd);
 #endif

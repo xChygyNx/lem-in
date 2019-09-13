@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/12 23:09:53 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/13 20:59:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,55 +78,57 @@ static int			add_vrx(t_vrx **begin, char *line, int type)
 	return (flag);
 }
 
-static void			ft_vertex(t_lem *lem, int fd)
+static int			ft_vertex(t_lem *lem, char **lines)
 {
 	int			type;
+	int			i;
 
+	i = 0;
 	type = 0;
 	lem->vert_c = 0;
-	while (get_next_line(fd, &lem->line) > 0 && vrx_info(lem->line) != -1)
+	while (lines[i] && vrx_info(lines[i]) != -1)
 	{
-		if (!(lem->map = ft_strjoin_f(lem->map, "\n"))\
-		|| !(lem->map = ft_strjoin_f(lem->map, lem->line)))
-			ft_exit(&lem, MALLOC_FAILURE);
-		if (vrx_info(lem->line) > 0)
+		if (vrx_info(lines[i]) > 0)
 		{
-			type = vrx_info(lem->line) == COMMENT\
-			? type : vrx_info(lem->line);
-			free(lem->line);
+			type = vrx_info(lines[i]) == COMMENT\
+			? type : vrx_info(lines[i]);
+			++i;
 			continue ;
 		}
-		if (!add_vrx(&lem->vrx, lem->line, type))
+		if (!add_vrx(&lem->vrx, lines[i], type))
 			ft_exit(&lem, INVALID_INPUT);
 		lem->vert_c += 1;
-		free(lem->line);
 		type = 0;
+		++i;
 	}
+	return (i);
 }
 
 t_lem				*create_lem(int fd)
 {
 	t_lem			*lem;
+	char			**lines;
+	int				i;
 
 	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
 		ft_exit(NULL, MALLOC_FAILURE);
+	lem->map = read_from_file_to_var(fd);
 	lem->listpath = NULL;
 	lem->vrx = NULL;
-	lem->line = NULL;
-	lem->map = NULL;
-	while ((get_next_line(fd, &lem->line) > 0) && invalid_com(lem->line))
-		;
-	if (!lem->line || ft_strlen(lem->line) == 0\
-		|| ft_isdigitstr(lem->line) < 1)
-		ft_exit(&lem, INVALID_INPUT);
-	lem->ant_c = ft_atoi(lem->line);
-	if (ft_int_len(lem->ant_c) != ft_strlen(lem->line) || lem->ant_c <= 0)
-		ft_exit(&lem, INVALID_INPUT);
-	if (!(lem->map = ft_strjoin_s("", lem->line)))
+	i = 0;
+	if (!(lines = ft_strsplit(lem->map, '\n')))
 		ft_exit(&lem, MALLOC_FAILURE);
-	ft_vertex(lem, fd);
-	ft_edge(lem, fd);
+	while (lines[i] && invalid_com(lines[i]))
+		++i;
+	if (ft_strlen(lines[i]) == 0 || ft_isdigitstr(lines[i]) < 1)
+		ft_exit(&lem, INVALID_INPUT);
+	lem->ant_c = ft_atoi(lines[i]);
+	if (ft_int_len(lem->ant_c) != ft_strlen(lines[i]) || lem->ant_c <= 0)
+		ft_exit(&lem, INVALID_INPUT);
+	i += ft_vertex(lem, &lines[i + 1]);
+	ft_edge(lem, &lines[i + 1]);
 	add_link_adj_to_vrx(lem);
 	check_lem(lem);
+	ft_free_arr(lines);
 	return (lem);
 }

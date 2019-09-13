@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 21:12:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/10 21:54:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/13 21:05:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		renovation_one_to_two_dir(t_lem *lem)
 	{
 		vrx_t->sep = OFF;
 		adj_t = vrx_t->adj;
-		while(adj_t)
+		while (adj_t)
 		{
 			if (!adj_t->dir && check_rev_dir(lem, adj_t->name, vrx_t->name))
 				adj_t->weight = 0;
@@ -77,7 +77,7 @@ void		full_renovation_lem(t_lem *lem)
 		vrx_t->sep = OFF;
 		vrx_t->visit = OFF;
 		adj_t = vrx_t->adj;
-		while(adj_t)
+		while (adj_t)
 		{
 			adj_t->dir = ON;
 			adj_t->weight = 1;
@@ -86,4 +86,3 @@ void		full_renovation_lem(t_lem *lem)
 		vrx_t = vrx_t->next;
 	}
 }
-
