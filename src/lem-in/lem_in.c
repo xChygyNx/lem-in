@@ -20,7 +20,7 @@ int		main(void)
 	fd = open("tests/the_loops_and_multiedges", O_RDONLY);
 	lem = create_lem(fd);
 	suurballe(lem);
-	ft_print_paths(lem->path);
+	ft_print_paths(lem->listpath);
 //	ft_print_lem_info(lem);
 	ft_del_lem(&lem);
 	return (0);
