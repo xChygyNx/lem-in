@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 10:32:47 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 13:59:23 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_path		*add_vrx_to_path(t_lem *lem, char *name)
 
 static t_path		*new_path(t_lem *lem, char **tab)
 {
-	t_path *begin;
-	t_path *path_node;
+	t_path	*begin;
+	t_path	*path_node;
 	int		i;
 
 	i = ft_len_arr(tab) - 1;

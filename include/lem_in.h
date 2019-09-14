@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 12:14:56 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:55:03 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct			s_bfs
 
 typedef struct			s_queue
 {
-	char				*name;
+	struct s_vrx		*vrx;
 	char				weight;
 	struct s_queue		*next;
 }						t_queue;
@@ -188,9 +188,9 @@ t_bfs					*get_bfs(t_bfs *bfs, char *name);
  * QUEUE FUNCTIONS
  */
 
-t_queue					*new_queue(char *name, char weight);
+t_queue					*new_queue(t_vrx *vrx, char weight);
 
-void					add_queue(t_queue **queue, char *name, char weight);
+void					add_queue(t_queue **queue, t_vrx *vrx, char weight);
 
 int						free_queue(t_queue **queue);
 

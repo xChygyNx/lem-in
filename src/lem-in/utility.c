@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 11:31:47 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 13:58:44 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,6 @@ t_bfs	*get_bfs(t_bfs *bfs, char *name)
 	return (bfs ? bfs : NULL);
 }
 
-/*int		in_queue(t_queue *qu, char *name)
-{
-	while (qu)
-		{
-			if (!ft_strcmp(name, qu->name))
-				return (1);
-			qu = qu->next;
-		}
-	return (0);
-}*/
-
 void	ft_print_lem_info(t_lem *lem)
 {
 	t_vrx		*vrx;
@@ -67,9 +56,9 @@ void	ft_print_lem_info(t_lem *lem)
 	{
 		ft_printf("-----------------------\n");
 		ft_printf("|name:  {red}%14s{eoc}|\n|x:     %14d|\n|y:     %14d|\n\
-|type:  %14d|\n|visit: %14d|\n|sep:   %14s|\n",\
-		 vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit,\
-		 vrx->sep ? "YES" : "NO");
+			|type:  %14d|\n|visit: %14d|\n|sep:   %14s|\n",\
+			vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit,\
+			vrx->sep ? "YES" : "NO");
 		if (vrx->adj)
 		{
 			ft_printf("|adj:   ");
