@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 13:59:23 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 15:53:17 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				add_listpath(t_lem *lem, char *path)
 			ft_exit(&lem, MALLOC_FAILURE);
 		}
 	}
+	lem->path_c += 1;
 }
 
 void				ft_print_paths(t_listpath *listpath)

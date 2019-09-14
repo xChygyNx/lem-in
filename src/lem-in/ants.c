@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atns.c                                             :+:      :+:    :+:   */
+/*   ants.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 14:02:15 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:19:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-typedef struct		s_ant
-{
-	int				serial_number;
-	struct s_path	*path;
-	struct s_ant	*next;
-}					t_ant;
 
 void		dissolve_army(t_ant **first_soldier)
 {
@@ -37,7 +30,7 @@ void		dissolve_army(t_ant **first_soldier)
 	}
 }
 
-void		first_soldier_commission(t_ant **army)
+int		first_soldier_commission(t_ant **army)
 {
 	t_ant *old_soldier;
 
@@ -46,34 +39,41 @@ void		first_soldier_commission(t_ant **army)
 		old_soldier = *army;
 		*army = old_soldier->next;
 		free(old_soldier);
+		return (1);
 	}
+	return (0);
 }
 
-void		soldiers_commission(t_ant **army)
+int		soldiers_commission(t_ant **army)
 {
 	t_ant	*first;
 	t_ant	*second;
 	t_ant	*temp;
+	int		veterans;
 
+	veterans = 0;
 	if (*army)
 	{
 		first = *army;
 		while (first && first->path->vrx->type == END)
-			first_soldier_commission(&first);
+			veterans += first_soldier_commission(&first);
 		*army = first;
 		while (first)
 		{
-			second = first;
-			first = first->next;
-			if (first && first->path->vrx->type == END)
+			if (first->path->vrx->type == END)
 			{
 				temp = first;
 				first = first->next;
-				second = first;
+				second->next = first;
 				free(temp);
+				veterans++;
+				continue ;
 			}
+			second = first;
+			first = first->next;
 		}
 	}
+	return (veterans);
 }
 
 t_ant		*new_soldier(int serial_number)
@@ -110,4 +110,15 @@ t_ant		*create_army(int number_of_soldiers)
 		++serial_number;
 	}
 	return (army);
+}
+
+void		pereklichka(t_ant *army)
+{
+	while (army)
+	{
+		ft_printf("#serial_number: %d\n", army->serial_number);
+		if (army->path)
+			ft_printf("vrx = %s\n", army->path->vrx->name);
+		army = army->next;
+	}
 }

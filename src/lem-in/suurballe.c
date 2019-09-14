@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 14:00:21 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 15:55:04 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	suurballe(t_lem *lem)
 	bfs_src = NULL;
 	while ((path = bfs(lem, &bfs_src)))
 	{
-		ft_printf("path#1 = %s\n", path);
+//		ft_printf("path#1 = %s\n", path);
 		redirect_lem(lem, path, OFF);
 		if (!dfs(lem, lem->vrx->name))
 		{
@@ -36,7 +36,7 @@ void	suurballe(t_lem *lem)
 	i = 0;
 	while ((path = bfs(lem, &bfs_src)))
 	{
-		ft_printf("path#2 = %s\n", path);
+//		ft_printf("path#2 = %s\n", path);
 		redirect_lem(lem, path, OFF);
 		if (i && ft_char_count(path, SEP) + 1 > lem->ant_c)
 		{

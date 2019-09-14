@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 13:30:37 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:47:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@ int		main(void)
 {
 	t_lem	*lem;
 	int		fd;
+	t_ant	*army;
 
+//	fd = open("tests/flow_thousand", O_RDONLY);
 	lem = create_lem(0);
 	suurballe(lem);
-	ft_print_paths(lem->listpath);
+//	ft_print_paths(lem->listpath);
+	army = create_army(lem->ant_c);
+	//прими свой путь боец
+	tactical_moves(army, lem->listpath);
+	//НАСТУПААААААЕЕЕЕЕЕЕЕМ
+	offensive(lem, army);
+//	pereklichka(army);
 	ft_del_lem(&lem);
 	return (0);
 }

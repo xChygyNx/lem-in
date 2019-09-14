@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 12:55:03 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:34:31 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ typedef struct			s_adj
 typedef struct			s_lem
 {
 	struct s_vrx		*vrx;
-	int					ant_c;   //кол-во муравьев
-	int					vert_c;  //кол-во вершин
-	int					edge_c;  //кол-во ребер
+	int					ant_c;   	//кол-во муравьев
+	int					vert_c;  	//кол-во вершин
+	int					edge_c;  	//кол-во ребер
 	struct s_listpath	*listpath;   //связный список непересекающихся путей
+	int					path_c;
 	char				*map;
 }						t_lem;
 
@@ -94,14 +95,13 @@ typedef struct 			s_path
 	struct	s_path		*next;
 }						t_path;
 
-/*
-typedef struct 			s_path
+typedef struct			s_ant
 {
-	char				**path;
-	int					path_len;
-	struct	s_path		*next;
-}						t_path;
-*/
+	int					serial_number;
+	struct s_path		*path;
+	struct s_ant		*next;
+}						t_ant;
+
 void					ft_exit(t_lem **lem, int err);
 
 /*
@@ -219,4 +219,26 @@ void					ft_print_queue(t_queue *queue);
 void					suurballe(t_lem *lem);
 
 char					*read_from_file_to_var(int fd);
+
+
+/*
+ * ATN'S FUNCTIONS
+ */
+
+void		dissolve_army(t_ant **first_soldier);
+
+int			first_soldier_commission(t_ant **army);
+
+int			soldiers_commission(t_ant **army);
+
+t_ant		*new_soldier(int serial_number);
+
+t_ant		*create_army(int number_of_soldiers);
+
+void		tactical_moves(t_ant *army, t_listpath *listpath);
+
+void		offensive(t_lem *lem, t_ant *army);
+
+void		pereklichka(t_ant *army);
+
 #endif

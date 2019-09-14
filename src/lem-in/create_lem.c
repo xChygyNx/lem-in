@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 11:00:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 15:53:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ t_lem				*create_lem(int fd)
 		ft_exit(NULL, MALLOC_FAILURE);
 	lem->listpath = NULL;
 	lem->vrx = NULL;
+	lem->path_c = 0;
 	if (!(lem->map = read_from_file_to_var(fd)))
 		ft_exit(&lem, INVALID_INPUT);
 	i = 0;
