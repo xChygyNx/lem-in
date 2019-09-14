@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/13 18:35:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 10:30:46 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		redirect_lem(t_lem *lem, char *shortest_path, char tumbler)
 	char	**vrxs;
 	int		i;
 
-	if (!(vrxs = ft_strsplit(shortest_path, '|')))
+	if (!(vrxs = ft_strsplit(shortest_path, SEP)))
 		ft_exit(&lem, MALLOC_FAILURE);
 	i = ft_len_arr(vrxs) - 1;
 	while (i > 0)

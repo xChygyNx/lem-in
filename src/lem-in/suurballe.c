@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/12 23:09:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 10:30:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		suurballe(t_lem *lem)
 		redirect_lem(lem, path, OFF);
 		//если длина пути больше количества муравьев,
 		//то не имеет смысла дальше искать пути (!ТРЕБУЕТ ПРОВЕРКИ!)
-		if (i && ft_char_count(path, '|') + 1 > lem->ant_c)
+		if (i && ft_char_count(path, SEP) + 1 > lem->ant_c)
 		{
 			free(path);
 			break ;

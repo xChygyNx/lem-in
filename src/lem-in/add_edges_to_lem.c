@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:48:04 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 20:52:21 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 11:10:44 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void				ft_edge(t_lem *lem, char **lines)
 		}
 		++i;
 	}
+	add_link_adj_to_vrx(lem);
 }

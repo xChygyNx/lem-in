@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/10 22:32:00 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 10:32:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_listpath	*new_listpath(t_lem *lem, char *path)
 
 	if (!(listpath_t = (t_listpath*)malloc(sizeof(t_listpath))))
 		return (NULL);
-	if (!(tab = ft_strsplit(path, '|')))
+	if (!(tab = ft_strsplit(path, SEP)))
 	{
 		free(listpath_t);
 		return (NULL);

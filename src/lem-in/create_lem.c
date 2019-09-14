@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 20:59:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 11:00:03 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ static int			add_vrx(t_vrx **begin, char *line, int type)
 	int			flag;
 
 	flag = 1;
-	if (!(split = ft_strsplit(line, ' ')) || !ft_validate_vrx(split))
+	if (!(split = ft_strsplit(line, ' ')))
 		return (0);
-	if (*begin)
+	if (!ft_validate_vrx(split))
+		flag = 0;
+	if (flag && *begin)
 	{
 		temp = *begin;
 		while (temp->next)
@@ -69,7 +71,7 @@ static int			add_vrx(t_vrx **begin, char *line, int type)
 		if (!(temp->next = create_vrx(split, type)))
 			flag = 0;
 	}
-	else
+	else if (flag)
 	{
 		if (!(*begin = create_vrx(split, type)))
 			flag = 0;
@@ -112,9 +114,10 @@ t_lem				*create_lem(int fd)
 
 	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
 		ft_exit(NULL, MALLOC_FAILURE);
-	lem->map = read_from_file_to_var(fd);
 	lem->listpath = NULL;
 	lem->vrx = NULL;
+	if (!(lem->map = read_from_file_to_var(fd)))
+		ft_exit(&lem, INVALID_INPUT);
 	i = 0;
 	if (!(lines = ft_strsplit(lem->map, '\n')))
 		ft_exit(&lem, MALLOC_FAILURE);
@@ -127,7 +130,6 @@ t_lem				*create_lem(int fd)
 		ft_exit(&lem, INVALID_INPUT);
 	i += ft_vertex(lem, &lines[i + 1]);
 	ft_edge(lem, &lines[i + 1]);
-	add_link_adj_to_vrx(lem);
 	check_lem(lem);
 	ft_free_arr(lines);
 	return (lem);
