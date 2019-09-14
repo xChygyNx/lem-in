@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 18:35:23 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:16:00 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_bfs *bfs, t_queue *queue)
 {
 	char	exist_out;
+	t_bfs	*temp;
 
 	exist_out = 0;
 	if (vrx_s->sep)
@@ -29,7 +30,8 @@ static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_bfs *bfs, t_queue *queue)
 	else
 	{
 		add_queue(&queue, adj_t->name, adj_t->weight);
-		if (!get_bfs(bfs, adj_t->name)->anc)
+		temp = get_bfs(bfs, adj_t->name);
+		if (!temp || !temp->anc)
 			add_anc(bfs, adj_t->name, vrx_s->name);
 	}
 	return (exist_out);
@@ -76,13 +78,13 @@ static char	*shortest_path(t_vrx *vrx, t_bfs *bfs)
 	temp_bfs = get_bfs(bfs, vrx->name);
 	while (temp_bfs && temp_bfs->anc)
 	{
-		if (!(path = ft_strjoin_f(path, temp_bfs->name)))
+		if (!(path = ft_strjoin_f(path, temp_bfs->vrx->name)))
 			return (NULL);
-		if (!(path = ft_strjoin_f(path, "|")))
+		if (!(path = ft_strjoin_f(path, " ")))
 			return (NULL);
 		temp_bfs = temp_bfs->anc;
 	}
-	if (!temp_bfs || !(path = ft_strjoin_f(path, temp_bfs->name)))
+	if (!temp_bfs || !(path = ft_strjoin_f(path, temp_bfs->vrx->name)))
 		return (NULL);
 	return (path);
 }

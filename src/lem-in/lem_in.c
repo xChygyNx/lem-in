@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 20:53:05 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 11:33:13 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(void)
 	t_lem	*lem;
 	int		fd;
 
-//	fd = open("tests/the_loops_and_multiedges", O_RDONLY);
+	//fd = open("tests/test_from_smight", O_RDONLY);
 	lem = create_lem(0);
 	suurballe(lem);
 	ft_print_paths(lem->listpath);
@@ -25,6 +25,3 @@ int		main(void)
 	ft_del_lem(&lem);
 	return (0);
 }
-
-
-
