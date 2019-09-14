@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 12:16:00 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 13:02:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_bfs *bfs, t_queue *queue)
 	{
 		if ((queue->weight > 0 && adj_t->weight < 0) || queue->weight < 0)
 		{
-			add_queue(&queue, adj_t->name, adj_t->weight);
+			add_queue(&queue, adj_t->vrx, adj_t->weight);
 			add_anc(bfs, adj_t->name, vrx_s->name);
 			exist_out = 1;
 		}
 	}
 	else
 	{
-		add_queue(&queue, adj_t->name, adj_t->weight);
+		add_queue(&queue, adj_t->vrx, adj_t->weight);
 		temp = get_bfs(bfs, adj_t->name);
 		if (!temp || !temp->anc)
 			add_anc(bfs, adj_t->name, vrx_s->name);
@@ -45,7 +45,7 @@ static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 
 	while (queue)
 	{
-		vrx_s = get_vrx(lem->vrx, queue->name);
+		vrx_s = queue->vrx;
 		adj_t = vrx_s->adj;
 		exist_out = 0;
 		while (adj_t)
@@ -96,7 +96,7 @@ char		*bfs(t_lem *lem, t_bfs **bfs_src)
 	t_queue			*queue;
 
 	bfs = *bfs_src ? *bfs_src : bfs_list(lem);
-	if (!(queue = new_queue(lem->vrx->name, 1)))
+	if (!(queue = new_queue(lem->vrx, 1)))
 		return (NULL);
 	lem->vrx->visit = 1;
 	path = NULL;

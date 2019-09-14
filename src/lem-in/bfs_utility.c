@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:57:21 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 11:40:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 13:57:55 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ t_bfs	*new_bfs(t_vrx *vrx)
 	if (!(bfs = (t_bfs*)malloc(sizeof(t_bfs))))
 		return (NULL);
 	bfs->vrx = vrx;
-	/*{
-		free(bfs);
-		return (NULL);
-	}*/
 	bfs->anc = NULL;
 	bfs->next = NULL;
 	return (bfs);
@@ -76,20 +72,6 @@ void	add_anc(t_bfs *begin, char *name, char *anc)
 	t_bfs	*bfs;
 
 	bfs = get_bfs(begin, name);
-	/*if (!bfs)
-	{
-		if (begin)
-		{	while (begin->next)
-				begin = begin->next;
-			begin->next = new_bfs(vrx, name);
-			bfs = begin->next;
-		}
-		else
-		{
-			begin = new_bfs(vrx, name);
-			bfs = begin;
-		}
-	}*/
 	bfs->anc = get_bfs(begin, anc);
 }
 

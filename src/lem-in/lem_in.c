@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 11:33:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/14 13:30:37 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ int		main(void)
 	t_lem	*lem;
 	int		fd;
 
-	//fd = open("tests/test_from_smight", O_RDONLY);
 	lem = create_lem(0);
 	suurballe(lem);
 	ft_print_paths(lem->listpath);
-//	ft_print_lem_info(lem);
 	ft_del_lem(&lem);
 	return (0);
 }
