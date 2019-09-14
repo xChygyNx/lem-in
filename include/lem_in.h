@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 20:59:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:14:56 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define DOUBLE_VRX 102
 # define ONE_COMPONENT 103
 # define WROTE_ANTS 104
+
+# define SEP 32
 
 typedef struct			s_adj
 {
@@ -67,7 +69,7 @@ typedef struct			s_vrx
 
 typedef struct			s_bfs
 {
-	char				*name;
+	struct s_vrx		*vrx;
 	struct s_bfs		*anc;
 	struct s_bfs		*next;
 }						t_bfs;
@@ -172,7 +174,7 @@ char					*bfs(t_lem *lem, t_bfs **bfs);
 
 t_bfs					*bfs_list(t_lem *lem);
 
-t_bfs					*new_bfs(char *name);
+t_bfs					*new_bfs(t_vrx *vrx);
 
 void					add_anc(t_bfs *bfs, char *name, char *anc);
 

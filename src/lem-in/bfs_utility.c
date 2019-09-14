@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   bfs_utility.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:57:21 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/13 18:29:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/14 11:40:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_bfs	*new_bfs(t_vrx *vrx)
+{
+	t_bfs	*bfs;
+
+	if (!(bfs = (t_bfs*)malloc(sizeof(t_bfs))))
+		return (NULL);
+	bfs->vrx = vrx;
+	/*{
+		free(bfs);
+		return (NULL);
+	}*/
+	bfs->anc = NULL;
+	bfs->next = NULL;
+	return (bfs);
+}
 
 t_bfs	*bfs_list(t_lem *lem)
 {
@@ -19,13 +35,13 @@ t_bfs	*bfs_list(t_lem *lem)
 	t_vrx	*vrx;
 
 	vrx = lem->vrx;
-	if (!(begin = new_bfs(vrx->name)))
+	if (!(begin = new_bfs(lem->vrx)))
 		ft_exit(&lem, MALLOC_FAILURE);
 	temp = begin;
 	vrx = vrx->next;
 	while (vrx)
 	{
-		if (!(temp->next = new_bfs(vrx->name)))
+		if (!(temp->next = new_bfs(vrx)))
 		{
 			free_bfs(&begin);
 			ft_exit(&lem, MALLOC_FAILURE);
@@ -34,22 +50,6 @@ t_bfs	*bfs_list(t_lem *lem)
 		vrx = vrx->next;
 	}
 	return (begin);
-}
-
-t_bfs	*new_bfs(char *name)
-{
-	t_bfs	*bfs;
-
-	if (!(bfs = (t_bfs*)malloc(sizeof(t_bfs))))
-		return (NULL);
-	if (!(bfs->name = ft_strdup(name)))
-	{
-		free(bfs);
-		return (NULL);
-	}
-	bfs->anc = NULL;
-	bfs->next = NULL;
-	return (bfs);
 }
 
 void	free_bfs(t_bfs **bfs)
@@ -64,7 +64,7 @@ void	free_bfs(t_bfs **bfs)
 		{
 			second = first;
 			first = first->next;
-			free(second->name);
+			second->vrx = NULL;
 			free(second);
 		}
 		*bfs = NULL;
@@ -73,9 +73,23 @@ void	free_bfs(t_bfs **bfs)
 
 void	add_anc(t_bfs *begin, char *name, char *anc)
 {
-	t_bfs *bfs;
+	t_bfs	*bfs;
 
 	bfs = get_bfs(begin, name);
+	/*if (!bfs)
+	{
+		if (begin)
+		{	while (begin->next)
+				begin = begin->next;
+			begin->next = new_bfs(vrx, name);
+			bfs = begin->next;
+		}
+		else
+		{
+			begin = new_bfs(vrx, name);
+			bfs = begin;
+		}
+	}*/
 	bfs->anc = get_bfs(begin, anc);
 }
 
