@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/06 17:37:55 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:56:05 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			check_lem(t_lem *lem)
 	first_start(lem);
 	if (!check_double_vertex(lem->vrx))
 		ft_exit(&lem, DOUBLE_VRX);
-	if (!dfs(lem, lem->vrx->name))
+	if (!dfs(lem, lem->vrx))
 		ft_exit(&lem, ONE_COMPONENT);
 	unvisit(lem->vrx);
 }

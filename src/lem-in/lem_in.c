@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 14:32:45 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:32:06 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 	int		fd;
 	t_ant	*army;
 
-//	fd = open("tests/flow_thousand", O_RDONLY);
+//	fd = open("tests/test_from_smight", O_RDONLY);
 	lem = create_lem(0);
 	suurballe(lem);
 //	ft_print_paths(lem->listpath);

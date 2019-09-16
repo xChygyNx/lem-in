@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 15:55:04 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:21:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,36 @@
 
 void	suurballe(t_lem *lem)
 {
-	char	*path;
 	int		i;
+	t_path	*path;
 	t_bfs	*bfs_src;
 
 	bfs_src = NULL;
 	while ((path = bfs(lem, &bfs_src)))
 	{
-//		ft_printf("path#1 = %s\n", path);
+//		ft_print_one_path(path);
 		redirect_lem(lem, path, OFF);
-		if (!dfs(lem, lem->vrx->name))
+		if (!dfs(lem, lem->vrx))
 		{
 			redirect_lem(lem, path, ON);
 			break ;
 		}
 		unvisit(lem->vrx);
-		free(path);
+		ft_free_one_path(&path);
 	}
 	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
 	i = 0;
 	while ((path = bfs(lem, &bfs_src)))
 	{
-//		ft_printf("path#2 = %s\n", path);
-		redirect_lem(lem, path, OFF);
-		if (i && ft_char_count(path, SEP) + 1 > lem->ant_c)
+		if (i && path_len(path) > lem->ant_c)
 		{
-			free(path);
+			ft_free_one_path(&path);
 			break ;
 		}
+//		ft_print_one_path(path);
+		redirect_lem(lem, path, OFF);
 		add_listpath(lem, path);
-		free(path);
 		++i;
 	}
 	full_renovation_lem(lem);

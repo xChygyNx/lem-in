@@ -6,65 +6,51 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 10:30:46 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:47:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	change_eds_wght(t_lem *lem, char *start, char *end, int weight)
+static void	change_eds_wght(t_lem *lem, t_vrx *vrx_t, char *end, int weight)
 {
-	t_vrx	*vrx_t;
 	t_adj	*adj_t;
 
-	if ((vrx_t = get_vrx(lem->vrx, start)))
+	if ((adj_t = get_adj(vrx_t->adj, end)))
+		adj_t->weight = weight;
+}
+
+static void	separate_vrxs(t_lem *lem, t_path *path, char tumbler)
+{
+	path = path->next;
+	while (path->next)
 	{
-		if ((adj_t = get_adj(vrx_t->adj, end)))
-			adj_t->weight = weight;
+		path->vrx->sep = tumbler;
+		path = path->next;
 	}
 }
 
-static void	separate_vrxs(t_lem *lem, char **vrxs, char tumbler)
+void		change_dir(t_lem *lem, t_vrx *vrx_t, char *end, char dir)
 {
-	t_vrx	*vrx_t;
-	int		i;
-
-	i = ft_len_arr(vrxs) - 2;
-	while (i > 0)
-	{
-		if ((vrx_t = get_vrx(lem->vrx, vrxs[i])))
-			vrx_t->sep = tumbler;
-		--i;
-	}
-}
-
-void		change_dir(t_lem *lem, char *start, char *end, char dir)
-{
-	t_vrx	*vrx_t;
 	t_adj	*adj_t;
 
-	if ((vrx_t = get_vrx(lem->vrx, start)))
-	{
-		if ((adj_t = get_adj(vrx_t->adj, end)))
-			adj_t->dir = dir;
-	}
+	if ((adj_t = get_adj(vrx_t->adj, end)))
+		adj_t->dir = dir;
 }
 
-void		redirect_lem(t_lem *lem, char *shortest_path, char tumbler)
+void		redirect_lem(t_lem *lem, t_path *path, char tumbler)
 {
-	char	**vrxs;
 	int		i;
+	t_path	*temp;
 
-	if (!(vrxs = ft_strsplit(shortest_path, SEP)))
-		ft_exit(&lem, MALLOC_FAILURE);
-	i = ft_len_arr(vrxs) - 1;
-	while (i > 0)
+	temp = path->next;
+	while (temp->next)
 	{
-		change_dir(lem, vrxs[i], vrxs[i - 1], tumbler);
-		change_eds_wght(lem, vrxs[i], vrxs[i - 1], !tumbler ? OFF : ON);
-		change_eds_wght(lem, vrxs[i - 1], vrxs[i], !tumbler ? -1 : 1);
+		change_dir(lem, temp->vrx, temp->next->vrx->name, tumbler);
+		change_eds_wght(lem, temp->vrx, temp->next->vrx->name, !tumbler ? OFF : ON);
+		change_eds_wght(lem, temp->next->vrx, temp->vrx->name, !tumbler ? -1 : 1);
 		--i;
+		temp = temp->next;
 	}
-	separate_vrxs(lem, vrxs, !tumbler ? ON : OFF);
-	ft_free_arr(vrxs);
+	separate_vrxs(lem, path, !tumbler ? ON : OFF);
 }

@@ -6,11 +6,24 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 15:53:17 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:12:28 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int					path_len(t_path *path)
+{
+	int i;
+
+	i = 0;
+	while (path)
+	{
+		path = path->next;
+		++i;
+	}
+	return (i);
+}
 
 static t_path		*add_vrx_to_path(t_lem *lem, char *name)
 {
@@ -45,31 +58,19 @@ static t_path		*new_path(t_lem *lem, char **tab)
 	return (begin);
 }
 
-static t_listpath	*new_listpath(t_lem *lem, char *path)
+static t_listpath	*new_listpath(t_lem *lem, t_path *path)
 {
 	t_listpath	*listpath_t;
-	char		**tab;
 
 	if (!(listpath_t = (t_listpath*)malloc(sizeof(t_listpath))))
 		return (NULL);
-	if (!(tab = ft_strsplit(path, SEP)))
-	{
-		free(listpath_t);
-		return (NULL);
-	}
-	if (!(listpath_t->path = new_path(lem, tab)))
-	{
-		free(listpath_t);
-		ft_free_arr(tab);
-		return (NULL);
-	}
-	listpath_t->path_len = ft_len_arr(tab);
+	listpath_t->path = path;
+	listpath_t->path_len = path_len(path);
 	listpath_t->next = NULL;
-	ft_free_arr(tab);
 	return (listpath_t);
 }
 
-void				add_listpath(t_lem *lem, char *path)
+void				add_listpath(t_lem *lem, t_path *path)
 {
 	t_listpath *temp;
 
@@ -77,7 +78,7 @@ void				add_listpath(t_lem *lem, char *path)
 	{
 		if (!(lem->listpath = new_listpath(lem, path)))
 		{
-			free(path);
+			ft_free_one_path(&path);
 			ft_exit(&lem, MALLOC_FAILURE);
 		}
 	}
@@ -88,33 +89,49 @@ void				add_listpath(t_lem *lem, char *path)
 			temp = temp->next;
 		if (!(temp->next = new_listpath(lem, path)))
 		{
-			free(path);
+			ft_free_one_path(&path);
 			ft_exit(&lem, MALLOC_FAILURE);
 		}
 	}
 	lem->path_c += 1;
 }
 
+void				ft_print_one_path(t_path *path)
+{
+	while (path && path->next)
+	{
+		ft_printf("{red}%s{eoc} -> ", path->vrx->name);
+		path = path->next;
+	}
+	ft_printf("{red}%s{eoc}|\n", path->vrx->name);
+}
+
 void				ft_print_paths(t_listpath *listpath)
 {
-	int		i;
 	int		j;
-	t_path	*temp;
 
 	j = 0;
 	while (listpath)
 	{
-		i = 0;
 		ft_printf("path #%d: |", j);
-		temp = listpath->path;
-		while (temp->next)
-		{
-			ft_printf("{red}%s{eoc} -> ", temp->vrx->name);
-			++i;
-			temp = temp->next;
-		}
-		ft_printf("{red}%s{eoc}|\n", temp->vrx->name);
+		ft_print_one_path(listpath->path);
 		listpath = listpath->next;
 		++j;
 	}
 }
+
+int					add_path_to_begin(t_path **begin, t_vrx *vrx)
+{
+	t_path *path;
+
+	if (!(path = (t_path*)malloc(sizeof(t_path))))
+		return (0);
+	path->vrx = vrx;
+	if (*begin)
+		path->next = *begin;
+	else
+		path->next = NULL;
+	*begin = path;
+	return (1);
+}
+

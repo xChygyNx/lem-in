@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 14:33:12 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:12:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ int						invalid_com(char *str);
  * DIRECTION FUNCTIONS
  */
 
-void					change_dir(t_lem *lem, char *start, char *end, char dir);
+void					change_dir(t_lem *lem, t_vrx *vrx, char *end, char dir);
 
-void					redirect_lem(t_lem *lem, char *short_path, char tumbler);
+void					redirect_lem(t_lem *lem, t_path *path, char tumbler);
 
 void					renovation_one_to_two_dir(t_lem *lem);
 
@@ -154,7 +154,7 @@ void					unvisit(t_vrx *vertex);
  * DEEP-FIRST SEARCH FUNCTIONS
  */
 
-int						dfs(t_lem *lem, char *name);
+int						dfs(t_lem *lem, t_vrx *vrx);
 
 /*
  * PATH FUNCTIONS
@@ -164,13 +164,18 @@ void					ft_free_path(t_listpath **listpath_to_del);
 
 void					ft_free_one_path(t_path **path_to_del);
 
-void					add_listpath(t_lem *lem, char *path);
+void					add_listpath(t_lem *lem, t_path *path);
+
+int						add_path_to_begin(t_path **begin, t_vrx *vrx);
+
+
+int						path_len(t_path *path);
 
 /*
  * BREADTH-FIRST SEARCH FUNCTIONS
  */
 
-char					*bfs(t_lem *lem, t_bfs **bfs);
+t_path					*bfs(t_lem *lem, t_bfs **bfs);
 
 t_bfs					*bfs_list(t_lem *lem);
 
@@ -211,6 +216,8 @@ void					ft_print_lem_info(t_lem *lem);
 void					ft_print_paths(t_listpath *listpath);
 
 void					ft_print_queue(t_queue *queue);
+
+void					ft_print_one_path(t_path *path);
 
 /*
  * PUSH THE BUTTON

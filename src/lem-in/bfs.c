@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 13:02:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:22:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,35 @@ static int	bfs_algo(t_lem *lem, t_queue *queue, t_bfs *bfs)
 	return (0);
 }
 
-static char	*shortest_path(t_vrx *vrx, t_bfs *bfs)
+static t_path	*shortest_path(t_vrx *vrx, t_bfs *bfs)
 {
 	t_bfs		*temp_bfs;
-	char		*path;
+	t_path		*path;
 
-	if (!(path = ft_strnew(0)))
-		return (NULL);
+	path = NULL;
 	while (vrx && vrx->type != END)
 		vrx = vrx->next;
 	temp_bfs = get_bfs(bfs, vrx->name);
 	while (temp_bfs && temp_bfs->anc)
 	{
-		if (!(path = ft_strjoin_f(path, temp_bfs->vrx->name)))
+		if (!add_path_to_begin(&path, temp_bfs->vrx))
+		{
+			ft_free_one_path(&path);
 			return (NULL);
-		if (!(path = ft_strjoin_f(path, " ")))
-			return (NULL);
+		}
 		temp_bfs = temp_bfs->anc;
 	}
-	if (!temp_bfs || !(path = ft_strjoin_f(path, temp_bfs->vrx->name)))
+	if (!add_path_to_begin(&path, temp_bfs->vrx))
+	{
+		ft_free_one_path(&path);
 		return (NULL);
+	}
 	return (path);
 }
 
-char		*bfs(t_lem *lem, t_bfs **bfs_src)
+t_path		*bfs(t_lem *lem, t_bfs **bfs_src)
 {
-	char			*path;
+	t_path			*path;
 	t_bfs			*bfs;
 	t_queue			*queue;
 
