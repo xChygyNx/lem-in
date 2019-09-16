@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tactical_moves.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 16:46:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 13:59:52 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,17 @@ void		offensive(t_lem *lem, t_ant *army)
 	veterans = 0;
 	while (army)
 	{
-		in_battle += lem->path_c;
-		reserve = lem->ant_c - in_battle;
+		if (reserve > lem->path_c)
+		{
+			in_battle += lem->path_c;
+			reserve -= lem->path_c;
+		}
+		else
+		{
+			in_battle += reserve;
+			reserve = 0;	
+		}
+		ft_printf("in battle = %d, reserve = %d\n", in_battle, reserve);
 		step_to_win(army, in_battle);
 		in_battle -= soldiers_commission(&army);
 	}
