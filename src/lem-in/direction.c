@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 18:47:58 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:05:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,17 @@ void		change_dir(t_lem *lem, t_vrx *vrx_t, char *end, char dir)
 		adj_t->dir = dir;
 }
 
-void		redirect_lem(t_lem *lem, t_path *path, char tumbler)
+void		redirect_lem(t_lem *lem, t_path *path, char tumb)
 {
-	int		i;
 	t_path	*temp;
 
-	temp = path->next;
+	temp = path;
 	while (temp->next)
 	{
-		change_dir(lem, temp->vrx, temp->next->vrx->name, tumbler);
-		change_eds_wght(lem, temp->vrx, temp->next->vrx->name, !tumbler ? OFF : ON);
-		change_eds_wght(lem, temp->next->vrx, temp->vrx->name, !tumbler ? -1 : 1);
-		--i;
+		change_dir(lem, temp->vrx, temp->next->vrx->name, tumb);
+		change_eds_wght(lem, temp->vrx, temp->next->vrx->name, !tumb ? 0 : 1);
+		change_eds_wght(lem, temp->next->vrx, temp->vrx->name, !tumb ? -1 : 1);
 		temp = temp->next;
 	}
-	separate_vrxs(lem, path, !tumbler ? ON : OFF);
+	separate_vrxs(lem, path, !tumb ? ON : OFF);
 }

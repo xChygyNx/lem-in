@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 19:21:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:03:21 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ void	suurballe(t_lem *lem)
 {
 	int		i;
 	t_path	*path;
-	t_bfs	*bfs_src;
 
-	bfs_src = NULL;
-	while ((path = bfs(lem, &bfs_src)))
+	while ((path = bfs(lem)))
 	{
 //		ft_print_one_path(path);
 		redirect_lem(lem, path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{
 			redirect_lem(lem, path, ON);
+			unvisit(lem->vrx);
 			break ;
 		}
 		unvisit(lem->vrx);
@@ -34,7 +33,7 @@ void	suurballe(t_lem *lem)
 	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
 	i = 0;
-	while ((path = bfs(lem, &bfs_src)))
+	while ((path = bfs(lem)))
 	{
 		if (i && path_len(path) > lem->ant_c)
 		{
@@ -47,7 +46,6 @@ void	suurballe(t_lem *lem)
 		++i;
 	}
 	full_renovation_lem(lem);
-	free_bfs(&bfs_src);
 }
 
 int		count_steps(t_lem *lem)

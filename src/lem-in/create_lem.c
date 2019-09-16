@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 15:53:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 22:47:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ static t_vrx		*create_vrx(char **tab, int type)
 		free(temp);
 		return (NULL);
 	}
-	temp->x = ft_atoi(tab[1]);
-	temp->y = ft_atoi(tab[2]);
-	if (temp->x < 0 || temp->y < 0)
+	if ((temp->x = ft_atoi(tab[1])) < 0 || (temp->y = ft_atoi(tab[2])) < 0)
 	{
 		free(temp->name);
 		free(temp);
@@ -49,6 +47,7 @@ static t_vrx		*create_vrx(char **tab, int type)
 	temp->next = NULL;
 	temp->visit = 0;
 	temp->sep = OFF;
+	temp->anc = NULL;
 	return (temp);
 }
 

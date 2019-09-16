@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 19:32:06 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:06:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	suurballe(lem);
 //	ft_print_paths(lem->listpath);
 	army = create_army(lem->ant_c);
-	//прими свой путь боец
+	//прими свой путь боец1
 	tactical_moves(lem, army, lem->listpath);
 	//НАСТУПААААААЕЕЕЕЕЕЕЕМ
 	offensive(lem, army);

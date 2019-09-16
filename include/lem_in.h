@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 19:12:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 23:09:32 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct			s_vrx
 	char				visit;
 	char				sep;
 	int					ant;
+	struct s_vrx		*anc;
+
 }						t_vrx;
 
 typedef struct			s_bfs
@@ -175,15 +177,13 @@ int						path_len(t_path *path);
  * BREADTH-FIRST SEARCH FUNCTIONS
  */
 
-t_path					*bfs(t_lem *lem, t_bfs **bfs);
+t_path					*bfs(t_lem *lem);
 
 t_bfs					*bfs_list(t_lem *lem);
 
 t_bfs					*new_bfs(t_vrx *vrx);
 
 void					add_anc(t_bfs *bfs, char *name, char *anc);
-
-void					clean_anc(t_bfs *bfs);
 
 void					free_bfs(t_bfs **bfs);
 
@@ -201,7 +201,6 @@ int						free_queue(t_queue **queue);
 
 void					del_one_queue(t_queue **queue);
 
-t_vrx					*last_vrx_in_queue(t_queue *qu, t_vrx *vrx);
 
 /*
  * UTILITY FUNCTIONS
@@ -226,7 +225,6 @@ void					ft_print_one_path(t_path *path);
 void					suurballe(t_lem *lem);
 
 char					*read_from_file_to_var(int fd);
-
 
 /*
  * ATN'S FUNCTIONS

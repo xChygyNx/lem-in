@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs_utility.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:57:21 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 13:57:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 22:44:05 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,4 @@ void	add_anc(t_bfs *begin, char *name, char *anc)
 
 	bfs = get_bfs(begin, name);
 	bfs->anc = get_bfs(begin, anc);
-}
-
-void	clean_anc(t_bfs *bfs)
-{
-	while (bfs)
-	{
-		bfs->anc = NULL;
-		bfs = bfs->next;
-	}
 }
