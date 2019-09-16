@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 16:34:31 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:33:12 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ t_ant		*new_soldier(int serial_number);
 
 t_ant		*create_army(int number_of_soldiers);
 
-void		tactical_moves(t_ant *army, t_listpath *listpath);
+void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath);
 
 void		offensive(t_lem *lem, t_ant *army);
 

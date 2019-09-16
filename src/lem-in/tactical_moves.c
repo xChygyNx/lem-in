@@ -6,17 +6,21 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 13:59:52 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:23:23 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		tactical_moves(t_ant *army, t_listpath *listpath)
+void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath)
 {
 	t_listpath	*cur_path;
 	t_ant		*soldier;
+	int			reserve;
+	//t_listpath	*second_path;
 
+	reserve = lem->ant_c;
+	//second_path = listpath->path->next;
 	soldier = army;
 	while (soldier)
 	{
@@ -26,6 +30,9 @@ void		tactical_moves(t_ant *army, t_listpath *listpath)
 			soldier->path = cur_path->path;
 			soldier = soldier->next;
 			cur_path = cur_path->next;
+			reserve--;
+			if (!cur_path || cur_path->path_len > lem->ant_c)
+				break ;
 		}
 	}
 }
@@ -64,7 +71,7 @@ void		offensive(t_lem *lem, t_ant *army)
 			in_battle += reserve;
 			reserve = 0;	
 		}
-		ft_printf("in battle = %d, reserve = %d\n", in_battle, reserve);
+		//ft_printf("in battle = %d, reserve = %d\n", in_battle, reserve);
 		step_to_win(army, in_battle);
 		in_battle -= soldiers_commission(&army);
 	}

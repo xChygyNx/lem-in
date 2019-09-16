@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 16:47:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:32:45 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(void)
 //	ft_print_paths(lem->listpath);
 	army = create_army(lem->ant_c);
 	//прими свой путь боец
-	tactical_moves(army, lem->listpath);
+	tactical_moves(lem, army, lem->listpath);
 	//НАСТУПААААААЕЕЕЕЕЕЕЕМ
 	offensive(lem, army);
 //	pereklichka(army);
