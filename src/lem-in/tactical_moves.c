@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 15:23:23 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:41:06 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath)
 	t_listpath	*cur_path;
 	t_ant		*soldier;
 	int			reserve;
-	//t_listpath	*second_path;
 
 	reserve = lem->ant_c;
-	//second_path = listpath->path->next;
 	soldier = army;
 	while (soldier)
 	{
@@ -29,8 +27,8 @@ void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath)
 		{
 			soldier->path = cur_path->path;
 			soldier = soldier->next;
-			cur_path = cur_path->next;
 			reserve--;
+			cur_path = cur_path->next;
 			if (!cur_path || cur_path->path_len > lem->ant_c)
 				break ;
 		}
