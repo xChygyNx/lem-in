@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 19:12:28 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/17 18:01:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					path_len(t_path *path)
 		path = path->next;
 		++i;
 	}
-	return (i);
+	return (i - 1);
 }
 
 static t_path		*add_vrx_to_path(t_lem *lem, char *name)
