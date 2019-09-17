@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/17 16:50:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/17 17:05:19 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void		offensive(t_lem *lem, t_ant *army)
 	{
 		meat = go_to_fight(lem->listpath, reserve);
 		//if (reserve > meat)
-		//{
 		in_battle += meat;
 		reserve -= meat;
 		/*}
