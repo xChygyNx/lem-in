@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ants.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 16:19:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:39:43 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void		dissolve_army(t_ant **first_soldier)
 		while (first)
 		{
 			second = first;
-			first = first->next;
+			first = first->prev;
 			free(second);
 		}
 		*first_soldier = NULL;
 	}
 }
 
-int		first_soldier_commission(t_ant **army)
+void	first_soldier_commission(t_ant **army)
 {
 	t_ant *old_soldier;
 
@@ -38,25 +38,26 @@ int		first_soldier_commission(t_ant **army)
 	{
 		old_soldier = *army;
 		*army = old_soldier->next;
+		*army ? (*army)->prev = NULL : 0;
 		free(old_soldier);
-		return (1);
+		//return (1);
 	}
-	return (0);
+	//return (0);
 }
 
-int		soldiers_commission(t_ant **army)
+void	soldiers_commission(t_ant **army)
 {
 	t_ant	*first;
 	t_ant	*second;
 	t_ant	*temp;
-	int		veterans;
+	//int		veterans;
 
-	veterans = 0;
+	//veterans = 0;
 	if (*army)
 	{
 		first = *army;
 		while (first && first->path->vrx->type == END)
-			veterans += first_soldier_commission(&first);
+			first_soldier_commission(&first);
 		*army = first;
 		while (first)
 		{
@@ -64,16 +65,17 @@ int		soldiers_commission(t_ant **army)
 			{
 				temp = first;
 				first = first->next;
+				first->prev = NULL;
 				second->next = first;
 				free(temp);
-				veterans++;
+				//veterans++;
 				continue ;
 			}
 			second = first;
 			first = first->next;
 		}
 	}
-	return (veterans);
+	//return (veterans);
 }
 
 t_ant		*new_soldier(int serial_number)
@@ -85,29 +87,30 @@ t_ant		*new_soldier(int serial_number)
 	soldier->serial_number = serial_number;
 	soldier->path = NULL;
 	soldier->next = NULL;
+	soldier->prev = NULL;
 	return (soldier);
 }
 
 t_ant		*create_army(int number_of_soldiers)
 {
-	int		serial_number;
 	t_ant	*army;
 	t_ant	*soldier;
 
-	serial_number = 1;
-	if (!(army = new_soldier(serial_number)))
+	if (!(army = new_soldier(number_of_soldiers)))
 		return (NULL);
+	army ? army->next = NULL : 0;
 	soldier = army;
-	serial_number += 1;
-	while (serial_number <= number_of_soldiers)
+	number_of_soldiers--;
+	while (number_of_soldiers)
 	{
-		if (!(soldier->next = new_soldier(serial_number)))
+		if (!(soldier->prev = new_soldier(number_of_soldiers)))
 		{
 			dissolve_army(&army);
 			return (NULL);
 		}
-		soldier = soldier->next;
-		++serial_number;
+		soldier->prev->next = soldier;
+		soldier = soldier->prev;
+		number_of_soldiers--;
 	}
 	return (army);
 }

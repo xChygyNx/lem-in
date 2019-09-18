@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 23:09:32 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:34:39 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define ON 1
 # define OFF 0
+
+# define MAX_INT 2147483647
 
 /*
  * Errors from 100 to infinity
@@ -102,6 +104,7 @@ typedef struct			s_ant
 	int					serial_number;
 	struct s_path		*path;
 	struct s_ant		*next;
+	struct s_ant		*prev;
 }						t_ant;
 
 void					ft_exit(t_lem **lem, int err);
@@ -170,6 +173,7 @@ void					add_listpath(t_lem *lem, t_path *path);
 
 int						add_path_to_begin(t_path **begin, t_vrx *vrx);
 
+int						routing(t_listpath *paths, t_ant **army);
 
 int						path_len(t_path *path);
 
@@ -232,9 +236,9 @@ char					*read_from_file_to_var(int fd);
 
 void		dissolve_army(t_ant **first_soldier);
 
-int			first_soldier_commission(t_ant **army);
+void		first_soldier_commission(t_ant **army);
 
-int			soldiers_commission(t_ant **army);
+void		soldiers_commission(t_ant **army);
 
 t_ant		*new_soldier(int serial_number);
 

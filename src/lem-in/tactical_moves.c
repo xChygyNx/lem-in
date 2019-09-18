@@ -6,14 +6,14 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/17 17:05:19 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:40:44 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 
-static int	count_less_paths(t_listpath *list, t_listpath *path)
+/*static int	count_less_paths(t_listpath *list, t_listpath *path)
 {
 	int		path_c;
 	//t_path	*begin;
@@ -34,35 +34,46 @@ void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath)
 	t_ant		*soldier;
 	int			reserve;
 	int			less_c;
+	char		eq_prev;
 
 	reserve = lem->ant_c;
 	soldier = army;
 	while (soldier)
 	{
 		cur_path = listpath;
+		//reserve_st = reserve;
 		while (cur_path && soldier && reserve)
 		{
 			soldier->path = cur_path->path;
 			soldier = soldier->next;
-			reserve--;
+			reserve -= cur_path ? 1 : 0;
+			eq_prev = cur_path->next &&\
+				cur_path->path_len == cur_path->next->path_len ? 1 : 0;
 			cur_path = cur_path->next;
 			less_c = count_less_paths(listpath, cur_path);
-			if (!cur_path || cur_path->path_len * less_c > reserve)
+			if ((!cur_path || cur_path->path_len * less_c > reserve) && !eq_prev)
 				break ;
 		}
 	}
-}
+}*/
 
-static int go_to_fight(t_listpath *paths, int reserve)
+static int go_to_fight(t_listpath *paths, t_ant *army)
 {
-	int		column_c;
+	int				column_c;
+	//static int		repetition;
+	//char			new_repetition;
+	//int				circle;
 
 	column_c = 0;
-	while (reserve && paths && paths->path_len * column_c < reserve)
+	//circle = 0;
+	//new_repetition = veterans ? 0 : 1;
+	//repetition += new_repetition; 
+	while (army)
 	{
 		column_c++;
-		paths = paths->next;
-		reserve--;
+		if (army->path == paths->path)
+			break ;
+		army = army->next;
 	}
 	return (column_c);
 }
@@ -82,6 +93,32 @@ void		step_to_win(t_ant *army, int number)
 
 void		offensive(t_lem *lem, t_ant *army)
 {
+	//char	veterans;
+	//int		in_battle;
+	//int		reserve;
+	int		meat;
+	int		steps;
+
+	//reserve = lem->ant_c;
+	//in_battle = 0;
+	//veterans = 0;
+	//высчитывает количество ходов + инвертирует army т.к. она собиралась
+	//в обратном порядке, а дальше с ней удобно работать в
+	//правильном порядке (от 1 до ant_c)
+	steps = routing(lem->listpath, &army);
+	while (army)
+	{
+		meat = go_to_fight(lem->listpath, army);
+		//in_battle += meat;
+		//reserve -= meat;
+		step_to_win(army, meat);
+		soldiers_commission(&army);
+		//in_battle -= veterans;
+	}
+}
+
+/*void		offensive(t_lem *lem, t_ant *army)
+{
 	int		veterans;
 	int		in_battle;
 	int		reserve;
@@ -96,15 +133,15 @@ void		offensive(t_lem *lem, t_ant *army)
 		//if (reserve > meat)
 		in_battle += meat;
 		reserve -= meat;
-		/*}
+		}
 		else
 		{
 			in_battle += reserve;
 			reserve = 0;	
-		}*/
+		}
 		//ft_printf("in battle = %d, reserve = %d\n", in_battle, reserve);
 		//print_clm = print_column(lem->listpath, reserve);
 		step_to_win(army, in_battle);
 		in_battle -= soldiers_commission(&army);
 	}
-}
+}*/

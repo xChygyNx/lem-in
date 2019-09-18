@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/17 18:01:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:49:58 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,3 +135,46 @@ int					add_path_to_begin(t_path **begin, t_vrx *vrx)
 	return (1);
 }
 
+static t_path		*min_path(t_listpath *paths)
+{
+	int			min_len;
+	t_listpath	*min_len_path;
+
+	min_len = MAX_INT;
+	min_len_path = NULL;
+	while (paths)
+	{
+		if (paths->path_len < min_len)
+		{
+			min_len = paths->path_len;
+			min_len_path = paths;
+		}
+		paths = paths->next;
+	}
+	min_len_path->path_len += 1;
+	return (min_len_path->path);
+}
+
+int					routing(t_listpath *paths, t_ant **army)
+{
+	t_path	*min_len_path;
+	t_ant	*temp;
+	int		steps;
+	int		transit_time;
+
+	steps = 0;
+	transit_time = paths->path_len - 1;
+	while (*army)
+	{
+		min_len_path = min_path(paths);
+		(*army)->path = min_len_path;
+		min_len_path == paths->path ? steps++ : 0;
+		temp = !(*army)->prev ? *army : NULL;
+		*army = (*army)->prev;
+	}
+	*army = temp;
+	//общее количество шагов = время на выпуск всех муравьев + время прохождения
+	//последним выпцщенным муравьем самого короткого пути - 1 (потому что
+	//когда мы его выпустили, по сути он сделал 1 шаг)
+	return (steps + transit_time);
+}
