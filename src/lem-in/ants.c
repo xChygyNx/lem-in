@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ants.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/18 17:39:43 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 20:47:06 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	soldiers_commission(t_ant **army)
 			{
 				temp = first;
 				first = first->next;
-				first->prev = NULL;
+				first ? first->prev = NULL : 0;
 				second->next = first;
 				free(temp);
 				//veterans++;
@@ -113,6 +113,12 @@ t_ant		*create_army(int number_of_soldiers)
 		number_of_soldiers--;
 	}
 	return (army);
+}
+
+void		order_army(t_ant **army)
+{
+	while (army && (*army)->prev)
+		*army = (*army)->prev;
 }
 
 void		pereklichka(t_ant *army)

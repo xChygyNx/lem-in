@@ -1,0 +1,9 @@
+{
+    "42header.username": "astripeb",
+    "42header.email": "marvin@42.fr",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+  }

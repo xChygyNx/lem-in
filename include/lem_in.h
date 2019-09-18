@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/18 17:34:39 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 22:01:15 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,13 +169,15 @@ void					ft_free_path(t_listpath **listpath_to_del);
 
 void					ft_free_one_path(t_path **path_to_del);
 
-void					add_listpath(t_lem *lem, t_path *path);
+int						add_listpath(t_listpath **listpath, t_path *path);
 
 int						add_path_to_begin(t_path **begin, t_vrx *vrx);
 
 int						routing(t_listpath *paths, t_ant **army);
 
 int						path_len(t_path *path);
+
+void					renovate_listpath(t_listpath *listpath);
 
 /*
  * BREADTH-FIRST SEARCH FUNCTIONS
@@ -226,7 +228,9 @@ void					ft_print_one_path(t_path *path);
  * PUSH THE BUTTON
  */
 
-void					suurballe(t_lem *lem);
+int						suurballe(t_lem *lem, t_listpath **listpath, int min_paths);
+
+void					find_optimal_path(t_lem *lem, t_ant **army);
 
 char					*read_from_file_to_var(int fd);
 
@@ -247,6 +251,8 @@ t_ant		*create_army(int number_of_soldiers);
 void		tactical_moves(t_lem *lem, t_ant *army, t_listpath *listpath);
 
 void		offensive(t_lem *lem, t_ant *army);
+
+void		order_army(t_ant **army);
 
 void		pereklichka(t_ant *army);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/18 14:49:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 22:00:48 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_path		*new_path(t_lem *lem, char **tab)
 	return (begin);
 }
 
-static t_listpath	*new_listpath(t_lem *lem, t_path *path)
+static t_listpath	*new_listpath(t_path *path)
 {
 	t_listpath	*listpath_t;
 
@@ -70,30 +70,30 @@ static t_listpath	*new_listpath(t_lem *lem, t_path *path)
 	return (listpath_t);
 }
 
-void				add_listpath(t_lem *lem, t_path *path)
+int					add_listpath(t_listpath **listpath, t_path *path)
 {
 	t_listpath *temp;
 
-	if (!lem->listpath)
+	if (!*listpath)
 	{
-		if (!(lem->listpath = new_listpath(lem, path)))
+		if (!(*listpath = new_listpath(path)))
 		{
 			ft_free_one_path(&path);
-			ft_exit(&lem, MALLOC_FAILURE);
+			return (0);
 		}
 	}
 	else
 	{
-		temp = lem->listpath;
+		temp = *listpath;
 		while (temp->next)
 			temp = temp->next;
-		if (!(temp->next = new_listpath(lem, path)))
+		if (!(temp->next = new_listpath(path)))
 		{
 			ft_free_one_path(&path);
-			ft_exit(&lem, MALLOC_FAILURE);
+			return (0);
 		}
 	}
-	lem->path_c += 1;
+	return (1);
 }
 
 void				ft_print_one_path(t_path *path)
@@ -176,5 +176,15 @@ int					routing(t_listpath *paths, t_ant **army)
 	//общее количество шагов = время на выпуск всех муравьев + время прохождения
 	//последним выпцщенным муравьем самого короткого пути - 1 (потому что
 	//когда мы его выпустили, по сути он сделал 1 шаг)
+
 	return (steps + transit_time);
+}
+
+void			renovate_listpath(t_listpath *listpath)
+{
+	while (listpath)
+	{
+		listpath->path_len = path_len(listpath->path);
+		listpath = listpath->next;
+	}
 }

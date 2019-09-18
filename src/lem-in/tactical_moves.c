@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tactical_moves.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/18 17:40:44 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/18 22:10:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int go_to_fight(t_listpath *paths, t_ant *army)
 	column_c = 0;
 	//circle = 0;
 	//new_repetition = veterans ? 0 : 1;
-	//repetition += new_repetition; 
+	//repetition += new_repetition;
 	while (army)
 	{
 		column_c++;
@@ -105,7 +105,9 @@ void		offensive(t_lem *lem, t_ant *army)
 	//высчитывает количество ходов + инвертирует army т.к. она собиралась
 	//в обратном порядке, а дальше с ней удобно работать в
 	//правильном порядке (от 1 до ant_c)
+//	ft_print_paths(lem->listpath);
 	steps = routing(lem->listpath, &army);
+//	ft_printf("min_steps = %d\n", steps);
 	while (army)
 	{
 		meat = go_to_fight(lem->listpath, army);
@@ -137,7 +139,7 @@ void		offensive(t_lem *lem, t_ant *army)
 		else
 		{
 			in_battle += reserve;
-			reserve = 0;	
+			reserve = 0;
 		}
 		//ft_printf("in battle = %d, reserve = %d\n", in_battle, reserve);
 		//print_clm = print_column(lem->listpath, reserve);
