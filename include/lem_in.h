@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 22:27:43 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 23:25:56 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct			s_lem
 	int					vert_c;
 	int					edge_c;
 	struct s_listpath	*listpath;
-	int					path_c;
 	char				*map;
 }						t_lem;
 
@@ -66,13 +65,6 @@ typedef struct			s_vrx
 	struct s_vrx		*anc;
 
 }						t_vrx;
-
-typedef struct			s_bfs
-{
-	struct s_vrx		*vrx;
-	struct s_bfs		*anc;
-	struct s_bfs		*next;
-}						t_bfs;
 
 typedef struct			s_queue
 {
@@ -172,8 +164,6 @@ int						suurballe(t_lem *lem, t_listpath **listpath,\
 						int min_paths);
 
 void					find_optimal_path(t_lem *lem, t_ant **army);
-
-char					*read_from_file_to_var(int fd);
 
 void					dissolve_army(t_ant **first_soldier);
 

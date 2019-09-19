@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 18:12:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 22:50:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,4 @@ t_adj	*get_adj(t_adj *adj, char *name)
 	while (adj && ft_strcmp(name, adj->name))
 		adj = adj->next;
 	return (adj);
-}
-
-t_bfs	*get_bfs(t_bfs *bfs, char *name)
-{
-	while (bfs && ft_strcmp(name, bfs->vrx->name))
-		bfs = bfs->next;
-	return (bfs ? bfs : NULL);
 }

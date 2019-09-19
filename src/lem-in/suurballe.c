@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 19:57:05 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/19 23:22:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_path	*first_pass(t_lem *lem, int min_paths)
+static void		first_pass(t_lem *lem, int min_paths)
 {
-	int			i;
 	t_path		*path;
 
-	i = min_paths;
-	while (i-- && (path = bfs(lem)))
+	while (min_paths-- && (path = bfs(lem)))
 	{
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
@@ -30,7 +28,6 @@ static t_path	*first_pass(t_lem *lem, int min_paths)
 		unvisit(lem->vrx);
 		ft_free_one_path(&path);
 	}
-	return (path);
 }
 
 int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
@@ -38,10 +35,10 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	int			i;
 	t_path		*path;
 
-	path = first_pass(lem, min_paths);
+	path = NULL;
+	first_pass(lem, min_paths);
 	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
-	ft_free_one_path(&path);
 	i = 0;
 	while (i < min_paths && (path = bfs(lem)))
 	{
@@ -71,7 +68,7 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 	{
 		min_paths++;
 		if (suurballe(lem, &paths, min_paths) != min_paths)
-			return ;
+			break ;
 		steps = routing(paths, &ants);
 		if (min_steps >= steps)
 		{
@@ -82,8 +79,9 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 			ants = *army;
 		}
 		else
-			return ;
+			break ;
 	}
+	ft_free_path(&paths);
 }
 
 void			find_optimal_path(t_lem *lem, t_ant **army)
