@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   renovation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 21:12:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 18:12:12 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 20:01:36 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			check_rev_dir(t_lem *lem, t_vrx *vrx, char *edge)
+static int	check_rev_dir(t_vrx *vrx, char *edge)
 {
 	t_adj	*adj_t;
 
@@ -21,14 +21,14 @@ int			check_rev_dir(t_lem *lem, t_vrx *vrx, char *edge)
 	return (0);
 }
 
-void		renovate_rev_edge(t_lem *lem, t_vrx *vrx, char *edge)
+static void	renovate_rev_edge(t_vrx *vrx, char *edge)
 {
 	t_adj	*adj_t;
 
 	if ((adj_t = get_adj(vrx->adj, edge)))
 	{
-			adj_t->dir = ON;
-			adj_t->weight = 1;
+		adj_t->dir = ON;
+		adj_t->weight = 1;
 	}
 }
 
@@ -44,13 +44,13 @@ void		renovation_one_to_two_dir(t_lem *lem)
 		adj_t = vrx_t->adj;
 		while (adj_t)
 		{
-			if (!adj_t->dir && check_rev_dir(lem, adj_t->vrx, vrx_t->name))
+			if (!adj_t->dir && check_rev_dir(adj_t->vrx, vrx_t->name))
 				adj_t->weight = 0;
 			else if (!adj_t->dir)
 			{
 				adj_t->dir = ON;
 				adj_t->weight = 1;
-				renovate_rev_edge(lem, adj_t->vrx, vrx_t->name);
+				renovate_rev_edge(adj_t->vrx, vrx_t->name);
 			}
 			adj_t = adj_t->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/18 20:47:06 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:46:28 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void		dissolve_army(t_ant **first_soldier)
 	}
 }
 
-void	first_soldier_commission(t_ant **army)
+void		first_soldier_commission(t_ant **army)
 {
-	t_ant *old_soldier;
+	t_ant	*old_soldier;
 
 	if (*army)
 	{
@@ -40,19 +40,15 @@ void	first_soldier_commission(t_ant **army)
 		*army = old_soldier->next;
 		*army ? (*army)->prev = NULL : 0;
 		free(old_soldier);
-		//return (1);
 	}
-	//return (0);
 }
 
-void	soldiers_commission(t_ant **army)
+void		soldiers_commission(t_ant **army)
 {
 	t_ant	*first;
 	t_ant	*second;
 	t_ant	*temp;
-	//int		veterans;
 
-	//veterans = 0;
 	if (*army)
 	{
 		first = *army;
@@ -68,14 +64,12 @@ void	soldiers_commission(t_ant **army)
 				first ? first->prev = NULL : 0;
 				second->next = first;
 				free(temp);
-				//veterans++;
 				continue ;
 			}
 			second = first;
 			first = first->next;
 		}
 	}
-	//return (veterans);
 }
 
 t_ant		*new_soldier(int serial_number)
@@ -113,21 +107,4 @@ t_ant		*create_army(int number_of_soldiers)
 		number_of_soldiers--;
 	}
 	return (army);
-}
-
-void		order_army(t_ant **army)
-{
-	while (army && (*army)->prev)
-		*army = (*army)->prev;
-}
-
-void		pereklichka(t_ant *army)
-{
-	while (army)
-	{
-		ft_printf("#serial_number: %d\n", army->serial_number);
-		if (army->path)
-			ft_printf("vrx = %s\n", army->path->vrx->name);
-		army = army->next;
-	}
 }

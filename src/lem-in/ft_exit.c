@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/14 13:55:07 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:36:07 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void			ft_exit(t_lem **lem, int err)
 	else if (err == ONE_COMPONENT)
 		ft_fprintf(2, "Error: Start & end situated in different \
 connected components\n");
-	else if (err == WROTE_ANTS)
-		ft_fprintf(2, "Error: wrong count of ants\n");
 	else
 		perror("Error: ");
 	exit(err);

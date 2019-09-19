@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 13:58:44 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:12:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,54 +40,4 @@ t_bfs	*get_bfs(t_bfs *bfs, char *name)
 	while (bfs && ft_strcmp(name, bfs->vrx->name))
 		bfs = bfs->next;
 	return (bfs ? bfs : NULL);
-}
-
-void	ft_print_lem_info(t_lem *lem)
-{
-	t_vrx		*vrx;
-	t_adj		*adj;
-
-	ft_printf("\n-----------------------\n");
-	ft_printf("|ants:     %11d|\n", lem->ant_c);
-	ft_printf("|vertexes: %11d|\n", lem->vert_c);
-	ft_printf("|edges:    %11d|\n", lem->edge_c);
-	vrx = lem->vrx;
-	while (vrx)
-	{
-		ft_printf("-----------------------\n");
-		ft_printf("|name:  {red}%14s{eoc}|\n|x:     %14d|\n|y:     %14d|\n\
-			|type:  %14d|\n|visit: %14d|\n|sep:   %14s|\n",\
-			vrx->name, vrx->x, vrx->y, vrx->type, vrx->visit,\
-			vrx->sep ? "YES" : "NO");
-		if (vrx->adj)
-		{
-			ft_printf("|adj:   ");
-			adj = vrx->adj;
-			while (adj->next)
-			{
-				ft_printf("{green}%s{eoc} (w:%d, d:%d), ",\
-				adj->name, adj->weight, adj->dir);
-				adj = adj->next;
-			}
-			ft_printf("{green}%s{eoc} (w:%d, d:%d)|\n",\
-			adj->name, adj->weight, adj->dir);
-		}
-		vrx = vrx->next;
-	}
-}
-
-int		hash(char *name)
-{
-	int p = 13;
-	int hash = 0;
-	int p_pow = 1;
-
-	while (*name)
-	{
-		// желательно отнимать 'a' от кода буквы
-		// единицу прибавляем, чтобы у строки вида 'aaaaa' хэш был ненулевой
-		hash += (*name - 'a' + 1) * p_pow;
-		p_pow *= p;
-	}
-	return (hash);
 }

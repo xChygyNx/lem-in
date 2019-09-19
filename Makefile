@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/09/18 20:13:58 by astripeb         ###   ########.fr        #
+#    Updated: 2019/09/19 19:58:03 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,18 @@ SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
 SRC				+= adj_func.c utility.c ft_exit.c validation.c
 SRC				+= direction.c dfs.c bfs.c path_func.c bfs_utility.c
 SRC				+= queue.c suurballe.c renovation.c buffer.c free_elem.c
-SRC				+= tactical_moves.c ants.c
+SRC				+= tactical_moves.c ants.c listpath_func.c
 
 OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 all: $(NAME)
 
-#вставить CFLAGS перед сдачей
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIB_PATH)
-	$(CC) -g $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
-#вставить CFLAGS перед сдачей
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	$(CC) -g $(LFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
 
 norm:
 	norminette $(LIB_PATH) | grep "E"

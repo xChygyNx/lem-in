@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adj_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/13 21:21:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:48:43 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		add_adj(t_lem *lem, char **v)
 		{
 			i++;
 			n = !ft_strcmp(vrx->name, v[0]) ? 1 : 0;
-			if (!(vrx->adj = ft_addlst(vrx->adj, v[n], 1, 1)))
+			if (!(vrx->adj = ft_addlst(vrx->adj, v[n], 1)))
 				ft_exit(&lem, MALLOC_FAILURE);
 		}
 		vrx = vrx->next;
@@ -37,7 +37,7 @@ void		add_adj(t_lem *lem, char **v)
 	lem->edge_c += 1;
 }
 
-t_adj		*ft_addlst(t_adj *adj, char *elem, char weight, char dir)
+t_adj		*ft_addlst(t_adj *adj, char *elem, char weight)
 {
 	t_adj	*begin;
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 17:17:19 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:57:05 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
+static t_path	*first_pass(t_lem *lem, int min_paths)
 {
 	int			i;
 	t_path		*path;
@@ -20,28 +20,32 @@ int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	i = min_paths;
 	while (i-- && (path = bfs(lem)))
 	{
-		redirect_lem(lem, path, OFF);
+		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{
-			redirect_lem(lem, path, ON);
+			redirect_lem(path, ON);
 			unvisit(lem->vrx);
 			break ;
 		}
 		unvisit(lem->vrx);
 		ft_free_one_path(&path);
 	}
+	return (path);
+}
+
+int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
+{
+	int			i;
+	t_path		*path;
+
+	path = first_pass(lem, min_paths);
 	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
 	ft_free_one_path(&path);
 	i = 0;
 	while (i < min_paths && (path = bfs(lem)))
 	{
-		/*if (i && path_len(path) > lem->ant_c)
-		{
-			ft_free_one_path(&path);
-			break ;
-		}*/
-		redirect_lem(lem, path, OFF);
+		redirect_lem(path, OFF);
 		if (!add_listpath(listpath, path))
 		{
 			ft_free_path(listpath);
@@ -54,46 +58,46 @@ int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	return (i);
 }
 
-void		find_optimal_path(t_lem *lem, t_ant **army)
+static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
+				int min_steps, t_ant **army)
 {
 	int			min_paths;
-	int			min_steps;
 	int			steps;
-	t_listpath	*listpath;
 	t_ant		*ants;
 
 	min_paths = 1;
 	ants = *army;
-	listpath = NULL;
-	suurballe(lem, &lem->listpath, min_paths);
-	min_steps = routing(lem->listpath, &ants);
-	ants = *army;
 	while (1)
 	{
 		min_paths++;
-		if (suurballe(lem, &listpath, min_paths) != min_paths)
-			break ;
-		steps = routing(listpath, &ants);
+		if (suurballe(lem, &paths, min_paths) != min_paths)
+			return ;
+		steps = routing(paths, &ants);
 		if (min_steps >= steps)
 		{
-//			ft_printf("min_steps = %d, min_path = %d\n", steps, min_paths);
 			ft_free_path(&lem->listpath);
 			min_steps = steps;
-			lem->listpath = listpath;
-			listpath = NULL;
+			lem->listpath = paths;
+			paths = NULL;
 			ants = *army;
 		}
 		else
-			break ;
+			return ;
 	}
+}
+
+void			find_optimal_path(t_lem *lem, t_ant **army)
+{
+	int			min_steps;
+	t_listpath	*listpath;
+	t_ant		*ants;
+
+	ants = *army;
+	listpath = NULL;
+	suurballe(lem, &lem->listpath, 1);
+	min_steps = routing(lem->listpath, &ants);
+	search_optimal_count_of_paths(lem, listpath, min_steps, army);
 	ft_free_path(&listpath);
-	/*while (lem->listpath)
-	{
-		ft_printf("path len = %d\n", lem->listpath->path_len);
-		ft_print_one_path(lem->listpath->path);
-		lem->listpath = lem->listpath->next;
-	}*/
 	renovate_listpath(lem->listpath);
 	offensive(lem, *army);
 }
-

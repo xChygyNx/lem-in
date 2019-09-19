@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 23:06:26 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:53:52 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_queue *queue)
+static char		there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_queue *queue)
 {
-	char	exist_out;
+	char		exist_out;
 
 	exist_out = 0;
 	if (vrx_s->sep)
@@ -35,11 +35,11 @@ static char	there_is_way(t_vrx *vrx_s, t_adj *adj_t, t_queue *queue)
 	return (exist_out);
 }
 
-static int	bfs_algo(t_lem *lem, t_queue *queue)
+static int		bfs_algo(t_queue *queue)
 {
-	t_vrx			*vrx_s;
-	t_adj			*adj_t;
-	char			exist_out;
+	t_vrx		*vrx_s;
+	t_adj		*adj_t;
+	char		exist_out;
 
 	while (queue)
 	{
@@ -98,16 +98,16 @@ static void		clean_anc(t_vrx *vrx)
 	}
 }
 
-t_path		*bfs(t_lem *lem)
+t_path			*bfs(t_lem *lem)
 {
-	t_path			*path;
-	t_queue			*queue;
+	t_path		*path;
+	t_queue		*queue;
 
 	if (!(queue = new_queue(lem->vrx, 1)))
 		return (NULL);
 	lem->vrx->visit = 1;
 	path = NULL;
-	if (bfs_algo(lem, queue))
+	if (bfs_algo(queue))
 		path = shortest_path(lem->vrx);
 	clean_anc(lem->vrx);
 	return (path);

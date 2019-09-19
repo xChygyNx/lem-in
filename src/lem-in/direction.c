@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/16 23:05:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:52:45 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	change_eds_wght(t_lem *lem, t_vrx *vrx_t, char *end, int weight)
+static void	change_eds_wght(t_vrx *vrx_t, char *end, int weight)
 {
 	t_adj	*adj_t;
 
@@ -20,7 +20,7 @@ static void	change_eds_wght(t_lem *lem, t_vrx *vrx_t, char *end, int weight)
 		adj_t->weight = weight;
 }
 
-static void	separate_vrxs(t_lem *lem, t_path *path, char tumbler)
+static void	separate_vrxs(t_path *path, char tumbler)
 {
 	path = path->next;
 	while (path->next)
@@ -30,7 +30,7 @@ static void	separate_vrxs(t_lem *lem, t_path *path, char tumbler)
 	}
 }
 
-void		change_dir(t_lem *lem, t_vrx *vrx_t, char *end, char dir)
+void		change_dir(t_vrx *vrx_t, char *end, char dir)
 {
 	t_adj	*adj_t;
 
@@ -38,17 +38,17 @@ void		change_dir(t_lem *lem, t_vrx *vrx_t, char *end, char dir)
 		adj_t->dir = dir;
 }
 
-void		redirect_lem(t_lem *lem, t_path *path, char tumb)
+void		redirect_lem(t_path *path, char tumb)
 {
 	t_path	*temp;
 
 	temp = path;
 	while (temp->next)
 	{
-		change_dir(lem, temp->vrx, temp->next->vrx->name, tumb);
-		change_eds_wght(lem, temp->vrx, temp->next->vrx->name, !tumb ? 0 : 1);
-		change_eds_wght(lem, temp->next->vrx, temp->vrx->name, !tumb ? -1 : 1);
+		change_dir(temp->vrx, temp->next->vrx->name, tumb);
+		change_eds_wght(temp->vrx, temp->next->vrx->name, !tumb ? 0 : 1);
+		change_eds_wght(temp->next->vrx, temp->vrx->name, !tumb ? -1 : 1);
 		temp = temp->next;
 	}
-	separate_vrxs(lem, path, !tumb ? ON : OFF);
+	separate_vrxs(path, !tumb ? ON : OFF);
 }

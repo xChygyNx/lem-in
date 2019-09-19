@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/16 22:47:19 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:53:01 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static t_vrx		*create_vrx(char **tab, int type)
 		free(temp);
 		return (NULL);
 	}
-	if ((temp->x = ft_atoi(tab[1])) < 0 || (temp->y = ft_atoi(tab[2])) < 0)
+	temp->y = ft_atoi(tab[2]);
+	if ((temp->x = ft_atoi(tab[1])) < 0 || (temp->y < 0))
 	{
 		free(temp->name);
 		free(temp);
@@ -123,10 +124,9 @@ t_lem				*create_lem(int fd)
 		ft_exit(&lem, MALLOC_FAILURE);
 	while (lines[i] && invalid_com(lines[i]))
 		++i;
-	if (ft_strlen(lines[i]) == 0 || ft_isdigitstr(lines[i]) < 1)
-		ft_exit(&lem, INVALID_INPUT);
 	lem->ant_c = ft_atoi(lines[i]);
-	if (ft_int_len(lem->ant_c) != ft_strlen(lines[i]) || lem->ant_c <= 0)
+	if (ft_strlen(lines[i]) == 0 || ft_isdigitstr(lines[i]) < 1 ||\
+		ft_int_len(lem->ant_c) != ft_strlen(lines[i]) || lem->ant_c <= 0)
 		ft_exit(&lem, INVALID_INPUT);
 	i += ft_vertex(lem, &lines[i + 1]);
 	ft_edge(lem, &lines[i + 1]);
