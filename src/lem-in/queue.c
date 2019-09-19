@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:10:44 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 17:41:44 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 22:23:05 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int		free_queue(t_queue **queue)
 void	del_one_queue(t_queue **queue)
 {
 	t_queue		*temp_q;
-	char		weight;
 
-	weight = 0;
 	if (queue && *queue)
 	{
 		temp_q = *queue;

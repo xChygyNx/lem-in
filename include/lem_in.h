@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 20:08:26 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/19 22:27:43 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,16 +155,6 @@ int						path_len(t_path *path);
 void					renovate_listpath(t_listpath *listpath);
 
 t_path					*bfs(t_lem *lem);
-
-t_bfs					*bfs_list(t_lem *lem);
-
-t_bfs					*new_bfs(t_vrx *vrx);
-
-void					add_anc(t_bfs *bfs, char *name, char *anc);
-
-void					free_bfs(t_bfs **bfs);
-
-t_bfs					*get_bfs(t_bfs *bfs, char *name);
 
 t_queue					*new_queue(t_vrx *vrx, char weight);
 
