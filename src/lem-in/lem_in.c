@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/18 22:15:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:18:08 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 	int		fd;
 	t_ant	*army;
 
-//	fd = open("tests/flow_thousand", O_RDONLY);
+	//fd = open("tests/test_flow_ten", O_RDONLY);
 	lem = create_lem(0);
 	army = create_army(lem->ant_c);
 	find_optimal_path(lem, &army);

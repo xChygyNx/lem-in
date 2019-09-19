@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/18 22:15:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:17:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	i = 0;
 	while (i < min_paths && (path = bfs(lem)))
 	{
-		if (i && path_len(path) > lem->ant_c)
+		/*if (i && path_len(path) > lem->ant_c)
 		{
 			ft_free_one_path(&path);
 			break ;
-		}
+		}*/
 		redirect_lem(lem, path, OFF);
 		if (!add_listpath(listpath, path))
 		{
@@ -87,6 +87,12 @@ void		find_optimal_path(t_lem *lem, t_ant **army)
 			break ;
 	}
 	ft_free_path(&listpath);
+	/*while (lem->listpath)
+	{
+		ft_printf("path len = %d\n", lem->listpath->path_len);
+		ft_print_one_path(lem->listpath->path);
+		lem->listpath = lem->listpath->next;
+	}*/
 	renovate_listpath(lem->listpath);
 	offensive(lem, *army);
 }
