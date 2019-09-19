@@ -75,3 +75,19 @@ void	ft_print_lem_info(t_lem *lem)
 		vrx = vrx->next;
 	}
 }
+
+int		hash(char *name)
+{
+	int p = 13;
+	int hash = 0;
+	int p_pow = 1;
+
+	while (*name)
+	{
+		// желательно отнимать 'a' от кода буквы
+		// единицу прибавляем, чтобы у строки вида 'aaaaa' хэш был ненулевой
+		hash += (*name - 'a' + 1) * p_pow;
+		p_pow *= p;
+	}
+	return (hash);
+}

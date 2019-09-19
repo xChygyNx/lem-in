@@ -18,10 +18,8 @@ int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	t_path		*path;
 
 	i = min_paths;
-	while ((path = bfs(lem)) && i--)
+	while (i-- && (path = bfs(lem)))
 	{
-
-//		ft_print_one_path(path);
 		redirect_lem(lem, path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{
@@ -34,10 +32,10 @@ int 		suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	}
 	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
+	ft_free_one_path(&path);
 	i = 0;
-	while ((path = bfs(lem)) && i < min_paths)
+	while (i < min_paths && (path = bfs(lem)))
 	{
-//		ft_print_one_path(path);
 		if (i && path_len(path) > lem->ant_c)
 		{
 			ft_free_one_path(&path);
@@ -88,6 +86,7 @@ void		find_optimal_path(t_lem *lem, t_ant **army)
 		else
 			break ;
 	}
+	ft_free_path(&listpath);
 	renovate_listpath(lem->listpath);
 	offensive(lem, *army);
 }
