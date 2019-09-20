@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/20 13:17:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/20 14:38:31 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(void)
 	t_ant	*army;
 	int fd;
 
-	fd = open("tests/start_end_multiedge", O_RDONLY);
+	fd = open("tests/start-end", O_RDONLY);
 	lem = create_lem(fd);
 	army = create_army(lem->ant_c);
 	find_optimal_path(lem, &army);
