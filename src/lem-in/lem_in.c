@@ -6,7 +6,7 @@
 /*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 19:43:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/20 13:17:10 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int		main(void)
 {
 	t_lem	*lem;
 	t_ant	*army;
+	int fd;
 
-	lem = create_lem(0);
+	fd = open("tests/start_end_multiedge", O_RDONLY);
+	lem = create_lem(fd);
 	army = create_army(lem->ant_c);
 	find_optimal_path(lem, &army);
 	ft_del_lem(&lem);
