@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/20 14:31:32 by aks              ###   ########.fr       */
+/*   Updated: 2019/09/20 15:13:17 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ static void	change_eds_wght(t_vrx *vrx_t, char *end, int weight)
 		else
 			adj_t = adj_t->next;
 	}
-/*	
-	if ((adj_t = get_adj(vrx_t->adj, end)))
-		adj_t->weight = weight;
-*/
 }
 
 static void	separate_vrxs(t_path *path, char tumbler)
@@ -68,10 +64,6 @@ void		change_dir(t_vrx *vrx_t, char *end, char dir)
 		else
 			adj_t = adj_t->next;
 	}
-/*
-	if ((adj_t = get_adj(vrx_t->adj, end)))
-		adj_t->dir = dir;
-*/
 }
 
 void		redirect_lem(t_path *path, char tumb)
