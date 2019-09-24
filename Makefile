@@ -46,7 +46,7 @@ norm:
 	norminette $(INC_PATH) | grep "E"
 
 clean:
-	@$(MAKE) fclean -C $(LIB_PATH)
+	@$(MAKE) clean -C $(LIB_PATH)
 	@rm -rf $(OBJ)
 
 fclean: clean

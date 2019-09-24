@@ -12,7 +12,6 @@
 
 NAME			= libftprintf.a
 
-#KOSTYL'
 INCLUDES		= ../../include
 
 SRC_LIB_PATH	= ./libft
