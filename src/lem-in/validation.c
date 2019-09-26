@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:35:59 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 17:31:48 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:08:19 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ int		ft_validate_vrx(char **map)
 	while (map[i])
 	{
 		if (!ft_isdigitstr(map[i]) ||\
-		ft_int_len(ft_atoi(map[i])) != ft_strlen(map[i]))
-		{
-			ft_free_arr(map);
+			ft_int_len(ft_atoi(map[i])) != ft_strlen(map[i]))
 			return (0);
-		}
 		++i;
 	}
 	return (1);
