@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adj_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 18:48:05 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 19:48:43 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:53:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		add_adj(t_lem *lem, char **v)
 {
-	int			i;
-	int			n;
-	t_vrx		*vrx;
+	int		i;
+	int		n;
+	t_vrx	*vrx;
 
 	vrx = lem->vrx;
 	if (!exist_vertex(vrx, v))
