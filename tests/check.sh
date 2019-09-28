@@ -19,7 +19,7 @@ case $1 in
 esac
 
 if [[ -n $MAP ]]; then
-    ./generator $MAP > map
+    ./generatorE $MAP > map
 fi
 
 tail -n 1 map

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 11:09:56 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/28 10:57:10 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/28 13:27:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,3 @@ t_adj	*get_adj(t_adj *adj, char *name)
 		adj = adj->next;
 	return (adj);
 }
-
-void

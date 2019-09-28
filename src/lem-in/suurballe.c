@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/28 10:54:45 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:12:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 
 	path = NULL;
 	first_pass(lem, min_paths);
-	unvisit(lem->vrx);
 	renovation_one_to_two_dir(lem);
+	unvisit(lem->vrx);
 	i = 0;
 	while (i < min_paths && (path = bfs(lem)))
 	{
@@ -50,6 +50,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 			ft_exit(&lem, MALLOC_FAILURE);
 		}
 		++i;
+		visit_listpath(*listpath);
 	}
 	full_renovation_lem(lem);
 	return (i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 20:02:43 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:21:08 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,21 @@ int					add_path_to_begin(t_path **begin, t_vrx *vrx)
 		path->next = NULL;
 	*begin = path;
 	return (1);
+}
+
+void				visit_listpath(t_listpath *listpath)
+{
+	t_path *path;
+
+	while (listpath)
+	{
+		path = listpath->path->next;
+		while (path->next)
+		{
+			if (path->next)
+				path->vrx->visit = 1;
+			path = path->next;
+		}
+		listpath = listpath->next;
+	}
 }

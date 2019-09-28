@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/28 10:56:02 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/28 13:25:03 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ void		redir_lem(t_path *path)
 {
 	t_path	*temp;
 
-	temp = path->next;
+	temp = path;
 	while (temp->next)
 	{
-//		change_dir(temp->vrx, temp->next->vrx->name, OFF);
-		temp->vrx->visit = ON;
+		change_dir(temp->vrx, temp->next->vrx->name, OFF);
+		change_dir(temp->next->vrx, temp->vrx->name, OFF);
 		temp = temp->next;
 	}
 }

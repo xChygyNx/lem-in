@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/09/28 10:45:46 by astripeb         ###   ########.fr        #
+#    Updated: 2019/09/28 14:25:10 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,6 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
-
-norm:
-	norminette $(LIB_PATH) | grep "E"
-	norminette $(SRC_PATH) | grep "E"
-	norminette $(INC_PATH) | grep "E"
 
 clean:
 	@$(MAKE) clean -C $(LIB_PATH)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:54:09 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 19:53:52 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:16:57 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static t_path	*shortest_path(t_vrx *vrx)
 	return (path);
 }
 
-static void		clean_anc(t_vrx *vrx)
+void			clean_anc(t_vrx *vrx)
 {
 	while (vrx)
 	{
