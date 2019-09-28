@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/19 23:25:56 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/28 10:45:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,7 @@ void					tactical_moves(t_lem *lem, t_ant *army,\
 						t_listpath *listpath);
 
 void					offensive(t_lem *lem, t_ant *army);
+
+void					redir_lem(t_path *path);
 
 #endif

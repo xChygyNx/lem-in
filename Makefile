@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/09/19 23:26:56 by astripeb         ###   ########.fr        #
+#    Updated: 2019/09/28 10:45:46 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<

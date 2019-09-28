@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:58:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/20 15:13:17 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/09/28 10:56:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		change_dir(t_vrx *vrx_t, char *end, char dir)
 	{
 		if (!ft_strcmp(adj_t->name, end))
 		{
-			if (adj_t->weight == dir)
+			if (adj_t->dir == dir)
 				adj_t = adj_t->next;
 			else
 			{
@@ -79,4 +79,17 @@ void		redirect_lem(t_path *path, char tumb)
 		temp = temp->next;
 	}
 	separate_vrxs(path, !tumb ? ON : OFF);
+}
+
+void		redir_lem(t_path *path)
+{
+	t_path	*temp;
+
+	temp = path->next;
+	while (temp->next)
+	{
+//		change_dir(temp->vrx, temp->next->vrx->name, OFF);
+		temp->vrx->visit = ON;
+		temp = temp->next;
+	}
 }
