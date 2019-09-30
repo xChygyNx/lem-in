@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/30 21:25:57 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:31:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void			find_optimal_path(t_lem *lem, t_ant *army)
 {
 	int			min_steps;
 	t_listpath	*listpath;
-
 
 	listpath = NULL;
 	suurballe(lem, &lem->listpath, 1);
