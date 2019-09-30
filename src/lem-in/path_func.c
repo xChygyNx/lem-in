@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/28 14:21:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:28:33 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void				visit_listpath(t_listpath *listpath)
 		path = listpath->path->next;
 		while (path->next)
 		{
-			if (path->next)
-				path->vrx->visit = 1;
+			path->vrx->visit = 1;
 			path = path->next;
 		}
 		listpath = listpath->next;
