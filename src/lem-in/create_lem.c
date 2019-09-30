@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/28 14:52:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 13:28:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char			vrx_info(char *s)
 		return (END);
 	if (*s == '#')
 		return (COMMENT);
-	if (ft_char_count(s, ' ') != 2)
+	if (ft_char_count(s, '-') == 1)
 		return (-1);
 	return (0);
 }
