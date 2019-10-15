@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/28 14:50:00 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/15 14:45:04 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void			ft_exit(t_lem **lem, int err)
 	else if (err == ONE_COMPONENT)
 		ft_fprintf(2, "Error: Start & end situated in different \
 connected components\n");
+	else if (err == SDL_INIT_ERR)
+		ft_fprintf(2, "Error: SDL init error\n");
+	else if (err == WIN_ERROR)
+		ft_fprintf(2, "Error: SDL can't to create a window\n");
 	else
 		perror("Error: ");
 	exit(err);

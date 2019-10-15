@@ -6,7 +6,7 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/15 13:11:46 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/15 20:03:35 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,14 @@ INC_PATH		= ./include
 LIB_PATH		= ./src/lib
 SRC_PATH		= ./src/lem-in
 MAIN_PATH		= ./main/
-SDL2_PATH		= ./sdl2/2.0.10/include
+SDL2_INC		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
+SDL2_LIB		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib/
+
 
 CC				= gcc
 CFLAGS			= -g -Wall -Wextra -Werror
-LFLAGS			= -I $(INC_PATH) -I $(SDL2_PATH)
-LIB				= -L $(LIB_PATH) -lftprintf
+LFLAGS			= -I $(INC_PATH) -I $(SDL2_INC)
+LIB				= -L $(LIB_PATH) -lftprintf -L $(SDL2_LIB) -lSDL2
 
 SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
 SRC				+= adj_func.c utility.c ft_exit.c validation.c
@@ -34,7 +36,7 @@ OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(SDL_LIB) $(SDL)
 	@$(MAKE) -C $(LIB_PATH)
 	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
