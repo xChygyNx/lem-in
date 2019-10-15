@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/28 14:12:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:31:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,24 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 }
 
 static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
-				int min_steps, t_ant **army)
+				int min_steps, t_ant *army)
 {
 	int			min_paths;
 	int			steps;
-	t_ant		*ants;
 
 	min_paths = 1;
-	ants = *army;
 	while (1)
 	{
 		min_paths++;
 		if (suurballe(lem, &paths, min_paths) != min_paths)
 			break ;
-		steps = routing(paths, &ants);
+		steps = routing(paths, army);
 		if (min_steps >= steps)
 		{
 			ft_free_path(&lem->listpath);
 			min_steps = steps;
 			lem->listpath = paths;
 			paths = NULL;
-			ants = *army;
 		}
 		else
 			break ;
@@ -85,18 +82,15 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 	ft_free_path(&paths);
 }
 
-void			find_optimal_path(t_lem *lem, t_ant **army)
+void			find_optimal_path(t_lem *lem, t_ant *army)
 {
 	int			min_steps;
 	t_listpath	*listpath;
-	t_ant		*ants;
 
-	ants = *army;
 	listpath = NULL;
 	suurballe(lem, &lem->listpath, 1);
-	min_steps = routing(lem->listpath, &ants);
+	min_steps = routing(lem->listpath, army);
 	search_optimal_count_of_paths(lem, listpath, min_steps, army);
 	ft_free_path(&listpath);
 	renovate_listpath(lem->listpath);
-	offensive(lem, *army);
 }

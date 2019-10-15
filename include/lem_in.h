@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/15 13:49:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/15 13:52:12 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int						add_listpath(t_listpath **listpath, t_path *path);
 
 int						add_path_to_begin(t_path **begin, t_vrx *vrx);
 
-int						routing(t_listpath *paths, t_ant **army);
+int						routing(t_listpath *paths, t_ant *army);
 
 int						path_len(t_path *path);
 
@@ -164,7 +164,7 @@ t_adj					*get_adj(t_adj *adj, char *name);
 int						suurballe(t_lem *lem, t_listpath **listpath,\
 						int min_paths);
 
-void					find_optimal_path(t_lem *lem, t_ant **army);
+void					find_optimal_path(t_lem *lem, t_ant *army);
 
 void					dissolve_army(t_ant **first_soldier);
 

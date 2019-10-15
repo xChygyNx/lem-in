@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:14:11 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 18:26:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:25:15 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,21 @@ int					add_listpath(t_listpath **listpath, t_path *path)
 	return (1);
 }
 
-int					routing(t_listpath *paths, t_ant **army)
+int					routing(t_listpath *paths, t_ant *army)
 {
 	t_path	*min_len_path;
-	t_ant	*temp;
 	int		steps;
 	int		transit_time;
 
 	steps = 0;
 	transit_time = paths->path_len - 1;
-	while (*army)
+	while (army)
 	{
 		min_len_path = min_path(paths);
-		(*army)->path = min_len_path;
+		army->path = min_len_path;
 		min_len_path == paths->path ? steps++ : 0;
-		temp = !(*army)->prev ? *army : NULL;
-		*army = (*army)->prev;
+		army = army->prev;
 	}
-	*army = temp;
 	return (steps + transit_time);
 }
 

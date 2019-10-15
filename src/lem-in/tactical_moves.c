@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 22:23:42 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:46:53 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void		offensive(t_lem *lem, t_ant *army)
 {
 	int		meat;
 
-	routing(lem->listpath, &army);
+	routing(lem->listpath, army);
+	while (army->prev)
+		army = army->prev;
 	while (army)
 	{
 		meat = go_to_fight(lem->listpath, army);
