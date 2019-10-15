@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/09/28 14:59:49 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/15 13:11:46 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ INC_PATH		= ./include
 LIB_PATH		= ./src/lib
 SRC_PATH		= ./src/lem-in
 MAIN_PATH		= ./main/
+SDL2_PATH		= ./sdl2/2.0.10/include
 
 CC				= gcc
 CFLAGS			= -g -Wall -Wextra -Werror
-LFLAGS			= -I $(INC_PATH)
+LFLAGS			= -I $(INC_PATH) -I $(SDL2_PATH)
 LIB				= -L $(LIB_PATH) -lftprintf
 
 SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
