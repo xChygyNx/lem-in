@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/15 20:03:35 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/16 19:54:18 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LEM_IN_H
 
 # include "libftprintf.h"
-# include "/Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2//SDL.h"
+# include "visual.h"
+# include "SDL.h"
 # include <stdio.h>
 
 # define START 1
@@ -34,13 +35,6 @@
 # define WIN_ERROR 105
 
 # define SEP 32
-# ifdef __linux__
-	# define WIN_HEIGHT 480
-	# define WIN_WIDTH 640
-# else
-	# define WIN_HEIGHT 1200
-	# define WIN_WIDTH 1600
-# endif
 
 typedef struct			s_adj
 {
