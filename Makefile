@@ -6,7 +6,7 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/16 20:52:24 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/16 21:57:22 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC_PATH		= ./include
 LIB_PATH		= ./src/lib
 VIS_PATH		= .src/lem-in/visualizator
 SRC_PATH		= ./src/lem-in
-MAIN_PATH		= ./main/
+#MAIN_PATH		= ./main/
 SDL2_DIR		= ./src/lib/sdl2
 SDL2_INC		= ./src/lib/sdl2/SDL2.framework/Headers
 SDL2_LIB		= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
