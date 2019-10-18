@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/22 22:04:52 by astripeb          #+#    #+#              #
-#    Updated: 2019/09/19 23:25:29 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/18 16:14:59 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDES		= ../../include
 
 SRC_LIB_PATH	= ./libft
 SRC_PRINTF_PATH = ./ft_printf
-OBJ_PATH		= ./
+OBJ_PATH		= ./obj
 
 CC				= gcc
 CFLAGS			= -Wall -Wextra -Werror
@@ -50,14 +50,17 @@ SOURCES_PRINTF = ft_putnbr_f.c print_str.c print_pointer.c utility_func.c\
 SRCS = $(addprefix $(LIBFT_PATH)/,$(SOURCES_LIBFT))
 SRCS += $(addprefix $(PRINTF_PATH)/,$(SOURCES_PRINTF))
 
-OBJ = $(addprefix $(OBJ_PATH),$(SOURCES_LIBFT:.c=.o))
-OBJ += $(addprefix $(OBJ_PATH),$(SOURCES_PRINTF:.c=.o))
+OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES_LIBFT:.c=.o))
+OBJ += $(addprefix $(OBJ_PATH)/,$(SOURCES_PRINTF:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ_PATH) $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+
+$(OBJ_PATH):
+	mkdir -p $@
 
 $(OBJ_PATH)/%.o:$(SRC_LIB_PATH)/%.c
 	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<

@@ -6,12 +6,12 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/16 20:00:02 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:25:24 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visual.h"
-#include "SDL.h"
+#include "lem_in.h"
+//#include "SDL.h"
 
 t_visual	*new_visual(void)
 {
@@ -26,7 +26,7 @@ t_visual	*new_visual(void)
 	return (vis);
 }
 
-t_visual	*init(void);
+t_visual	*init(void)
 {
 	t_visual	*vis;
 

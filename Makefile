@@ -6,56 +6,72 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/17 14:25:15 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/18 18:15:22 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= lem-in
+#include ./src/lem-in/visualizator/Makefile
 
-OBJ_PATH		= ./src
-INC_PATH		= ./include
-LIB_PATH		= ./src/lib
-#VIS_PATH		= .src/lem-in/visualizator
-SRC_PATH		= ./src/lem-in
-#MAIN_PATH		= ./main/
-SDL2_DIR		= ./src/lib/sdl2
-SDL2_INC		= ./src/lib/sdl2/SDL2.framework/Headers
-SDL2_LIB		= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
+NAME			:= lem-in
 
-CC				= gcc
-CFLAGS			= -g -Wall -Wextra -Werror
-LFLAGS			= -I $(INC_PATH) -I $(SDL2_INC)
-LIB				= -L $(LIB_PATH) -lftprintf $(FRAME)
+OBJ_PATH		:= ./obj
+INC_PATH		:= ./include
+SDL2_INC		:= ./src/lib/sdl2/SDL2.framework/Headers
+LIB_PATH		:= ./src/lib
+SRC_PATH		:= ./src/lem-in
+SRC_VIS_PATH	:= ./src/lem-in/visualizator
+#MAIN_PATH		:= ./main/
+SDL2_DIR		:= ./src/lib/sdl2
+SDL2_LIB		:= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
 
-SRC 			= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c
-SRC				+= adj_func.c utility.c ft_exit.c validation.c
-SRC				+= direction.c dfs.c bfs.c path_func.c
-SRC				+= queue.c suurballe.c renovation.c free_elem.c
-SRC				+= tactical_moves.c ants.c listpath_func.c
-#SRC_VIS			= init.c
+CC				:= gcc
+CFLAGS			:= -g -Wall -Wextra -Werror
+LFLAGS			:= -I $(INC_PATH) -I $(SDL2_INC)
+LIB				:= -L $(LIB_PATH) -lftprintf
 
-OBJ				= $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
-#OBJ_VIS			= $(addprefix $(OBJ_PATH)/,$(SRC_VIS:.c=.o))
+SRC 			:= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c\
+				 adj_func.c utility.c ft_exit.c validation.c\
+				 direction.c dfs.c bfs.c path_func.c\
+				 queue.c suurballe.c renovation.c free_elem.c\
+				 tactical_moves.c ants.c listpath_func.c
+SRC_VIS			:= init.c
 
-all: $(NAME)
+OBJ_LEM			:= $(SRC:.c=.o)
+OBJ_VIS			:= $(SRC_VIS:.c=.o)
+OBJ				:= $(OBJ_LEM) $(OBJ_VIS)
 
-$(NAME): $(OBJ) $(OBJ_VIS) $(SDL_LIB) $(SDL)
-	@$(MAKE) -C $(LIB_PATH)
-	$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIB) $(SDL2_LIB) -o $(NAME)
+vpath %.c $(SRC_PATH) $(SRC_VIS_PATH)
+vpath %.o $(OBJ_PATH)
+vpath %.h $(INC_PATH) $(SDL2_INC)
 
-$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
+#MAKE_DIR_OBJ	:= mkdir -p $(OBJ_PATH)
 
-$(OBJ_PATH)/%.o:$(VIS_PATH)/%.c
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
+all: $(OBJ_PATH) $(NAME)
+
+$(NAME): $(OBJ) $(SDL_LIB)
+	$(MAKE) -C $(LIB_PATH)
+	#$(MAKE) -C $(VIS_PATH)
+	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_PATH)/, $(OBJ)) $(LIB) $(SDL2_LIB) -o $(NAME)
+
+$(OBJ_VIS): %.o:%.c
+	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_PATH)/$@  -c $<
+
+$(OBJ_LEM): %.o:%.c
+	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_PATH)/$@ -c $<
+
+$(OBJ_PATH):
+	mkdir -p $@
 
 clean:
-	@$(MAKE) clean -C $(LIB_PATH)
-	@rm -rf $(OBJ)
+	$(MAKE) clean -C $(LIB_PATH)
+	#$(MAKE) clean -C $(VIS_PATH)
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIB_PATH)
-	@rm -rf $(OBJ)
-	@rm -rf $(NAME)
+	#$(MAKE) fclean -C $(LIB_PATH)
+	#rm -rf $(OBJ)
+	rm -rf $(NAME)
 
 re: fclean all
+
+#.SILENT: all $(NAME) $(OBJ) $(OBJ_PATH) clean fclean re
