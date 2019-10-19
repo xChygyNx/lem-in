@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/05 15:29:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/19 11:59:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LEM_IN_H
 
 # include "libftprintf.h"
+# include "visual.h"
+# include "SDL.h"
 # include <stdio.h>
 
 # define START 1
@@ -25,23 +27,20 @@
 
 # define MAX_INT 2147483647
 
-# define IN 1
-# define OUT 2
-
-/*
- * Errors from 100 to infinity
- */
-
 # define INVALID_INPUT 100
 # define START_END 101
 # define DOUBLE_VRX 102
 # define ONE_COMPONENT 103
-# define WROTE_ANTS 104
+# define SDL_INIT_ERR 104
+# define WIN_ERROR 105
+
+# define SEP 32
 
 typedef struct			s_adj
 {
 	char				*name;
 	struct s_adj		*next;
+	struct s_vrx		*vrx;
 	char				weight;
 	char				dir;
 }						t_adj;
@@ -49,12 +48,11 @@ typedef struct			s_adj
 typedef struct			s_lem
 {
 	struct s_vrx		*vrx;
-	int					ant_c;   //кол-во муравьев
-	int					vert_c;  //кол-во вершин
-	int					edge_c;  //кол-во ребер
-	char				**path;  //что будем в пути хранить? <- задумка была что неперекрывающиеся пути, которые будем использовать
+	int					ant_c;
+	int					vert_c;
+	int					edge_c;
+	struct s_listpath	*listpath;
 	char				*map;
-	char				*line;
 }						t_lem;
 
 typedef struct			s_vrx
@@ -67,84 +65,125 @@ typedef struct			s_vrx
 	struct s_vrx		*next;
 	char				visit;
 	char				sep;
+	int					ant;
+	struct s_vrx		*anc;
+
 }						t_vrx;
 
-typedef struct			s_dijk
+typedef struct			s_queue
 {
-	char				*vrx;
-	char				*anc;
-	int					dist;
-	struct s_dijk		*next;
-}						t_dijk;
+	struct s_vrx		*vrx;
+	char				weight;
+	struct s_queue		*next;
+}						t_queue;
+
+typedef struct			s_listpath
+{
+	int					path_len;
+	struct s_path		*path;
+	struct s_listpath	*next;
+}						t_listpath;
+
+typedef struct			s_path
+{
+	struct s_vrx		*vrx;
+	struct s_path		*next;
+}						t_path;
+
+typedef struct			s_ant
+{
+	int					serial_number;
+	struct s_path		*path;
+	struct s_ant		*next;
+	struct s_ant		*prev;
+}						t_ant;
 
 void					ft_exit(t_lem **lem, int err);
 
 t_lem					*create_lem(int fd);
 
-void					ft_edge(t_lem *lem, int fd);
+void					ft_edge(t_lem *lem, char **lines);
+
+t_adj					*ft_addlst(t_adj *adj, char *elem, char wght);
+
+void					add_adj(t_lem *lem, char **v);
+
+void					add_link_adj_to_vrx(t_lem *lem);
+
+void					ft_del_lem(t_lem **lem_to_del);
 
 void					check_lem(t_lem *lem);
 
 void					is_two_vert(char **vertexes);
 
-t_adj					*ft_addlst(t_adj *adj, char *elem, char weight, char dir);
-
-void					unvisit(t_vrx *vertex);
-
-void					ft_del_lem(t_lem **lem_to_del);
-
 int						ft_validate_vrx(char **map);
 
-int 					ft_validate_edge(char **map);
+int						ft_validate_edge(char **map);
 
 int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
 
-void					add_adj(t_lem *lem, char **v);
+void					change_dir(t_vrx *vrx, char *end, char dir);
 
-void					change_dir(t_lem *lem, char *start, char *end);
+void					redirect_lem(t_path *path, char tumbler);
 
-char					*dijkstra(t_lem *lem);
+void					renovation_one_to_two_dir(t_lem *lem);
 
-int						all_visit(t_vrx *vrx);
+void					full_renovation_lem(t_lem *lem);
 
-t_dijk					*find_dijk(char *name, t_dijk *dijk);
+void					unvisit(t_vrx *vertex);
 
-int						dist_vrx(char *name, t_dijk *dijk);
+int						dfs(t_lem *lem, t_vrx *vrx);
 
-void					redirect_lem(t_lem *lem, char *shortest_path);
+void					ft_free_path(t_listpath **listpath_to_del);
 
-void					free_dijkstra(t_dijk **dijk);
+void					ft_free_one_path(t_path **path_to_del);
 
-void					vrx_in_out(char *name, char** path, t_vrx *all);
+int						add_listpath(t_listpath **listpath, t_path *path);
 
-void					add_adj_sep(t_vrx *src, char *name, int mode);
+int						add_path_to_begin(t_path **begin, t_vrx *vrx);
 
-void					rewrite_adj(t_vrx *vrx, char **path);
+int						routing(t_listpath *paths, t_ant *army);
 
-t_vrx					*vrx_copy(t_vrx *src, t_vrx *all_vrs);
+int						path_len(t_path *path);
 
-int						in_path(char *name, char **path);
+void					renovate_listpath(t_listpath *listpath);
 
-void					del_adj(t_vrx *xrx, char *name);
+t_path					*bfs(t_lem *lem);
 
-void					path_adj(t_vrx *vrx, char **path);
+t_queue					*new_queue(t_vrx *vrx, char weight);
 
-/*
- * UTILITY FUNCTIONS
- */
+void					add_queue(t_queue **queue, t_vrx *vrx, char weight);
 
-t_vrx					*get_vrx(t_vrx *begin, char *name);
+int						free_queue(t_queue **queue);
 
-t_adj					*get_adj(t_adj *begin, char *name);
+void					del_one_queue(t_queue **queue);
 
-int						ft_char_count(char *str, char c);
+t_vrx					*get_vrx(t_vrx *vrx, char *name);
 
-int						ft_len_arr(char **arr);
+t_adj					*get_adj(t_adj *adj, char *name);
 
-void					ft_print_lem_info(t_lem *lem);
+int						suurballe(t_lem *lem, t_listpath **listpath,\
+						int min_paths);
 
-void					print_dijk(t_dijk *dijk);
+void					find_optimal_path(t_lem *lem, t_ant *army);
+
+void					dissolve_army(t_ant **first_soldier);
+
+void					first_soldier_commission(t_ant **army);
+
+void					soldiers_commission(t_ant **army);
+
+t_ant					*new_soldier(int serial_number);
+
+t_ant					*create_army(int number_of_soldiers);
+
+void					tactical_moves(t_lem *lem, t_ant *army,\
+						t_listpath *listpath);
+
+void					offensive(t_lem *lem, t_ant *army);
+
+void					visit_listpath(t_listpath *listpath);
 
 #endif
