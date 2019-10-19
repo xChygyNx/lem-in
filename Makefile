@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/19 12:30:23 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/19 13:36:32 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,15 @@ SRC_DIR			:= ./src/algorithm
 SRC_VIS_DIR		:= ./src/visio
 
 #SDL2_DIRS
-SDL2_INC		:= ./sdl2/SDL2.framework/Headers
-SDL2_DIR		:= ./sdl2
+## УСТАНОВИЛ в эту папку SDL2 по туториалу который ты мне скинул
+## https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
+## часть которая X-CODE касается не надо делать
+## советую тебе тоже так сделать
+SDL2_INC		= ~/Library/Frameworks/SDL2.framework/Headers
+SDL2_DIR		= ~/Library/Frameworks/
+## флаги сохранил, если не получится, мои закоментишь
+#SDL2_INC		:= ./sdl2/SDL2.framework/Headers
+#SDL2_DIR		:= ./sdl2
 
 CC				:= gcc
 CFLAGS			:= -g -Wall -Wextra -Werror

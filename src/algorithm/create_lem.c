@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/30 13:28:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:42:45 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char			vrx_info(char *s)
+t_lem				*new_lem(void)
 {
-	if (!ft_strcmp(s, "##start"))
-		return (START);
-	if (!ft_strcmp(s, "##end"))
-		return (END);
-	if (*s == '#')
-		return (COMMENT);
-	if (ft_char_count(s, '-') == 1)
-		return (-1);
-	return (0);
+	t_lem	*lem;
+	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
+		return (NULL);
+	lem->vrx = NULL;
+	lem->ant_c = 0;
+	lem->vert_c = 0;
+	lem->edge_c = 0;
+	lem->listpath = NULL;
 }
 
 static t_vrx		*create_vrx(char **tab, char type)

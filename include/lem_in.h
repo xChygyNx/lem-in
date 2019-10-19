@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 11:59:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:40:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libftprintf.h"
 # include "visual.h"
-# include "SDL.h"
 # include <stdio.h>
 
 # define START 1
@@ -67,7 +66,7 @@ typedef struct			s_vrx
 	char				sep;
 	int					ant;
 	struct s_vrx		*anc;
-
+	struct t_visual		*vis;
 }						t_vrx;
 
 typedef struct			s_queue
@@ -111,6 +110,8 @@ void					add_adj(t_lem *lem, char **v);
 void					add_link_adj_to_vrx(t_lem *lem);
 
 void					ft_del_lem(t_lem **lem_to_del);
+
+char					vrx_info(char *s);
 
 void					check_lem(t_lem *lem);
 

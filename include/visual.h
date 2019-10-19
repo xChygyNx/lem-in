@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 12:24:17 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:24:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		 		s_visual
 	struct SDL_Renderer		*render;	//рендер (я так понял аналог изображения)
 	union SDL_Event			event;		//событие
 	char					quit;		//флаг выхода
-
 }							t_visual;
 
 t_visual			*init(void);

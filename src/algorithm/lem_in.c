@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/18 18:22:18 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:21:12 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		main(int ac, char *av[])
 	find_optimal_path(lem, army);
 	offensive(lem, army);
 	ft_del_lem(&lem);
+
 	vis = init();
 	SDL_FillRect(vis->surface, NULL, SDL_MapRGB(vis->surface->format, 0x00, 0x00, 0x00));
 	//обновляем изображение в окне (без этого нарисованное нами изображение не появится на экране)
@@ -51,5 +52,7 @@ int		main(int ac, char *av[])
 	vis->window = NULL;
 	//выйти из  SDL
 	SDL_Quit();
+
+
 	return (0);
 }

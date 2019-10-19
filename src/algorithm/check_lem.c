@@ -6,11 +6,24 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:08:36 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/28 14:52:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:39:45 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+char			vrx_info(char *s)
+{
+	if (!ft_strcmp(s, "##start"))
+		return (START);
+	if (!ft_strcmp(s, "##end"))
+		return (END);
+	if (*s == '#')
+		return (COMMENT);
+	if (ft_char_count(s, '-') == 1)
+		return (-1);
+	return (0);
+}
 
 static void		first_start(t_lem *lem)
 {

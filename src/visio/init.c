@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/18 16:25:24 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:32:57 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-//#include "SDL.h"
 
 t_visual	*new_visual(void)
 {
 	t_visual	*vis;
 
-	vis = (t_visual*)malloc(sizeof(t_visual));
+	if (!(vis = (t_visual*)malloc(sizeof(t_visual))))
+		return (NULL);
 	vis->window = NULL;
 	vis->surface = NULL;
 	vis->render = NULL;
@@ -30,7 +30,8 @@ t_visual	*init(void)
 {
 	t_visual	*vis;
 
-	vis = new_visual();
+	if (!(vis = new_visual()))
+		return (NULL);
 	if ((SDL_Init(SDL_INIT_VIDEO)) < 0)
 		ft_printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	else
@@ -42,6 +43,5 @@ t_visual	*init(void)
 			//получаем поверхность окна
 			vis->surface = SDL_GetWindowSurface(vis->window);
 	}
-	
 	return (vis);
 }
