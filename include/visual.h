@@ -6,14 +6,24 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 13:24:10 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 16:48:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
 
-# include "SDL.h"
+# include <SDL.h>
+
+typedef struct		 		s_visual
+{
+	struct SDL_Window		*win;		// window окно
+	struct SDL_Surface		*surface;	// поверхность окна
+	struct SDL_Renderer		*render;	// изображение
+	struct SDL_Texture		*texture;	// для теста
+	union SDL_Event			e;			//event
+	char					quit;		//флаг выхода
+}							t_visual;
 
 # ifdef __linux__
 	# define WIN_HEIGHT 480
@@ -23,15 +33,6 @@
 	# define WIN_WIDTH 1600
 # endif
 
-typedef struct		 		s_visual
-{
-	struct SDL_Window		*window;	//окно
-	struct SDL_Surface		*surface;	//поверхность окна
-	struct SDL_Renderer		*render;	//рендер (я так понял аналог изображения)
-	union SDL_Event			event;		//событие
-	char					quit;		//флаг выхода
-}							t_visual;
-
-t_visual			*init(void);
+void		ft_free_visual(t_visual **vis);
 
 #endif

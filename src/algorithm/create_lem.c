@@ -6,22 +6,25 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 13:42:45 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:17:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_lem				*new_lem(void)
+static t_lem		*new_lem(void)
 {
 	t_lem	*lem;
 	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
-		return (NULL);
+		ft_exit(NULL, MALLOC_FAILURE);;
 	lem->vrx = NULL;
+	lem->listpath = NULL;
+	lem->map = NULL;
+	lem->vis = NULL;
 	lem->ant_c = 0;
 	lem->vert_c = 0;
 	lem->edge_c = 0;
-	lem->listpath = NULL;
+	return (lem);
 }
 
 static t_vrx		*create_vrx(char **tab, char type)
@@ -111,10 +114,7 @@ t_lem				*create_lem(int fd)
 	char			**lines;
 	int				i;
 
-	if (!(lem = (t_lem*)malloc(sizeof(t_lem))))
-		ft_exit(NULL, MALLOC_FAILURE);
-	lem->listpath = NULL;
-	lem->vrx = NULL;
+	lem = new_lem();
 	if (!(lem->map = read_from_file_to_var(fd)))
 		ft_exit(&lem, INVALID_INPUT);
 	i = 0;

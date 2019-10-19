@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_elem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 13:32:16 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/09/14 13:55:07 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:49:51 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void			ft_del_lem(t_lem **lem_to_del)
 		ft_free_vrxs(&lem->vrx);
 		ft_free_path(&lem->listpath);
 		ft_strdel(&lem->map);
+		ft_free_visual(&lem->vis);
 		free(lem);
 		lem_to_del = NULL;
 	}

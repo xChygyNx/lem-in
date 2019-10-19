@@ -478,13 +478,13 @@ extern DECLSPEC int SDLCALL SDL_FillRects
         source color key.
     \endverbatim
  *
- *  You should call SDL_BlitSurface() unless you know exactly how SDL
+ *  You should call  unless you know exactly how SDL
  *  blitting works internally and how to use the other blit functions.
  */
 #define SDL_BlitSurface SDL_UpperBlit
 
 /**
- *  This is the public blit function, SDL_BlitSurface(), and it performs
+ *  This is the public blit function, , and it performs
  *  rectangle validation and clipping before passing it to SDL_LowerBlit()
  */
 extern DECLSPEC int SDLCALL SDL_UpperBlit

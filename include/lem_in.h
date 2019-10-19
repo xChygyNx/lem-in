@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 13:40:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:35:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define START_END 101
 # define DOUBLE_VRX 102
 # define ONE_COMPONENT 103
-# define SDL_INIT_ERR 104
-# define WIN_ERROR 105
+# define SDL_INIT_ERROR 104
+# define SDL_WIN_ERROR 105
 
 # define SEP 32
 
@@ -52,6 +52,7 @@ typedef struct			s_lem
 	int					edge_c;
 	struct s_listpath	*listpath;
 	char				*map;
+	struct s_visual		*vis;
 }						t_lem;
 
 typedef struct			s_vrx
@@ -66,7 +67,7 @@ typedef struct			s_vrx
 	char				sep;
 	int					ant;
 	struct s_vrx		*anc;
-	struct t_visual		*vis;
+	struct s_visual		*vis;
 }						t_vrx;
 
 typedef struct			s_queue
@@ -186,5 +187,7 @@ void					tactical_moves(t_lem *lem, t_ant *army,\
 void					offensive(t_lem *lem, t_ant *army);
 
 void					visit_listpath(t_listpath *listpath);
+
+void					init_vis(t_lem *lem);
 
 #endif
