@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/19 14:29:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:31:12 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void		usage(void)
+{
+	ft_fprintf(2, "USAGE:\n\t%-7s - print decision without input map\n\
+	%-7s - turn on visualization\n", "[-wm]", "[-v]");
+}
 
 void			ft_exit(t_lem **lem, int err)
 {
@@ -30,6 +36,8 @@ connected components\n");
 	else if (err == SDL_WIN_ERROR)
 		ft_fprintf(2, "SDL could not create a window! SDL_Error: %s\n", \
 		SDL_GetError());
+	else if (err == USAGE)
+		usage();
 	else
 		perror("Error: ");
 	exit(err);

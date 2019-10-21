@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 17:32:41 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/21 17:02:13 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int				main(int ac, char **av)
 	fd = open("tests/flow_ten", O_RDONLY);
 	lem = create_lem(fd);
 	army = create_army(lem->ant_c);
-	ac == 2 && !ft_strcmp(av[1], "-wm") ? 0 : ft_printf("%s\n", lem->map);
-	init_vis(lem);
+	ac > 1 ? check_flags(av, lem) : 0;
+	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
+	lem->visualization ? init_vis(lem) : 0;
 	lem_in(lem, army);
 	ft_del_lem(&lem);
 	return (0);

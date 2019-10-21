@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 14:17:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/21 16:59:45 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static t_lem		*new_lem(void)
 	lem->ant_c = 0;
 	lem->vert_c = 0;
 	lem->edge_c = 0;
+	lem->visualization = 0;
+	lem->without_map = 0;
 	return (lem);
 }
 

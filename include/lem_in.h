@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 14:35:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/21 16:57:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ONE_COMPONENT 103
 # define SDL_INIT_ERROR 104
 # define SDL_WIN_ERROR 105
+# define USAGE 106
 
 # define SEP 32
 
@@ -53,6 +54,8 @@ typedef struct			s_lem
 	struct s_listpath	*listpath;
 	char				*map;
 	struct s_visual		*vis;
+	char				visualization;
+	char				without_map;
 }						t_lem;
 
 typedef struct			s_vrx
@@ -101,6 +104,8 @@ typedef struct			s_ant
 void					ft_exit(t_lem **lem, int err);
 
 t_lem					*create_lem(int fd);
+
+void					check_flags(char **av, t_lem *lem);
 
 void					ft_edge(t_lem *lem, char **lines);
 

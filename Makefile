@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/19 13:36:32 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/21 16:46:48 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC 			:= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c\
 				adj_func.c utility.c ft_exit.c validation.c\
 				direction.c dfs.c bfs.c path_func.c\
 				queue.c suurballe.c renovation.c free_elem.c\
-				tactical_moves.c ants.c listpath_func.c
+				tactical_moves.c ants.c listpath_func.c flags.c
 
 SRC_VIS			:= init.c
 
