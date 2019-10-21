@@ -6,11 +6,19 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/21 18:31:12 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:19:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void			destroy_visual(t_lem *lem)
+{
+	SDL_DestroyRenderer(lem->vis->render);
+    SDL_DestroyWindow(lem ->vis->win);
+
+    SDL_Quit();
+}
 
 static void		usage(void)
 {

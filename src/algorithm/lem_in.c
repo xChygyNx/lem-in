@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 17:02:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:19:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int				main(int ac, char **av)
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
 	lem->visualization ? init_vis(lem) : 0;
 	lem_in(lem, army);
+	//destroy_visual(lem);
 	ft_del_lem(&lem);
 	return (0);
 }
