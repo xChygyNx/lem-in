@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 17:30:50 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/22 12:05:06 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ void		init_vis(t_lem *lem)
 			lem->vis->surface = SDL_GetWindowSurface(lem->vis->win);
 		lem->vis->render = SDL_CreateRenderer(lem->vis->win, -1, \
 		SDL_RENDERER_ACCELERATED);
-//		if (lem->vis->render == NULL)
-//			ft_exit(&lem, MALLOC_FAILURE);
+		if (lem->vis->render == NULL)
+			ft_exit(&lem, MALLOC_FAILURE);
 	}
 	SDL_FillRect(lem->vis->surface, NULL, SDL_MapRGB(lem->vis->surface->format,\
 	0x00, 0x00, 0x00));
+
 }

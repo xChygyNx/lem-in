@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
+#    By: aks <aks@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/21 16:46:48 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/22 11:25:43 by aks              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,24 +21,24 @@ OBJ_DIR			:= ./obj
 SRC_DIR			:= ./src/algorithm
 SRC_VIS_DIR		:= ./src/visio
 
-#SDL2_DIRS
-## УСТАНОВИЛ в эту папку SDL2 по туториалу который ты мне скинул
-## https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
-## часть которая X-CODE касается не надо делать
-## советую тебе тоже так сделать
-SDL2_INC		= ~/Library/Frameworks/SDL2.framework/Headers
-SDL2_DIR		= ~/Library/Frameworks/
-## флаги сохранил, если не получится, мои закоментишь
-#SDL2_INC		:= ./sdl2/SDL2.framework/Headers
-#SDL2_DIR		:= ./sdl2
-
 CC				:= gcc
-CFLAGS			:= -g -Wall -Wextra -Werror
+CFLAGS			= -g -Wall -Wextra -Werror
 LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
 LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC)
 
-LIB				= -L $(LIB_DIR) -lftprintf
-LIB				+= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
+LIBS			= -L $(LIB_DIR) -lftprintf
+
+#SDL2_DIRS
+UNAME 			= $(shell uname -s)
+ifeq ($(UNAME), Linux)
+	SDL2_INC	= /usr/include/SDL2
+	CFLAGS		+= $(shell sdl2-config --cflags) 
+	LIBS		+= $(shell sdl2-config --libs) 
+else
+	SDL2_INC	= ~/Library/Frameworks/SDL2.framework/Headers
+	SDL2_DIR	= ~/Library/Frameworks/
+	LIBS		+= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
+endif
 
 HEADERS			:= lem_in.h visual.h
 
@@ -67,7 +67,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(SDL_LIB) $(HEADERS)
 	$(MAKE) -C $(LIB_DIR)
 	echo "$(GREEN)libftprintf.a created$(RESET)"
-	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJ)) $(LIB) -o $@
+	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJ)) $(LIBS) -o $@
 	echo "$(GREEN)DONE ✅$(RESET)"
 
 $(OBJ_VIS):%.o:%.c $(HEADERS) | $(OBJ_DIR)

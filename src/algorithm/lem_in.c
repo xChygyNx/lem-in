@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 19:19:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 12:01:04 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void		lem_in(t_lem *lem, t_ant *army)
 	{
 		//достаем следующее событие из стека событий
 		while (SDL_PollEvent(&lem->vis->e) != 0)
+		{
 			if (lem->vis->e.type == SDL_QUIT)
 				lem->vis->quit = 1;
 			else if (lem->vis->e.type == SDL_KEYDOWN)
@@ -32,6 +33,7 @@ static void		lem_in(t_lem *lem, t_ant *army)
 				if (lem->vis->e.key.keysym.sym == SDLK_ESCAPE)
 					lem->vis->quit = 1;
 			}
+		}
 	}
 }
 
@@ -46,9 +48,8 @@ int				main(int ac, char **av)
 	army = create_army(lem->ant_c);
 	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
-	lem->visualization ? init_vis(lem) : 0;
+	init_vis(lem);
 	lem_in(lem, army);
-	//destroy_visual(lem);
 	ft_del_lem(&lem);
 	return (0);
 }
