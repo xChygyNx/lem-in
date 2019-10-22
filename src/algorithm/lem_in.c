@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 19:56:36 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 22:49:43 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 static void		lem_in(t_lem *lem)
 {
-	margin_vertex(lem);
 	draw_graph(lem);
-	SDL_RenderPresent(lem->vis->render);
-	//ждем пока пользователь не закроет окно
 	while (!lem->vis->quit)
 	{
-		//достаем следующее событие из стека событий
 		while (SDL_PollEvent(&lem->vis->e) != 0)
 		{
 			if (lem->vis->e.type == SDL_QUIT)
@@ -46,6 +42,8 @@ int				main(int ac, char **av)
 	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
 	init_vis(lem);
+	draw_graph(lem);
+	sleep(3);
 	find_optimal_path(lem, army);
 	offensive(lem, army);
 	lem_in(lem);

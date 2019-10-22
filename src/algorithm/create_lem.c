@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 19:19:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 22:26:37 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_lem				*create_lem(int fd)
 	i += ft_vertex(lem, &lines[i + 1]);
 	ft_edge(lem, &lines[i + 1]);
 	check_lem(lem);
+	margin_vertex(lem);
 	ft_free_arr(lines);
 	return (lem);
 }

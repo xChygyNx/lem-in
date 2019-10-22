@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/22 20:08:59 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/22 22:58:00 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,29 +21,15 @@ OBJ_DIR			:= ./obj
 SRC_DIR			:= ./src/algorithm
 SRC_VIS_DIR		:= ./src/visio
 
-#SDL2_LIBS
-## УСТАНОВИЛ в эту папку SDL2 по туториалу который ты мне скинул
-## https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
-## часть которая X-CODE касается не надо делать
-## советую тебе тоже так сделать
-
-## флаги сохранил, если не получится, мои закоментишь
-#SDL2_INC		:= ./sdl2/SDL2.framework/Headers
-#SDL2_LIB		:= ./sdl2
-
-CC				:= gcc
-CFLAGS			= -g -Wall -Wextra -Werror
-LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
-LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) -I $(SDL2_GFX_INC)
-
 LIBS			= -L $(LIB_DIR) -lftprintf
 
 #SDL2_DIRS
 UNAME 			= $(shell uname -s)
+
 ifeq ($(UNAME), Linux)
-	SDL2_INC	= /usr/include/SDL2
-	CFLAGS		+= $(shell sdl2-config --cflags)
-	LIBS		+= $(shell sdl2-config --libs) -lSDL2_gfx
+	SDL2_INC		= /usr/include/SDL2
+	CFLAGS			+= $(shell sdl2-config --cflags)
+	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx
 else
 	SDL2_INC		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
 	SDL2_LIB		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib
@@ -52,9 +38,14 @@ else
 	LIBS			+= -L $(SDL2_LIB) -lSDL2 -L $(SDL2_GFX_LIB) -lSDL2_gfx
 endif
 
+CC				:= gcc
+CFLAGS			= -g -Wall -Wextra -Werror
+LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
+LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) #-I $(SDL2_GFX_INC)
+
 HEADERS			:= lem_in.h visual.h
 
-SRC 			:= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c\
+SRC 			:= create_lem.c lem_in.c add_edges_to_lem.c check_lem.c\
 				adj_func.c utility.c ft_exit.c validation.c\
 				direction.c dfs.c bfs.c path_func.c\
 				queue.c suurballe.c renovation.c free_elem.c\

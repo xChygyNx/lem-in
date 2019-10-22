@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 19:56:36 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 22:30:20 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "/Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/SDL2_gfxPrimitives.h"
 
 void		ft_free_visual(t_visual **vis)
 {
@@ -36,9 +35,6 @@ t_visual	*new_visual(void)
 	vis->render = NULL;
 	vis->texture = NULL;
 	vis->quit = 0;
-	//vis->event = 0; не знаю как начальное значение для padding[56] выставить
-	//вероятно так Uint8, 8 бит, зануляем его
-	//нужно проверить
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
@@ -59,6 +55,5 @@ void		init_vis(t_lem *lem)
 		SDL_RENDERER_ACCELERATED);
 		if (lem->vis->render == NULL)
 			ft_exit(&lem, MALLOC_FAILURE);
-
 	}
 }
