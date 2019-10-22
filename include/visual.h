@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 14:33:28 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:56:36 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ typedef struct		 		s_visual
 }							t_visual;
 
 # ifdef __linux__
-	# define WIN_HEIGHT 480
-	# define WIN_WIDTH 640
+	# define WIN_HEIGHT 800
+	# define WIN_WIDTH 1000
+	# define INDENT 100
 # else
 	# define WIN_HEIGHT 1200
 	# define WIN_WIDTH 1600
+	# define INTEND 100
 # endif
 
 void		ft_free_visual(t_visual **vis);

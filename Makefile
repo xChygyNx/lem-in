@@ -6,7 +6,7 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/22 17:08:26 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/22 20:08:59 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,31 @@ SRC_VIS_DIR		:= ./src/visio
 ## https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
 ## часть которая X-CODE касается не надо делать
 ## советую тебе тоже так сделать
-SDL2_INC		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
-SDL2_LIB		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib
-SDL2_GFX_INC	= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
-SDL2_GFX_LIB	= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/lib
+
 ## флаги сохранил, если не получится, мои закоментишь
 #SDL2_INC		:= ./sdl2/SDL2.framework/Headers
 #SDL2_LIB		:= ./sdl2
 
 CC				:= gcc
-CFLAGS			:= -g -Wall -Wextra -Werror
+CFLAGS			= -g -Wall -Wextra -Werror
 LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
 LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) -I $(SDL2_GFX_INC)
 
-LIB				= -L $(LIB_DIR) -lftprintf -L $(SDL2_GFX_LIB) -lSDL2_gfx
-LIB				+= -L $(SDL2_LIB) -lSDL2
+LIBS			= -L $(LIB_DIR) -lftprintf
+
+#SDL2_DIRS
+UNAME 			= $(shell uname -s)
+ifeq ($(UNAME), Linux)
+	SDL2_INC	= /usr/include/SDL2
+	CFLAGS		+= $(shell sdl2-config --cflags)
+	LIBS		+= $(shell sdl2-config --libs) -lSDL2_gfx
+else
+	SDL2_INC		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
+	SDL2_LIB		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib
+	SDL2_GFX_INC	:= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
+	SDL2_GFX_LIB	:= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/lib
+	LIBS			+= -L $(SDL2_LIB) -lSDL2 -L $(SDL2_GFX_LIB) -lSDL2_gfx
+endif
 
 HEADERS			:= lem_in.h visual.h
 
@@ -50,7 +60,7 @@ SRC 			:= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c\
 				queue.c suurballe.c renovation.c free_elem.c\
 				tactical_moves.c ants.c listpath_func.c flags.c
 
-SRC_VIS			:= init.c
+SRC_VIS			:= init.c order.c draw.c
 
 OBJ_LEM			:= $(SRC:.c=.o)
 OBJ_VIS			:= $(SRC_VIS:.c=.o)
@@ -69,7 +79,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(SDL_LIB) $(HEADERS)
 	$(MAKE) -C $(LIB_DIR)
 	echo "$(GREEN)libftprintf.a created$(RESET)"
-	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJ)) $(LIB) -o $@
+	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJ)) $(LIBS) -o $@
 	echo "$(GREEN)DONE ✅$(RESET)"
 
 $(OBJ_VIS):%.o:%.c $(HEADERS) | $(OBJ_DIR)

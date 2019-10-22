@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 19:20:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:58:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define USAGE 106
 
 # define SEP 32
+# define INDENT 400
 
 typedef struct			s_adj
 {
@@ -194,6 +195,14 @@ void					offensive(t_lem *lem, t_ant *army);
 
 void					visit_listpath(t_listpath *listpath);
 
+/*
+** VISIO FUNCTIONS
+*/
+
 void					init_vis(t_lem *lem);
+
+void					margin_vertex(t_lem *lem);
+
+void					draw_graph(t_lem *lem);
 
 #endif

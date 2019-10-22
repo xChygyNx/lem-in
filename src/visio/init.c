@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 16:21:45 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:56:36 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void		ft_free_visual(t_visual **vis)
 {
 	if (vis && *vis)
 	{
-		SDL_FreeSurface((*vis)->surface);
-		(*vis)->surface = NULL;
+		SDL_DestroyRenderer((*vis)->render);
 		SDL_DestroyWindow((*vis)->win);
 		(*vis)->win = NULL;
-		SDL_DestroyRenderer((*vis)->render);
 		SDL_Quit();
 		*vis = NULL;
 	}
@@ -57,13 +55,10 @@ void		init_vis(t_lem *lem)
 		SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE);
 		if (!lem->vis->win)
 			ft_exit(&lem, SDL_WIN_ERROR);
-		else
-			lem->vis->surface = SDL_GetWindowSurface(lem->vis->win);
 		lem->vis->render = SDL_CreateRenderer(lem->vis->win, -1, \
 		SDL_RENDERER_ACCELERATED);
-//		if (lem->vis->render == NULL)
-//			ft_exit(&lem, MALLOC_FAILURE);
+		if (lem->vis->render == NULL)
+			ft_exit(&lem, MALLOC_FAILURE);
+
 	}
-	SDL_FillRect(lem->vis->surface, NULL, SDL_MapRGB(lem->vis->surface->format,\
-	0x00, 0x00, 0x00));
 }
