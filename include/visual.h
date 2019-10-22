@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 16:48:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:33:28 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
 
-# include <SDL.h>
+# include "/Users/pcredibl/Library/Frameworks/SDL2.framework/Headers/SDL.h"
 
 typedef struct		 		s_visual
 {

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 19:19:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 18:12:49 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		lem_in(t_lem *lem, t_ant *army)
 
 	//обновляем изображение в окне
 	//без этого нарисованное нами изображение не появится на экране
-	SDL_UpdateWindowSurface(lem->vis->win);
+	//SDL_UpdateWindowSurface(lem->vis->win);
 	//ждем пока пользователь не закроет окно
 	while (!lem->vis->quit)
 	{

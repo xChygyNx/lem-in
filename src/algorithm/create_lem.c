@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 16:59:45 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:19:08 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_lem		*new_lem(void)
 	lem->edge_c = 0;
 	lem->visualization = 0;
 	lem->without_map = 0;
+	lem->design_map = 0;
 	return (lem);
 }
 

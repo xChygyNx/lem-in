@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 16:57:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:20:13 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct			s_lem
 	struct s_visual		*vis;
 	char				visualization;
 	char				without_map;
+	char				design_map;		//влаг для выравнивания координат комнат (для лучшей наглядности)
 }						t_lem;
 
 typedef struct			s_vrx

@@ -6,7 +6,7 @@
 #    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/21 16:46:48 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/22 17:08:26 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,24 +21,26 @@ OBJ_DIR			:= ./obj
 SRC_DIR			:= ./src/algorithm
 SRC_VIS_DIR		:= ./src/visio
 
-#SDL2_DIRS
+#SDL2_LIBS
 ## УСТАНОВИЛ в эту папку SDL2 по туториалу который ты мне скинул
 ## https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
 ## часть которая X-CODE касается не надо делать
 ## советую тебе тоже так сделать
-SDL2_INC		= ~/Library/Frameworks/SDL2.framework/Headers
-SDL2_DIR		= ~/Library/Frameworks/
+SDL2_INC		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
+SDL2_LIB		= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib
+SDL2_GFX_INC	= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
+SDL2_GFX_LIB	= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/lib
 ## флаги сохранил, если не получится, мои закоментишь
 #SDL2_INC		:= ./sdl2/SDL2.framework/Headers
-#SDL2_DIR		:= ./sdl2
+#SDL2_LIB		:= ./sdl2
 
 CC				:= gcc
 CFLAGS			:= -g -Wall -Wextra -Werror
 LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
-LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC)
+LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) -I $(SDL2_GFX_INC)
 
-LIB				= -L $(LIB_DIR) -lftprintf
-LIB				+= -Wl,-rpath,$(SDL2_DIR) -F $(SDL2_DIR) -framework SDL2
+LIB				= -L $(LIB_DIR) -lftprintf -L $(SDL2_GFX_LIB) -lSDL2_gfx
+LIB				+= -L $(SDL2_LIB) -lSDL2
 
 HEADERS			:= lem_in.h visual.h
 

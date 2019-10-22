@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/21 19:19:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:18:09 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			destroy_visual(t_lem *lem)
 static void		usage(void)
 {
 	ft_fprintf(2, "USAGE:\n\t%-7s - print decision without input map\n\
-	%-7s - turn on visualization\n", "[-wm]", "[-v]");
+	%-7s - turn on visualization\n%-7s - design map\n", "[-wm]", "[-v]", "[-d]");
 }
 
 void			ft_exit(t_lem **lem, int err)
@@ -37,7 +37,7 @@ void			ft_exit(t_lem **lem, int err)
 		ft_fprintf(2, "Error: Duplicate vertex or same coordinates\n");
 	else if (err == ONE_COMPONENT)
 		ft_fprintf(2, "Error: Start & end situated in different \
-connected components\n");
+		connected components\n");
 	else if (err == SDL_INIT_ERROR)
 		ft_fprintf(2, "SDL could not initialize! SDL_Error: %s\n", \
 		SDL_GetError());

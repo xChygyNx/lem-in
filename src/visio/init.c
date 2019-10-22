@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/19 17:30:50 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:21:45 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "/Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/SDL2_gfxPrimitives.h"
 
 void		ft_free_visual(t_visual **vis)
 {

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 16:10:06 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 17:02:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:18:41 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	check_flags(char **argv, t_lem *lem)
 			lem->without_map = 1;
 		else if (!ft_strcmp(argv[i], "-v"))
 			lem->visualization = 1;
+		else if (!ft_strcmp(argv[i], "-d"))
+			lem->design_map = 1;
 		else 
 			ft_exit(&lem, USAGE);
 	}
