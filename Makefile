@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aks <aks@student.42.fr>                    +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/22 11:25:43 by aks              ###   ########.fr        #
+#    Updated: 2019/10/22 15:57:04 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ LIBS			= -L $(LIB_DIR) -lftprintf
 UNAME 			= $(shell uname -s)
 ifeq ($(UNAME), Linux)
 	SDL2_INC	= /usr/include/SDL2
-	CFLAGS		+= $(shell sdl2-config --cflags) 
-	LIBS		+= $(shell sdl2-config --libs) 
+	CFLAGS		+= $(shell sdl2-config --cflags)
+	LIBS		+= $(shell sdl2-config --libs) -lSDL2_gfx
 else
 	SDL2_INC	= ~/Library/Frameworks/SDL2.framework/Headers
 	SDL2_DIR	= ~/Library/Frameworks/
@@ -48,7 +48,7 @@ SRC 			:= lem_in.c create_lem.c add_edges_to_lem.c check_lem.c\
 				queue.c suurballe.c renovation.c free_elem.c\
 				tactical_moves.c ants.c listpath_func.c flags.c
 
-SRC_VIS			:= init.c
+SRC_VIS			:= init.c order.c draw.c
 
 OBJ_LEM			:= $(SRC:.c=.o)
 OBJ_VIS			:= $(SRC_VIS:.c=.o)

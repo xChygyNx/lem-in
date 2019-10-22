@@ -1,5 +1,9 @@
 {
-	"files.associations": {
-		"visual.h": "c"
-	}
+	"42header.email": "marvin@42.fr",
+	"42header.username": "astripeb",
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/21 16:57:08 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:15:01 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,14 @@ void					offensive(t_lem *lem, t_ant *army);
 
 void					visit_listpath(t_listpath *listpath);
 
+/*
+** VISIO FUNCTIONS
+*/
+
 void					init_vis(t_lem *lem);
+
+void					margin_vertex(t_lem *lem);
+
+void					draw_graph(t_lem *lem);
 
 #endif

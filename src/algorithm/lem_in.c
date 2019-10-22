@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 12:01:04 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/22 17:29:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		lem_in(t_lem *lem, t_ant *army)
+static void		lem_in(t_lem *lem)
 {
-	find_optimal_path(lem, army);
-	offensive(lem, army);
-
-	//обновляем изображение в окне
-	//без этого нарисованное нами изображение не появится на экране
-	SDL_UpdateWindowSurface(lem->vis->win);
+	margin_vertex(lem);
+	draw_graph(lem);
+	SDL_RenderPresent(lem->vis->render);
 	//ждем пока пользователь не закроет окно
 	while (!lem->vis->quit)
 	{
@@ -41,15 +38,17 @@ int				main(int ac, char **av)
 {
 	t_lem	*lem;
 	t_ant	*army;
-	int		fd;
+//	int		fd;
 
-	fd = open("tests/flow_ten", O_RDONLY);
-	lem = create_lem(fd);
+//	fd = open("tests/test_from_smight", O_RDONLY);
+	lem = create_lem(0);
 	army = create_army(lem->ant_c);
 	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
 	init_vis(lem);
-	lem_in(lem, army);
+	find_optimal_path(lem, army);
+	offensive(lem, army);
+	lem_in(lem);
 	ft_del_lem(&lem);
 	return (0);
 }
