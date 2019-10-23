@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/23 21:59:23 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:35:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void		draw_vertex(t_visual *vis, t_vrx *vrx, char c)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, 255, 30, 30, 255);
 	else if (c == 'b')
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, 30, 30, 255, 255);
+	else if (c == 'g' && !vrx->type)
+		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, 30, 100, 30, 255);
 	if (vrx->type == START)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, 30, 255, 30, 255);
 	else if (vrx->type == END)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, 255, 255, 30, 255);
-	else if (c == 'r' && !vrx->type)
+	else if (!vrx->type)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, 30, 30, 100, 255);
 }
 
@@ -33,10 +35,15 @@ void		draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c)
 		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
 		vis->line_w * 2, 255, 0, 0, 150);
 	}
-	else
+	else if (c == 'b')
 	{
 		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
 		vis->line_w, 0, 0, 100, 255);
+	}
+	else
+	{
+		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
+		vis->line_w * 2, 0, 150, 0, 150);
 	}
 }
 
@@ -74,7 +81,7 @@ static void	draw_edges(t_visual *vis, t_vrx *vrx)
 	}
 }
 
-void		draw_graph(t_lem *lem)
+void		draw_graph(t_lem *lem, t_listpath *listpath)
 {
 	t_vrx	*vrx;
 
@@ -87,6 +94,7 @@ void		draw_graph(t_lem *lem)
 		draw_vertex(lem->vis, vrx, 'b');
 		vrx = vrx->next;
 	}
-	draw_listpath(lem->vis, lem->listpath);
+	draw_listpath(lem->vis, listpath);
 	SDL_RenderPresent(lem->vis->render);
+	usleep(1000000);
 }

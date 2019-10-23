@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 22:01:04 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:46:46 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void		lem_in(t_lem *lem)
 {
-	draw_graph(lem);
 	while (!lem->vis->quit)
 	{
 		while (SDL_PollEvent(&lem->vis->e) != 0)
@@ -34,21 +33,22 @@ int				main(int ac, char **av)
 {
 	t_lem	*lem;
 	t_ant	*army;
+	int		fd;
 
-//	int		fd;
-
-//	fd = open("tests/test_from_smight", O_RDONLY);
-	lem = create_lem(0);
+	fd = open("tests/test_from_smight", O_RDONLY);
+	lem = create_lem(fd);
 	army = create_army(lem->ant_c);
 	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
-	lem->design_map ? design_map(lem) : 0;
-	init_vis(lem);
-	draw_graph(lem);
-	sleep(3);
+	if (lem->visualization)
+	{
+		init_vis(lem);
+		lem->design_map ? design_map(lem) : 0;
+		draw_graph(lem, NULL);
+	}
 	find_optimal_path(lem, army);
 	offensive(lem, army);
-	lem_in(lem);
+	lem->visualization ? lem_in(lem) : 0;
 	ft_del_lem(&lem);
 	return (0);
 }

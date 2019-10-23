@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/23 21:23:35 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/23 23:40:16 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,9 @@ SRC 			:= create_lem.c lem_in.c add_edges_to_lem.c check_lem.c\
 				adj_func.c utility.c ft_exit.c validation.c\
 				direction.c dfs.c bfs.c path_func.c\
 				queue.c suurballe.c renovation.c free_elem.c\
-				tactical_moves.c ants.c listpath_func.c flags.c
+				tactical_moves.c ants.c listpath_func.c
 
-SRC_VIS			:= init.c order.c draw.c
+SRC_VIS			:= init.c order.c draw.c draw_path.c
 
 OBJ_LEM			:= $(SRC:.c=.o)
 OBJ_VIS			:= $(SRC_VIS:.c=.o)

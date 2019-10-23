@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 21:47:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:41:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,12 +202,14 @@ void					init_vis(t_lem *lem);
 
 void					margin_vertex(t_lem *lem);
 
-void					draw_graph(t_lem *lem);
+void					draw_graph(t_lem *lem, t_listpath *listpath);
 
 void					design_map(t_lem *lem);
 
 void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 
 void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
+
+void					draw_path(t_visual *vis, t_path *path, char color);
 
 #endif
