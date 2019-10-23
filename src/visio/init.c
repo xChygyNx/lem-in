@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 16:52:35 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:02:43 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		ft_free_visual(t_visual **vis)
-{
-	if (vis && *vis)
-	{
-		SDL_DestroyRenderer((*vis)->render);
-		SDL_DestroyWindow((*vis)->win);
-		(*vis)->win = NULL;
-		SDL_Quit();
-		*vis = NULL;
-	}
-}
-
-t_visual	*new_visual(void)
+static t_visual	*new_visual(void)
 {
 	t_visual	*vis;
 
@@ -39,14 +27,14 @@ t_visual	*new_visual(void)
 	return (vis);
 }
 
-void		init_vis(t_lem *lem)
+void			init_vis(t_lem *lem)
 {
 	if (!(lem->vis = new_visual()))
 		ft_exit(&lem, MALLOC_FAILURE);
 	if ((SDL_Init(SDL_INIT_VIDEO)) < 0)
 		ft_exit(&lem, SDL_INIT_ERROR);
-	else if (TTF_Init()==-1)
-		printf("TTF_Init: %s\n", TTF_GetError());
+	else if (TTF_Init() == -1)
+		ft_exit(&lem, SDL_INIT_ERROR);
 	else
 	{
 		lem->vis->win = SDL_CreateWindow("Lem-in", SDL_WINDOWPOS_CENTERED, \
@@ -57,5 +45,22 @@ void		init_vis(t_lem *lem)
 		SDL_RENDERER_ACCELERATED);
 		if (lem->vis->render == NULL)
 			ft_exit(&lem, MALLOC_FAILURE);
+		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);
+		if (lem->vis->radius / 3)
+			lem->vis->line_w = lem->vis->radius / 3;
+		else
+			lem->vis->line_w = 1;
+	}
+}
+
+void		ft_free_visual(t_visual **vis)
+{
+	if (vis && *vis)
+	{
+		SDL_DestroyRenderer((*vis)->render);
+		SDL_DestroyWindow((*vis)->win);
+		(*vis)->win = NULL;
+		SDL_Quit();
+		*vis = NULL;
 	}
 }

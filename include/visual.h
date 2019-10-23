@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 16:46:19 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:01:28 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
 
+# include "SDL.h"
+# include "SDL2_gfxPrimitives.h"
+# include "SDL_ttf.h"
+# include <math.h>
+
 # ifdef __linux__
-	# include "SDL.h"
-	# include "SDL2_gfxPrimitives.h"
-	# define WIN_HEIGHT 800
-	# define WIN_WIDTH 1000
-	# define INDENT 100
+	# define WIN_HEIGHT 600
+	# define WIN_WIDTH 800
+	# define INDENT 50
 # else
-	# include "SDL.h"
-	# include "SDL2_gfxPrimitives.h"
-	# include "SDL_ttf.h"
 	# define WIN_HEIGHT 1200
 	# define WIN_WIDTH 1600
 	# define INDENT 100
@@ -48,6 +48,8 @@ typedef struct		 		s_visual
 	struct SDL_Texture		*texture;	// для теста
 	union SDL_Event			e;			//event
 	char					quit;		//флаг выхода
+	int						radius;		//радиус вершин
+	int						line_w;		//толщина линий
 }							t_visual;
 
 void		ft_free_visual(t_visual **vis);

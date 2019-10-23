@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:33:16 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/22 17:30:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:34:22 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,32 @@ void		margin_vertex(t_lem *lem)
 		vrx->y = vrx->y * margin_y + INDENT;
 		vrx = vrx->next;
 	}
+}
+
+void	design_map(t_lem *lem)
+{
+	int		in_row;
+	int		room_count;
+	int		i;
+	int		j;
+	t_vrx	*cur_vrx;
+
+	i = 0;
+	cur_vrx = lem->vrx;
+	room_count = lem->vert_c;
+	in_row = sqrt(room_count);
+	while (room_count)
+	{
+		j = 0;
+		while (j < in_row + 1 && room_count)
+		{
+			cur_vrx->x = j;
+			cur_vrx->y = i + j % 3;
+			j++;
+			cur_vrx = cur_vrx->next;
+			room_count--;
+		}
+		i++;
+	}
+	margin_vertex(lem);
 }

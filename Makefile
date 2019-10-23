@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/23 16:43:50 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/10/23 21:23:35 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,20 @@ SRC_VIS_DIR		:= ./src/visio
 
 LIBS			= -L $(LIB_DIR) -lftprintf
 
+CC				:= gcc
+CFLAGS			= -g -Wall -Wextra -Werror
+
+LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
+
 #SDL2_DIRS
 UNAME 			= $(shell uname -s)
 
 ifeq ($(UNAME), Linux)
 	SDL2_INC		= /usr/include/SDL2
 	CFLAGS			+= $(shell sdl2-config --cflags)
-	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx
+	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
+	LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
+	LFLAGS			+= -I $(SDL2_INC)
 else
 	SDL2_INC		:= ~/.brew/Cellar/sdl2/2.0.10/include/SDL2/
 	SDL2_LIB		:= ~/.brew/Cellar/sdl2/2.0.10/lib
@@ -38,13 +45,9 @@ else
 	SDL2_TTF_INC	:= ~/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/
 	SDL2_TTF_LIB	:= ~/.brew/Cellar/sdl2_ttf/2.0.15/lib
 	LIBS			+= -L $(SDL2_LIB) -lSDL2 -L $(SDL2_GFX_LIB) -lSDL2_gfx
-	LIBS			+= -L $(SDL2_TTF_LIB) -lSDL2_ttf
+	LIBS			+= -L $(SDL2_TTF_LIB) -lSDL2_ttf -lm
+	LFLAGS			+= -I $(SDL2_INC) -I $(SDL2_GFX_INC) -I $(SDL2_TTF_INC)
 endif
-
-CC				:= gcc
-CFLAGS			= -g -Wall -Wextra -Werror
-LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
-LFLAGS			+= -I $(SDL2_INC) -I $(SDL2_GFX_INC) -I $(SDL2_TTF_INC)
 
 HEADERS			:= lem_in.h visual.h
 
@@ -54,7 +57,7 @@ SRC 			:= create_lem.c lem_in.c add_edges_to_lem.c check_lem.c\
 				queue.c suurballe.c renovation.c free_elem.c\
 				tactical_moves.c ants.c listpath_func.c flags.c
 
-SRC_VIS			:= init.c order.c draw.c draw_utility.c
+SRC_VIS			:= init.c order.c draw.c
 
 OBJ_LEM			:= $(SRC:.c=.o)
 OBJ_VIS			:= $(SRC_VIS:.c=.o)
