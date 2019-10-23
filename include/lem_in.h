@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 21:44:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:12:28 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,9 @@ void					init_vis(t_lem *lem);
 void					margin_vertex(t_lem *lem);
 
 void					draw_graph(t_lem *lem);
+
+int						rooms_count(t_lem *lem);
+
+void					design_map(t_lem *lem);
 
 #endif

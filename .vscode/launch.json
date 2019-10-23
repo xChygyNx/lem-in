@@ -9,12 +9,12 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
-			"args": [],
+			"args": ["-d"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
-			"MIMode": "gdb"
+			"MIMode": "lldb"
 		}
 	]
 }

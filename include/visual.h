@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 12:45:21 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:46:19 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # else
 	# include "SDL.h"
 	# include "SDL2_gfxPrimitives.h"
+	# include "SDL_ttf.h"
 	# define WIN_HEIGHT 1200
 	# define WIN_WIDTH 1600
 	# define INDENT 100

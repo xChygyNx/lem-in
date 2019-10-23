@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 22:30:20 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:52:35 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void		init_vis(t_lem *lem)
 		ft_exit(&lem, MALLOC_FAILURE);
 	if ((SDL_Init(SDL_INIT_VIDEO)) < 0)
 		ft_exit(&lem, SDL_INIT_ERROR);
+	else if (TTF_Init()==-1)
+		printf("TTF_Init: %s\n", TTF_GetError());
 	else
 	{
 		lem->vis->win = SDL_CreateWindow("Lem-in", SDL_WINDOWPOS_CENTERED, \
