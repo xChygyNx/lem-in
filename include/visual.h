@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/22 22:00:44 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:45:21 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 	# define WIN_WIDTH 1000
 	# define INDENT 100
 # else
-	# include "/Users/pcredibl/Library/Frameworks/SDL2.framework/Headers/SDL.h"
+	# include "SDL.h"
+	# include "SDL2_gfxPrimitives.h"
 	# define WIN_HEIGHT 1200
 	# define WIN_WIDTH 1600
-	# define INTEND 100
+	# define INDENT 100
 # endif
 
 typedef union		u_color

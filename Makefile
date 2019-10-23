@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/22 22:58:00 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/23 12:44:16 by pcredibl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,17 @@ ifeq ($(UNAME), Linux)
 	CFLAGS			+= $(shell sdl2-config --cflags)
 	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx
 else
-	SDL2_INC		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/include/SDL2/
-	SDL2_LIB		:= /Users/pcredibl/.brew/Cellar/sdl2/2.0.10/lib
-	SDL2_GFX_INC	:= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
-	SDL2_GFX_LIB	:= /Users/pcredibl/.brew/Cellar/sdl2_gfx/1.0.4/lib
+	SDL2_INC		:= ~/.brew/Cellar/sdl2/2.0.10/include/SDL2/
+	SDL2_LIB		:= ~/.brew/Cellar/sdl2/2.0.10/lib
+	SDL2_GFX_INC	:= ~/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
+	SDL2_GFX_LIB	:= ~/.brew/Cellar/sdl2_gfx/1.0.4/lib
 	LIBS			+= -L $(SDL2_LIB) -lSDL2 -L $(SDL2_GFX_LIB) -lSDL2_gfx
 endif
 
 CC				:= gcc
 CFLAGS			= -g -Wall -Wextra -Werror
 LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc
-LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) #-I $(SDL2_GFX_INC)
+LFLAGS			+= -I $(INC_DIR) -I $(SDL2_INC) -I $(SDL2_GFX_INC)
 
 HEADERS			:= lem_in.h visual.h
 
