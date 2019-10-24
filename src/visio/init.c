@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 16:33:57 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:17:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_visual	*new_visual(void)
 	return (vis);
 }
 
-void			init_vis(t_lem *lem)
+void			initilize_visio(t_lem *lem)
 {
 	if (!(lem->vis = new_visual()))
 		ft_exit(&lem, MALLOC_FAILURE);
@@ -47,10 +47,9 @@ void			init_vis(t_lem *lem)
 		if (lem->vis->render == NULL)
 			ft_exit(&lem, MALLOC_FAILURE);
 		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);
-		if (lem->vis->radius / 3)
-			lem->vis->line_w = lem->vis->radius / 3;
-		else
-			lem->vis->line_w = 1;
+		lem->vis->radius = ft_max(lem->vis->radius, 2);
+		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
+		lem->vis->delay =  2500 * (1.0 / lem->edge_c);
 	}
 }
 

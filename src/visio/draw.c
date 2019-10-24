@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/24 19:25:18 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:07:14 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 	}
 	draw_listpath(lem->vis, listpath);
 	SDL_RenderPresent(lem->vis->render);
+	SDL_Delay(lem->vis->delay * 3);
 	lem->vis->run = 0;
-	SDL_Delay(1);
 }

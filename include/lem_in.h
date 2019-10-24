@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 19:26:41 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:18:42 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,6 @@
 # define SDL_WIN_ERROR 105
 # define USAGE 106
 
-# define START_COLOR 30, 255, 30
-# define END_COLOR 255, 255, 30
-# define SIMPLE_VRX 30, 30, 100
-# define RED_LINE 255, 0, 0
-# define GREEN_LINE 0, 150, 0
-# define BLUE_LINE 0, 0, 100
-# define BLACK 0, 0, 0
-
 # define SEP 32
 
 typedef struct			s_adj
@@ -62,9 +54,9 @@ typedef struct			s_lem
 	struct s_listpath	*listpath;
 	char				*map;
 	struct s_visual		*vis;
-	char				visualization;
+	char				visual;
 	char				without_map;
-	char				design_map;		//влаг для выравнивания координат комнат (для лучшей наглядности)
+	char				design_map;
 }						t_lem;
 
 typedef struct			s_vrx
@@ -210,7 +202,7 @@ void					draw_edges(t_visual *vis, t_vrx *vrx);
 ** VISIO FUNCTIONS
 */
 
-void					init_vis(t_lem *lem);
+void					initilize_visio(t_lem *lem);
 
 void					margin_vertex(t_lem *lem);
 
@@ -222,6 +214,6 @@ void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 
 void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 
-void					draw_path(t_visual *vis, t_vrx *vrx, t_path *path, char color);
+void					draw_path(t_visual *vis, t_path *path, char color);
 
 #endif

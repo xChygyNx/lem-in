@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 16:33:57 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:05:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 	# define WIN_WIDTH 1600
 	# define INDENT 100
 # endif
+
+# define START_COLOR 30, 255, 30
+# define END_COLOR 255, 255, 30
+# define SIMPLE_VRX 30, 30, 100
+# define RED_LINE 255, 0, 0
+# define GREEN_LINE 0, 150, 0
+# define BLUE_LINE 0, 0, 100
+# define BLACK 0, 0, 0
 
 typedef union		u_color
 {
@@ -51,6 +59,7 @@ typedef struct		 		s_visual
 	char					run;		//флаг запуска визуализации
 	int						radius;		//радиус вершин
 	int						line_w;		//толщина линий
+	int						delay;		//скорость воспроизведения
 }							t_visual;
 
 void		ft_free_visual(t_visual **vis);
