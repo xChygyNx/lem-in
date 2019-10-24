@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 22:01:28 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:33:57 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		 		s_visual
 	struct SDL_Texture		*texture;	// для теста
 	union SDL_Event			e;			//event
 	char					quit;		//флаг выхода
+	char					run;		//флаг запуска визуализации
 	int						radius;		//радиус вершин
 	int						line_w;		//толщина линий
 }							t_visual;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/23 23:47:44 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:26:24 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void		first_pass(t_lem *lem, int min_paths)
 
 	while (min_paths-- && (path = bfs(lem)))
 	{
-		lem->visualization ? draw_path(lem->vis, path, 'g') : 0;
+		SDL_SetRenderDrawColor(lem->vis->render, BLACK, 0);
+		SDL_RenderClear(lem->vis->render);
+		//draw_edges(lem->vis, lem->vrx);
+		lem->visualization ? draw_path(lem->vis, lem->vrx, path, 'g') : 0;
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{

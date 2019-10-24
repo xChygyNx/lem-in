@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/23 22:02:43 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:33:57 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_visual	*new_visual(void)
 	vis->render = NULL;
 	vis->texture = NULL;
 	vis->quit = 0;
+	vis->run = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
@@ -38,7 +39,7 @@ void			init_vis(t_lem *lem)
 	else
 	{
 		lem->vis->win = SDL_CreateWindow("Lem-in", SDL_WINDOWPOS_CENTERED, \
-		SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE);
+		SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (!lem->vis->win)
 			ft_exit(&lem, SDL_WIN_ERROR);
 		lem->vis->render = SDL_CreateRenderer(lem->vis->win, -1, \
