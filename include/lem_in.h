@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 21:18:42 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:11:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define MAX_INT 2147483647
 
+# define NORMAL_EXIT 99
 # define INVALID_INPUT 100
 # define START_END 101
 # define DOUBLE_VRX 102
@@ -204,6 +205,8 @@ void					draw_edges(t_visual *vis, t_vrx *vrx);
 
 void					initilize_visio(t_lem *lem);
 
+void					drop_visio(t_visual **vis);
+
 void					margin_vertex(t_lem *lem);
 
 void					draw_graph(t_lem *lem, t_listpath *listpath);
@@ -215,5 +218,7 @@ void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 
 void					draw_path(t_visual *vis, t_path *path, char color);
+
+void					event(t_visual *vis);
 
 #endif

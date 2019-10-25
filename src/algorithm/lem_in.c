@@ -6,29 +6,19 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 21:19:26 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:33:38 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			lem_in(t_lem *lem)
+void			visual_mode(t_lem *lem, t_ant *army)
 {
-	while (!lem->vis->quit && !lem->vis->run)
-	{
-		while (SDL_PollEvent(&lem->vis->e) != 0)
-		{
-			if (lem->vis->e.type == SDL_QUIT)
-				lem->vis->quit = 1;
-			else if (lem->vis->e.type == SDL_KEYDOWN)
-			{
-				if (lem->vis->e.key.keysym.sym == SDLK_RETURN)
-					lem->vis->run = 1;
-				if (lem->vis->e.key.keysym.sym == SDLK_ESCAPE)
-					lem->vis->quit = 1;
-			}
-		}
-	}
+	initilize_visio(lem);
+	draw_graph(lem, NULL);
+	find_optimal_path(lem, army);
+	lem->vis->delay = 25;
+	offensive(lem, army);
 }
 
 int				main(int ac, char **av)
@@ -43,14 +33,12 @@ int				main(int ac, char **av)
 	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
 	if (lem->visual)
+		visual_mode(lem, army);
+	else
 	{
-		initilize_visio(lem);
-		lem->design_map ? design_map(lem) : 0;
-		lem_in(lem);
-		draw_graph(lem, NULL);
+		find_optimal_path(lem, army);
+		offensive(lem, army);
 	}
-	find_optimal_path(lem, army);
-	offensive(lem, army);
 	ft_del_lem(&lem);
 	return (0);
 }

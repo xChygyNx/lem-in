@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/23 17:02:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/25 13:32:14 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void			ft_exit(t_lem **lem, int err)
 	else if (err == SDL_WIN_ERROR)
 		ft_fprintf(2, "SDL could not create a window! SDL_Error: %s\n", \
 		SDL_GetError());
+	else if (err == NORMAL_EXIT)
+		exit(0);
 	else if (err == USAGE)
 		usage();
 	else

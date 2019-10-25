@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 20:05:29 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:57:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <math.h>
 
 # ifdef __linux__
-	# define WIN_HEIGHT 600
-	# define WIN_WIDTH 800
-	# define INDENT 50
+	# define WIN_HEIGHT 1000
+	# define WIN_WIDTH 1000
+	# define INDENT 100
 # else
 	# define WIN_HEIGHT 1200
 	# define WIN_WIDTH 1600

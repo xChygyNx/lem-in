@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/24 20:07:14 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:13:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 {
 	t_vrx	*vrx;
 
+	event(lem->vis);
+	lem->visual = lem->vis->quit;
+	if (!lem->visual)
+		return ;
 	SDL_SetRenderDrawColor(lem->vis->render, BLACK, 0);
 	SDL_RenderClear(lem->vis->render);
 	vrx = lem->vrx;
@@ -97,5 +101,4 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 	draw_listpath(lem->vis, listpath);
 	SDL_RenderPresent(lem->vis->render);
 	SDL_Delay(lem->vis->delay * 3);
-	lem->vis->run = 0;
 }

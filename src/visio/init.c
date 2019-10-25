@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/24 21:17:10 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:20:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_visual	*new_visual(void)
+static t_visual	*new_visio(void)
 {
 	t_visual	*vis;
 
@@ -22,15 +22,27 @@ static t_visual	*new_visual(void)
 	vis->surface = NULL;
 	vis->render = NULL;
 	vis->texture = NULL;
-	vis->quit = 0;
+	vis->quit = 1;
 	vis->run = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
 
+void	drop_visio(t_visual **vis)
+{
+	if (vis && *vis)
+	{
+		SDL_DestroyRenderer((*vis)->render);
+		SDL_DestroyWindow((*vis)->win);
+		(*vis)->win = NULL;
+		SDL_Quit();
+		*vis = NULL;
+	}
+}
+
 void			initilize_visio(t_lem *lem)
 {
-	if (!(lem->vis = new_visual()))
+	if (!(lem->vis = new_visio()))
 		ft_exit(&lem, MALLOC_FAILURE);
 	if ((SDL_Init(SDL_INIT_VIDEO)) < 0)
 		ft_exit(&lem, SDL_INIT_ERROR);
@@ -50,17 +62,26 @@ void			initilize_visio(t_lem *lem)
 		lem->vis->radius = ft_max(lem->vis->radius, 2);
 		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
 		lem->vis->delay =  2500 * (1.0 / lem->edge_c);
+		lem->design_map ? design_map(lem) : 0;
 	}
 }
 
-void		ft_free_visual(t_visual **vis)
+void		event(t_visual *vis)
 {
-	if (vis && *vis)
+	while (SDL_PollEvent(&vis->e) != 0)
 	{
-		SDL_DestroyRenderer((*vis)->render);
-		SDL_DestroyWindow((*vis)->win);
-		(*vis)->win = NULL;
-		SDL_Quit();
-		*vis = NULL;
+		if (vis->e.type == SDL_QUIT)
+			vis->quit = 0;
+		else if (vis->e.type == SDL_KEYDOWN)
+		{
+			if (vis->e.key.keysym.sym == SDLK_ESCAPE)
+				vis->quit = 0;
+			if (vis->e.key.keysym.sym == SDLK_s)
+				vis->delay += 50;
+			if (vis->e.key.keysym.sym == SDLK_f)
+				vis->delay -= 50;
+			vis->delay = ft_min(vis->delay, 250);
+			vis->delay = ft_max(vis->delay, 25);
+		}
 	}
 }
