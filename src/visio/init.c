@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 10:42:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:31:55 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	drop_visio(t_visual **vis)
 	{
 		SDL_DestroyRenderer((*vis)->render);
 		SDL_DestroyWindow((*vis)->win);
+		SDL_DestroyTexture((*vis)->texture);
+		TTF_CloseFont((*vis)->font);
 		(*vis)->win = NULL;
 		SDL_Quit();
+		free(*vis);
 		*vis = NULL;
 	}
 }
@@ -57,9 +60,11 @@ void			initilize_visio(t_lem *lem)
 		lem->vis->render = SDL_CreateRenderer(lem->vis->win, -1, \
 		SDL_RENDERER_SOFTWARE);
 		if (lem->vis->render == NULL)
-			ft_exit(&lem, MALLOC_FAILURE);
+			ft_exit(&lem, 0);
 		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);
 		lem->vis->radius = ft_max(lem->vis->radius, 2);
+		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf", lem->vis->radius)))
+			ft_exit(&lem, 0);
 		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
 		lem->vis->delay =  2500 * (1.0 / lem->edge_c);
 		lem->design_map ? design_map(lem) : 0;

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 10:30:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:19:18 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		 		s_visual
 	struct SDL_Renderer		*render;	// изображение
 	struct SDL_Texture		*texture;	// для теста
 	union SDL_Event			e;			//event
+	struct _TTF_Font		*font; 		//шрифт для заставок
 	char					quit;		//флаг выхода
 	char					run;		//флаг запуска визуализации
 	int						radius;		//радиус вершин

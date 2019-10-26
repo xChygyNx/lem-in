@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/25 14:11:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:38:03 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,7 @@ void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 void					draw_path(t_visual *vis, t_path *path, char color);
 
 void					event(t_visual *vis);
+
+void					intro(t_lem *lem);
 
 #endif

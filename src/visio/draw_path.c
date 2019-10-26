@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 21:54:32 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:04:20 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,3 @@ void		draw_path(t_visual *vis, t_path *path, char color)
 	}
 	SDL_Delay(vis->delay * 3);
 }
-
-/*
-void		draw_move_ants(t_lem *lem, t_ant *army, int number)
-{
-	draw_graph(lem, lem->listpath);
-
-}
-*/
