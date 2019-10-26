@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 15:38:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 17:06:48 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ typedef struct			s_ant
 	struct s_path		*path;
 	struct s_ant		*next;
 	struct s_ant		*prev;
+	float				dx;
+	float				dy;
+	float				x;
+	float				y;
 }						t_ant;
 
 void					ft_exit(t_lem **lem, int err);
@@ -209,18 +213,38 @@ void					drop_visio(t_visual **vis);
 
 void					margin_vertex(t_lem *lem);
 
-void					draw_graph(t_lem *lem, t_listpath *listpath);
+void					event(t_visual *vis);
 
 void					design_map(t_lem *lem);
+
+/*
+** DRAW FUNCTIONS
+*/
+
+void					draw_intro(t_lem *lem);
+
+void					draw_graph(t_lem *lem, t_listpath *listpath, char f);
 
 void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 
 void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 
+void					draw_listpath(t_visual *vis, t_listpath *lp);
+
 void					draw_path(t_visual *vis, t_path *path, char color);
 
-void					event(t_visual *vis);
+void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
 
-void					intro(t_lem *lem);
+/*
+** VISIO UTILITY
+*/
+
+SDL_Rect				get_rectangle(int width, int height, int x, int y);
+
+SDL_Texture				*text2texture(SDL_Renderer *rend, TTF_Font *font,\
+						char *str, t_color c);
+
+void					texture2render(SDL_Renderer *rend, SDL_Texture *text,\
+						SDL_Rect rect);
 
 #endif

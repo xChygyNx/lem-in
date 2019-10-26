@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 16:19:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:54:23 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@
 # endif
 
 # define START_COLOR 30, 255, 30
-# define END_COLOR 255, 255, 30
+# define END_COLOR 255, 0, 0
 # define SIMPLE_VRX 30, 30, 100
 # define RED_LINE 255, 0, 0
 # define GREEN_LINE 0, 150, 0
 # define BLUE_LINE 0, 0, 100
 # define BLACK 0, 0, 0
+# define YELLOW 255, 255, 0
+
+# define STEPS	100
 
 typedef union		u_color
 {

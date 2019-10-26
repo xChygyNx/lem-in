@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 15:31:55 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:58:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ static t_visual	*new_visio(void)
 	vis->texture = NULL;
 	vis->quit = 1;
 	vis->run = 0;
+	vis->delay = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
 
-void	drop_visio(t_visual **vis)
+void			drop_visio(t_visual **vis)
 {
 	if (vis && *vis)
 	{
@@ -63,15 +64,16 @@ void			initilize_visio(t_lem *lem)
 			ft_exit(&lem, 0);
 		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);
 		lem->vis->radius = ft_max(lem->vis->radius, 2);
-		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf", lem->vis->radius)))
+		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf",\
+		lem->vis->radius)))
 			ft_exit(&lem, 0);
 		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
-		lem->vis->delay =  2500 * (1.0 / lem->edge_c);
+		lem->vis->delay = 2500.0 / lem->edge_c;
 		lem->design_map ? design_map(lem) : 0;
 	}
 }
 
-void		event(t_visual *vis)
+void			event(t_visual *vis)
 {
 	while (SDL_PollEvent(&vis->e) != 0)
 	{

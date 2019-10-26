@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 15:42:23 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 15:50:23 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		offensive(t_lem *lem, t_ant *army)
 	while (army)
 	{
 		meat = go_to_fight(lem->listpath, army);
-//		if (lem->visual)
-//			draw_move_ants(lem, army, meat);
+		if (lem->visual)
+			draw_move_ants(lem, army, meat);
 		step_to_win(army, meat);
 		soldiers_commission(&army);
 	}

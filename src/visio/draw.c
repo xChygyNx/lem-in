@@ -5,84 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 21:55:13 by astripeb         ###   ########.fr       */
+/*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
+/*   Updated: 2019/10/26 17:14:12 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		draw_vertex(t_visual *vis, t_vrx *vrx, char c)
-{
-	if (c == 'r')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, RED_LINE, 255);
-	else if (c == 'b')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, BLUE_LINE, 255);
-	else if (c == 'g' && !vrx->type)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, GREEN_LINE, 255);
-	if (vrx->type == START)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, START_COLOR, 255);
-	else if (vrx->type == END)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, END_COLOR, 255);
-	else if (!vrx->type)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, SIMPLE_VRX, 255);
-}
-
-void		draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c)
-{
-	if (c == 'r')
-	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w * 2, RED_LINE, 150);
-	}
-	else if (c == 'b')
-	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w, BLUE_LINE, 255);
-	}
-	else
-	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w * 2, GREEN_LINE, 150);
-	}
-}
-
-static void draw_listpath(t_visual *vis, t_listpath *lp)
-{
-	t_path		*path;
-
-	while (lp)
-	{
-		path = lp->path;
-		while (path->next)
-		{
-			draw_edge(vis, path->vrx, path->next->vrx, 'r');
-			draw_vertex(vis, path->vrx, 'r');
-			path = path->next;
-		}
-		draw_vertex(vis, path->vrx, 'r');
-		lp = lp->next;
-	}
-	SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
-}
-
-void	draw_edges(t_visual *vis, t_vrx *vrx)
-{
-	t_adj		*adj;
-
-	while (vrx)
-	{
-		adj = vrx->adj;
-		while (adj)
-		{
-			draw_edge(vis, vrx, adj->vrx, 'b');
-			adj = adj->next;
-		}
-		vrx = vrx->next;
-	}
-}
-
-void		draw_graph(t_lem *lem, t_listpath *listpath)
+void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 {
 	t_vrx	*vrx;
 
@@ -100,6 +30,38 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 		vrx = vrx->next;
 	}
 	draw_listpath(lem->vis, listpath);
-	SDL_RenderPresent(lem->vis->render);
+	f ? SDL_RenderPresent(lem->vis->render) : 0;
 	SDL_Delay(lem->vis->delay * 3);
+}
+
+void			draw_intro(t_lem *lem)
+{
+	t_color		c;
+	SDL_Texture *press;
+	SDL_Rect	welcome;
+	SDL_Rect	start;
+
+	c.color = ~0;
+	lem->vis->texture = text2texture(lem->vis->render, lem->vis->font, "Welcome to Lem-in", c);
+	if (!lem->vis->texture)
+		ft_exit(&lem, 0);
+	press = text2texture(lem->vis->render, lem->vis->font, "Press F to start", c);
+	if (!press)
+		ft_exit(&lem, 0);
+	welcome = get_rectangle(WIN_WIDTH / 2, INDENT, WIN_WIDTH / 4, WIN_HEIGHT / 2 - INDENT / 2);
+	start = get_rectangle(300, 50, WIN_WIDTH / 2 - 150, WIN_HEIGHT / 2 + INDENT * 2);
+	while(lem->vis->quit)
+	{
+		SDL_SetRenderDrawColor(lem->vis->render, 0, 0, 0, 0);
+		SDL_RenderClear(lem->vis->render);
+		texture2render(lem->vis->render, lem->vis->texture, welcome);
+		SDL_Delay(500);
+		texture2render(lem->vis->render, press, start);
+		SDL_Delay(500);
+		event(lem->vis);
+	}
+	SDL_DestroyTexture(lem->vis->texture);
+	lem->vis->texture = NULL;
+	SDL_DestroyTexture(press);
+	lem->vis->quit = 1;
 }

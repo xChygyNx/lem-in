@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:33:16 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/24 18:06:46 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:57:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ static void	set_x_y(t_vrx *vrx, int x, int y, int in_row)
 		vrx->x = x;
 		vrx->y = y;
 	}
-
 }
 
-void	design_map(t_lem *lem)
+void		design_map(t_lem *lem)
 {
 	int		in_row;
 	int		room_count;
