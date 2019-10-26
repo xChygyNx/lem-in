@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 17:10:58 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 17:52:05 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void			visual_mode(t_lem *lem, t_ant *army)
 	find_optimal_path(lem, army);
 	lem->vis->delay = 2;
 	offensive(lem, army);
+	lem->visual ? draw_outro(lem) : 0;
 }
 
 int				main(int ac, char **av)
