@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/23 23:40:16 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/26 10:45:05 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,18 +35,10 @@ ifeq ($(UNAME), Linux)
 	SDL2_INC		= /usr/include/SDL2
 	CFLAGS			+= $(shell sdl2-config --cflags)
 	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
-	LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
 	LFLAGS			+= -I $(SDL2_INC)
 else
-	SDL2_INC		:= ~/.brew/Cellar/sdl2/2.0.10/include/SDL2/
-	SDL2_LIB		:= ~/.brew/Cellar/sdl2/2.0.10/lib
-	SDL2_GFX_INC	:= ~/.brew/Cellar/sdl2_gfx/1.0.4/include/SDL2/
-	SDL2_GFX_LIB	:= ~/.brew/Cellar/sdl2_gfx/1.0.4/lib
-	SDL2_TTF_INC	:= ~/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/
-	SDL2_TTF_LIB	:= ~/.brew/Cellar/sdl2_ttf/2.0.15/lib
-	LIBS			+= -L $(SDL2_LIB) -lSDL2 -L $(SDL2_GFX_LIB) -lSDL2_gfx
-	LIBS			+= -L $(SDL2_TTF_LIB) -lSDL2_ttf -lm
-	LFLAGS			+= -I $(SDL2_INC) -I $(SDL2_GFX_INC) -I $(SDL2_TTF_INC)
+	CFLAGS			+= $(shell sdl2-config --cflags)
+	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
 endif
 
 HEADERS			:= lem_in.h visual.h

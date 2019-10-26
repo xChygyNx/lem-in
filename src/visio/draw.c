@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 14:13:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:55:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void draw_listpath(t_visual *vis, t_listpath *lp)
 		draw_vertex(vis, path->vrx, 'r');
 		lp = lp->next;
 	}
+	SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
 }
 
 void	draw_edges(t_visual *vis, t_vrx *vrx)
@@ -89,7 +90,7 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 	lem->visual = lem->vis->quit;
 	if (!lem->visual)
 		return ;
-	SDL_SetRenderDrawColor(lem->vis->render, BLACK, 0);
+	SDL_SetRenderDrawColor(lem->vis->render, 0, 0, 0, 0);
 	SDL_RenderClear(lem->vis->render);
 	vrx = lem->vrx;
 	draw_edges(lem->vis, vrx);

@@ -6,16 +6,16 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/25 14:57:29 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 10:30:18 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
 
-# include "SDL.h"
-# include "SDL2_gfxPrimitives.h"
-# include "SDL_ttf.h"
+# include <SDL.h>
+# include <SDL2_gfxPrimitives.h>
+# include <SDL_ttf.h>
 # include <math.h>
 
 # ifdef __linux__

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/24 21:18:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:53:38 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void		first_pass(t_lem *lem, int min_paths)
 
 	while (min_paths-- && (path = bfs(lem)))
 	{
-		lem->visual ? draw_path(lem->vis, path, 'g') : 0;
+		if (lem->visual)
+			draw_path(lem->vis, path, 'g');
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{

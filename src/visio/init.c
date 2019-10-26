@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/25 14:20:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 10:42:30 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			initilize_visio(t_lem *lem)
 		ft_exit(&lem, MALLOC_FAILURE);
 	if ((SDL_Init(SDL_INIT_VIDEO)) < 0)
 		ft_exit(&lem, SDL_INIT_ERROR);
-	else if (TTF_Init() == -1)
+	if (TTF_Init() == -1)
 		ft_exit(&lem, SDL_INIT_ERROR);
 	else
 	{
@@ -55,7 +55,7 @@ void			initilize_visio(t_lem *lem)
 		if (!lem->vis->win)
 			ft_exit(&lem, SDL_WIN_ERROR);
 		lem->vis->render = SDL_CreateRenderer(lem->vis->win, -1, \
-		SDL_RENDERER_ACCELERATED);
+		SDL_RENDERER_SOFTWARE);
 		if (lem->vis->render == NULL)
 			ft_exit(&lem, MALLOC_FAILURE);
 		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);

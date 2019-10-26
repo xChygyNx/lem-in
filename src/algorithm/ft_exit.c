@@ -6,19 +6,11 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 13:32:14 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 18:35:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void			destroy_visual(t_lem *lem)
-{
-	SDL_DestroyRenderer(lem->vis->render);
-    SDL_DestroyWindow(lem ->vis->win);
-	TTF_Quit();
-	SDL_Quit();
-}
 
 static void		usage(void)
 {

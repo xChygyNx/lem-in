@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/25 15:33:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 20:25:39 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				main(int ac, char **av)
 	t_ant	*army;
 //	int		fd;
 
-//	fd = open("tests/sferical_test_in_vacuum", O_RDONLY);
+//	fd = open("tests/test_from_smight", O_RDONLY);
 	lem = create_lem(0);
 	army = create_army(lem->ant_c);
 	ac > 1 ? check_flags(av, lem) : 0;

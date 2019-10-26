@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 15:42:15 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:54:32 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void		draw_path(t_visual *vis, t_path *path, char color)
 {
-	SDL_SetRenderDrawColor(vis->render, BLACK, 0);
 	while (path->next)
 	{
 		event(vis);
 		if (!vis->quit)
 			return ;
-		SDL_Delay(vis->delay);
 		if(path->vrx->sep && path->next->vrx->sep)
 			draw_edge(vis, path->vrx, path->next->vrx, 'r');
 		else
 			draw_edge(vis, path->vrx, path->next->vrx, color);
+		SDL_Delay(vis->delay);
 		draw_vertex(vis, path->vrx, color);
 		draw_vertex(vis, path->next->vrx, color);
 		path = path->next;
