@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 21:55:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:05:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	draw_edges(t_visual *vis, t_vrx *vrx)
 	}
 }
 
-void		draw_graph(t_lem *lem, t_listpath *listpath)
+void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 {
 	t_vrx	*vrx;
 
@@ -100,6 +100,6 @@ void		draw_graph(t_lem *lem, t_listpath *listpath)
 		vrx = vrx->next;
 	}
 	draw_listpath(lem->vis, listpath);
-	SDL_RenderPresent(lem->vis->render);
+	f ? SDL_RenderPresent(lem->vis->render) : 0;
 	SDL_Delay(lem->vis->delay * 3);
 }

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 21:53:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:06:50 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 		visit_listpath(*listpath);
 	}
 	full_renovation_lem(lem);
-	lem->visual ? draw_graph(lem, *listpath) : 0;
+	lem->visual ? draw_graph(lem, *listpath, 1) : 0;
 	return (i);
 }
 
@@ -69,7 +69,7 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 	while (1)
 	{
 		min_paths++;
-		lem->visual ? draw_graph(lem, NULL) : 0;
+		lem->visual ? draw_graph(lem, NULL, 1) : 0;
 		if (suurballe(lem, &paths, min_paths) != min_paths)
 			break ;
 		steps = routing(paths, army);
@@ -97,5 +97,5 @@ void			find_optimal_path(t_lem *lem, t_ant *army)
 	search_optimal_count_of_paths(lem, listpath, min_steps, army);
 	ft_free_path(&listpath);
 	renovate_listpath(lem->listpath);
-	lem->visual ? draw_graph(lem, lem->listpath) : 0;
+	lem->visual ? draw_graph(lem, lem->listpath, 1) : 0;
 }

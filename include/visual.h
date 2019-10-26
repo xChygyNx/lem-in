@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 10:30:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:07:14 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define GREEN_LINE 0, 150, 0
 # define BLUE_LINE 0, 0, 100
 # define BLACK 0, 0, 0
+
+# define STEPS	100
 
 typedef union		u_color
 {

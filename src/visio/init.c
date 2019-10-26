@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 10:42:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:10:21 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_visual	*new_visio(void)
 	vis->texture = NULL;
 	vis->quit = 1;
 	vis->run = 0;
+	vis->delay = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/25 14:11:27 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 16:07:15 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ typedef struct			s_ant
 	struct s_path		*path;
 	struct s_ant		*next;
 	struct s_ant		*prev;
+	float				dx;
+	float				dy;
+	float				x;
+	float				y;
 }						t_ant;
 
 void					ft_exit(t_lem **lem, int err);
@@ -209,7 +213,7 @@ void					drop_visio(t_visual **vis);
 
 void					margin_vertex(t_lem *lem);
 
-void					draw_graph(t_lem *lem, t_listpath *listpath);
+void					draw_graph(t_lem *lem, t_listpath *listpath, char f);
 
 void					design_map(t_lem *lem);
 
@@ -220,5 +224,7 @@ void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 void					draw_path(t_visual *vis, t_path *path, char color);
 
 void					event(t_visual *vis);
+
+void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
 
 #endif
