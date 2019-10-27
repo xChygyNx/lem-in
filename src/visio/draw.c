@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 17:55:37 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:34:37 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,45 @@ void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 	SDL_Delay(lem->vis->delay * 3);
 }
 
-
-static void		wait2go(t_visual *vis, SDL_Texture *text2,\
-				SDL_Rect rect1, SDL_Rect rect2)
+static int		wait(t_visual *vis, int time)
 {
-	int		i;
+	int i;
 
-	i = 1;
-	while (i)
+	i = 0;
+	while (i++ < time)
 	{
-		SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
-		SDL_RenderClear(vis->render);
-		texture2render(vis->render, vis->texture, rect1);
-		SDL_Delay(500);
 		while (SDL_PollEvent(&vis->e))
 		{
 			if (vis->e.type == SDL_QUIT || (vis->e.type == SDL_KEYDOWN\
 			&& vis->e.key.keysym.sym == SDLK_ESCAPE))
 			{
 				vis->quit = 0;
-				i = vis->quit;
-				break ;
+				return (vis->quit);
 			}
 			else if (vis->e.type == SDL_KEYDOWN)
 			{
 				if (vis->e.key.keysym.sym == SDLK_f)
-					i = 0;
+					return (-1);
 			}
 		}
+		SDL_Delay(1);
+	}
+	return (1);
+}
+
+static void		wait2go(t_visual *vis, SDL_Texture *text2,\
+				SDL_Rect rect1, SDL_Rect rect2)
+{
+	while (1)
+	{
+		SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
+		SDL_RenderClear(vis->render);
+		texture2render(vis->render, vis->texture, rect1);
+		if (wait(vis, 500) < 1)
+			break ;
 		texture2render(vis->render, text2, rect2);
-		SDL_Delay(500);
+		if (wait(vis, 500) < 1)
+			break ;
 	}
 }
 
@@ -84,9 +93,9 @@ void			draw_intro(t_lem *lem)
 	if (!press)
 		ft_exit(&lem, 0);
 	welcome = get_rectangle(WIN_WIDTH / 2, INDENT, WIN_WIDTH / 4,\
-	WIN_HEIGHT / 2 - INDENT / 2);
+	WIN_HEIGHT / 2 - INDENT);
 	start = get_rectangle(300, 50, WIN_WIDTH / 2 - 150,\
-	WIN_HEIGHT / 2 + INDENT * 2);
+	WIN_HEIGHT / 2 + INDENT);
 	wait2go(lem->vis, press, welcome, start);
 	SDL_DestroyTexture(lem->vis->texture);
 	lem->vis->texture = NULL;
@@ -101,6 +110,7 @@ void			draw_outro(t_lem *lem)
 	SDL_Rect	start;
 
 	c.color = ~0;
+	SDL_SetRenderDrawColor(lem->vis->render, 0, 0, 0, 0);
 	lem->vis->texture = text2texture(lem->vis->render, lem->vis->font,\
 	"Thanks for your evaluation", c);
 	if (!lem->vis->texture)
@@ -110,9 +120,9 @@ void			draw_outro(t_lem *lem)
 	if (!press)
 		ft_exit(&lem, 0);
 	welcome = get_rectangle(WIN_WIDTH - (INDENT * 2), INDENT, INDENT,\
-	WIN_HEIGHT / 2 - INDENT / 2);
+	WIN_HEIGHT / 2 - INDENT);
 	start = get_rectangle(400, 50, WIN_WIDTH / 2 - 200,\
-	WIN_HEIGHT / 2 + INDENT * 2);
+	WIN_HEIGHT / 2 + INDENT);
 	wait2go(lem->vis, press, welcome, start);
 	SDL_DestroyTexture(lem->vis->texture);
 	lem->vis->texture = NULL;

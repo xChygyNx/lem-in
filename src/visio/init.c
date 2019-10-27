@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 16:58:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:24:57 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ void			initilize_visio(t_lem *lem)
 			ft_exit(&lem, 0);
 		lem->vis->radius = ft_min(WIN_HEIGHT, WIN_WIDTH) / (lem->vert_c * 3);
 		lem->vis->radius = ft_max(lem->vis->radius, 2);
-		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf",\
-		lem->vis->radius)))
+		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf", 20)))
 			ft_exit(&lem, 0);
 		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
 		lem->vis->delay = 2500.0 / lem->edge_c;
@@ -88,7 +87,7 @@ void			event(t_visual *vis)
 			if (vis->e.key.keysym.sym == SDLK_f)
 				vis->delay -= 50;
 			vis->delay = ft_min(vis->delay, 250);
-			vis->delay = ft_max(vis->delay, 25);
+			vis->delay = ft_max(vis->delay, 1);
 		}
 	}
 }
