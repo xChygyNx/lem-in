@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 17:28:51 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:52:15 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,8 @@ void					draw_listpath(t_visual *vis, t_listpath *lp);
 void					draw_path(t_visual *vis, t_path *path, char color);
 
 void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
+
+void					draw_outro(t_lem *lem);
 
 /*
 ** VISIO UTILITY

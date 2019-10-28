@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:41:56 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 17:05:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 17:33:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ static void		paint_ants(t_visual *vis, t_ant *army, int meat)
 {
 	int rad;
 
-	rad = vis->radius / 3 > 1 ? vis->radius / 3 : 2;
-	while (meat--)
+	event(vis);
+	if (vis->quit)
 	{
-		filledCircleRGBA(vis->render, army->x, army->y, rad, 255, 255,\
-		255, 255);
-		army = army->next;
+		rad = vis->radius / 3 > 1 ? vis->radius / 3 : 2;
+		while (meat--)
+		{
+			filledCircleRGBA(vis->render, army->x, army->y, rad, 255, 255,\
+			255, 255);
+			army = army->next;
+		}
 	}
 }
 
@@ -60,5 +64,7 @@ void			draw_move_ants(t_lem *lem, t_ant *army, int meat)
 		paint_ants(lem->vis, army, meat);
 		SDL_RenderPresent(lem->vis->render);
 		SDL_Delay(lem->vis->delay);
+		if (!lem->visual)
+			break ;
 	}
 }
