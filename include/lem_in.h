@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 17:34:13 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 22:59:06 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@
 # define SDL_INIT_ERROR 104
 # define SDL_WIN_ERROR 105
 # define USAGE 106
-
-# define SEP 32
 
 typedef struct			s_adj
 {
@@ -87,13 +85,13 @@ typedef struct			s_listpath
 	int					path_len;
 	struct s_path		*path;
 	struct s_listpath	*next;
+	union u_color		color;
 }						t_listpath;
 
 typedef struct			s_path
 {
 	struct s_vrx		*vrx;
 	struct s_path		*next;
-	union u_color		color;
 }						t_path;
 
 typedef struct			s_ant
@@ -233,13 +231,13 @@ void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
 
 void					draw_listpath(t_visual *vis, t_listpath *lp);
 
-void					draw_path(t_visual *vis, t_path *path, char color);
+void					draw_path(t_visual *vis, t_path *path);
 
 void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
 
 void					draw_outro(t_lem *lem);
 
-void					set_path_color(t_lem *lem);
+void					set_path_color(t_listpath *listpath);
 
 /*
 ** VISIO UTILITY

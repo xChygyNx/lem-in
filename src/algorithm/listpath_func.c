@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   listpath_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:14:11 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 17:33:53 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:03:29 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_path		*min_path(t_listpath *paths)
+static t_listpath		*min_path(t_listpath *paths)
 {
 	int			min_len;
 	t_listpath	*min_len_path;
@@ -29,7 +29,7 @@ static t_path		*min_path(t_listpath *paths)
 		paths = paths->next;
 	}
 	min_len_path->path_len += 1;
-	return (min_len_path->path);
+	return (min_len_path);
 }
 
 static t_listpath	*new_listpath(t_path *path)
@@ -41,6 +41,7 @@ static t_listpath	*new_listpath(t_path *path)
 	listpath_t->path = path;
 	listpath_t->path_len = path_len(path);
 	listpath_t->next = NULL;
+	listpath_t->color.color = 0;
 	return (listpath_t);
 }
 
@@ -72,7 +73,7 @@ int					add_listpath(t_listpath **listpath, t_path *path)
 
 int					routing(t_listpath *paths, t_ant *army)
 {
-	t_path	*min_len_path;
+	t_listpath	*mpath;
 	int		steps;
 	int		transit_time;
 
@@ -80,12 +81,11 @@ int					routing(t_listpath *paths, t_ant *army)
 	transit_time = paths->path_len - 1;
 	while (army)
 	{
-		min_len_path = min_path(paths);
-		army->path = min_len_path;
-		min_len_path == paths->path ? steps++ : 0;
+		mpath = min_path(paths);
+		army->path = mpath->path;
+		army->color.color = mpath->color.color;
+		mpath->path == paths->path ? steps++ : 0;
 		army = army->prev;
-		//ft_printf("path color = %lu\n", paths->path->color.color);
-		//army->color.color = paths->path->color.color;
 	}
 	return (steps + transit_time);
 }

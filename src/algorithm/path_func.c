@@ -3,37 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 17:44:10 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:02:48 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		set_path_color(t_lem *lem)
+void		set_path_color(t_listpath *lpath)
 {
 	int			i;
-	t_listpath	*tmp_list;
 
-	tmp_list = lem->listpath;
 	i = 0;
-	while (tmp_list)
+	while (lpath)
 	{
-		lem->listpath->path->color.color = i % 11 == 0 ? U_RED : 0;
-		lem->listpath->path->color.color = i % 11 == 1 ? U_BLUE : 0;
-		lem->listpath->path->color.color = i % 11 == 2 ? U_GOLD : 0;
-		lem->listpath->path->color.color = i % 11 == 3 ? U_PURPLE : 0;
-		lem->listpath->path->color.color = i % 11 == 4 ? U_BROWN : 0;
-		lem->listpath->path->color.color = i % 11 == 5 ? U_GREEN : 0;
-		lem->listpath->path->color.color = i % 11 == 6 ? U_ORANGE : 0;
-		lem->listpath->path->color.color = i % 11 == 7 ? U_AQUA : 0;
-		lem->listpath->path->color.color = i % 11 == 8 ? U_INDIGO : 0;
-		lem->listpath->path->color.color = i % 11 == 9 ? U_PINK : 0;
-		lem->listpath->path->color.color = i % 11 == 10 ? U_WHITE : 0;
+		
+		if (i % 10 == 0) 
+			lpath->color.color = A_MAGENTA;
+		else if (i % 11 == 1) 
+			lpath->color.color = A_DARKTURQUOISE;
+		else if (i % 11 == 2) 
+			lpath->color.color = A_YELLOW;
+		else if (i % 11 == 3) 
+			lpath->color.color = A_INDIANRED;
+		else if (i % 11 == 4) 
+			lpath->color.color = A_BLUE;
+		else if (i % 11 == 5) 
+			lpath->color.color = A_DARJKHAKI;
+		else if (i % 11 == 6) 
+			lpath->color.color = A_DARKORANGE;
+		else if (i % 11 == 7) 
+			lpath->color.color = A_CYAN;
+		else if (i % 11 == 8) 
+			lpath->color.color = A_LAWNREEN;
+		else if (i % 11 == 9) 
+			lpath->color.color = A_FIREBRICK;
+		else if (i % 11 == 9) 
+			lpath->color.color = A_MOCCASIN;
+		lpath = lpath->next;
 		i++;
-		tmp_list = tmp_list->next; 
 	}
 }
 

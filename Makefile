@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: aks <aks@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/26 17:12:24 by astripeb         ###   ########.fr        #
+#    Updated: 2019/10/28 18:16:32 by aks              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
 UNAME 			= $(shell uname -s)
 
 ifeq ($(UNAME), Linux)
-	SDL2_INC		= /usr/include/SDL2
+#	SDL2_INC		= /usr/include/SDL2
 	CFLAGS			+= $(shell sdl2-config --cflags)
 	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
-	LFLAGS			+= -I $(SDL2_INC)
+#	LFLAGS			+= -I $(SDL2_INC)
 else
 	CFLAGS			+= $(shell sdl2-config --cflags)
 	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 15:13:19 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:01:00 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,44 @@
 	# define INDENT 100
 # endif
 
-# define START_COLOR 30, 255, 30
-# define END_COLOR 255, 0, 0
-# define SIMPLE_VRX 30, 30, 100
-# define RED_LINE 255, 0, 0
-# define GREEN_LINE 0, 150, 0
-# define BLUE_LINE 0, 0, 100
-# define BLACK 0, 0, 0
-# define YELLOW 255, 255, 0
+/*
+** VERTEX COLORS (RGBA - int)
+*/
 
-# define U_RED 255
-# define U_BLUE 16711680
-# define U_GOLD 55295
-# define U_PURPLE 8388736
-# define U_BROWN 1262987
-# define U_GREEN 25600
-# define U_ORANGE 17916
-# define U_AQUA 16776960
-# define U_INDIGO 8519755
-# define U_PINK 13353215
-# define U_WHITE 16777215
+#define V_STRT 			4280221470
+#define V_END 			4278190335
+#define V_RED 			4278190335
+#define V_BLUE 			4284743680
+#define V_GREEN 		4278228480
+#define V_YELLOW 		4278255615
+#define V_SIMP 			4284751390
 
+/*
+** EDGE COLORS (RGBA - int)
+*/
 
-# define STEPS	100
+#define E_BLUE 			4284743680
+#define E_RED 			2516582655
+#define E_GREEN 		2516620800
+#define E_YELLOW 		2516647935
+
+/*
+** ANT COLORS (RGBA - int)
+*/
+
+# define A_MOCCASIN 	4290110719
+# define A_DARKTURQUOISE 4291939840
+# define A_BLUE			4294901760
+# define A_CYAN			4294967040
+# define A_LAWNREEN		4278254716
+# define A_DARJKHAKI	4285249469
+# define A_YELLOW		4278255615
+# define A_INDIANRED	4284243149
+# define A_FIREBRICK	4280427186
+# define A_DARKORANGE	4278226175
+# define A_MAGENTA 		4294902015
+
+# define STEPS			100
 
 typedef union		u_color
 {
@@ -73,7 +88,6 @@ typedef struct		 		s_visual
 	union SDL_Event			e;			//event
 	struct _TTF_Font		*font; 		//шрифт для заставок
 	char					quit;		//флаг выхода
-	char					run;		//флаг запуска визуализации
 	int						radius;		//радиус вершин
 	int						line_w;		//толщина линий
 	int						delay;		//скорость воспроизведения

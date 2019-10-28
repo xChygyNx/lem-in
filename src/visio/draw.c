@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 14:44:58 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:17:58 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 	t_vrx	*vrx;
 
 	event(lem->vis);
-	lem->visual = lem->vis->quit;
-	if (!lem->visual)
+	if (!(lem->visual = lem->vis->quit))
 		return ;
 	SDL_SetRenderDrawColor(lem->vis->render, 0, 0, 0, 0);
 	SDL_RenderClear(lem->vis->render);
@@ -29,12 +28,13 @@ void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 		draw_vertex(lem->vis, vrx, 'b');
 		vrx = vrx->next;
 	}
+	set_path_color(listpath);
 	draw_listpath(lem->vis, listpath);
 	f ? SDL_RenderPresent(lem->vis->render) : 0;
 	SDL_Delay(lem->vis->delay * 3);
 }
 
-static int		our_wait(t_visual *vis, int time)
+static int		ft_wait(t_visual *vis, int time)
 {
 	int i;
 
@@ -68,10 +68,10 @@ static void		wait2go(t_visual *vis, SDL_Texture *text2,\
 		SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
 		SDL_RenderClear(vis->render);
 		texture2render(vis->render, vis->texture, rect1);
-		if (our_wait(vis, 500) < 1)
+		if (ft_wait(vis, 500) < 1)
 			break ;
 		texture2render(vis->render, text2, rect2);
-		if (our_wait(vis, 500) < 1)
+		if (ft_wait(vis, 500) < 1)
 			break ;
 	}
 }

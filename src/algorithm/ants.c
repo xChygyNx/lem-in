@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ants.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 14:41:09 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 18:24:06 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_ant		*new_soldier(int serial_number)
 	soldier->path = NULL;
 	soldier->next = NULL;
 	soldier->prev = NULL;
+	soldier->color.color = 0;
 	return (soldier);
 }
 

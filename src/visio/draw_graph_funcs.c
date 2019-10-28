@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_graph_funcs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 16:36:51 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 22:55:16 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,45 @@
 void		draw_vertex(t_visual *vis, t_vrx *vrx, char c)
 {
 	if (c == 'r')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, RED_LINE, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius, V_RED);
 	else if (c == 'b')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, BLUE_LINE, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius, V_BLUE);
 	else if (c == 'g')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, GREEN_LINE, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius, V_GREEN);
 	else if (c == 'y')
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, YELLOW, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius, V_YELLOW);
 	if (vrx->type == START)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, START_COLOR, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius - 3, V_STRT);
 	else if (vrx->type == END)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, END_COLOR, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius - 3, V_END);
 	else if (!vrx->type)
-		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, SIMPLE_VRX, 255);
+		filledCircleColor(vis->render, vrx->x, vrx->y, vis->radius - 3, V_SIMP);
 }
 
 void		draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c)
 {
 	if (c == 'r')
 	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w * 2, RED_LINE, 150);
+		thickLineColor(vis->render, from->x, from->y, to->x, to->y,\
+		vis->line_w * 2, E_RED);
 	}
 	else if (c == 'b')
 	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w, BLUE_LINE, 255);
+		thickLineColor(vis->render, from->x, from->y, to->x, to->y,\
+		vis->line_w, E_BLUE);
 	}
 	else if (c == 'g')
 	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w * 2, GREEN_LINE, 150);
+		thickLineColor(vis->render, from->x, from->y, to->x, to->y,\
+		vis->line_w * 2, E_GREEN);
 	}
 	else
 	{
-		thickLineRGBA(vis->render, from->x, from->y, to->x, to->y,\
-		vis->line_w * 2, YELLOW, 150);
+		thickLineColor(vis->render, from->x, from->y, to->x, to->y,\
+		vis->line_w * 2, E_YELLOW);
 	}
 }
+
 
 void		draw_edges(t_visual *vis, t_vrx *vrx)
 {
@@ -88,7 +89,7 @@ void		draw_listpath(t_visual *vis, t_listpath *lp)
 	}
 }
 
-void		draw_path(t_visual *vis, t_path *path, char color)
+void		draw_path(t_visual *vis, t_path *path)
 {
 	while (path->next)
 	{
@@ -98,10 +99,10 @@ void		draw_path(t_visual *vis, t_path *path, char color)
 		if(path->vrx->sep && path->next->vrx->sep)
 			draw_edge(vis, path->vrx, path->next->vrx, 'r');
 		else
-			draw_edge(vis, path->vrx, path->next->vrx, color);
+			draw_edge(vis, path->vrx, path->next->vrx, 'y');
 		SDL_Delay(vis->delay);
-		draw_vertex(vis, path->vrx, color);
-		draw_vertex(vis, path->next->vrx, color);
+		draw_vertex(vis, path->vrx, 'y');
+		draw_vertex(vis, path->next->vrx, 'y');
 		path = path->next;
 		SDL_RenderPresent(vis->render);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 17:36:29 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:08:21 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		first_pass(t_lem *lem, int min_paths)
 	while (min_paths-- && (path = bfs(lem)))
 	{
 		if (lem->visual)
-			draw_path(lem->vis, path, 'y');
+			draw_path(lem->vis, path);
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
 		{
@@ -83,7 +83,6 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 		else
 			break ;
 	}
-	set_path_color(lem);
 	ft_free_path(&paths);
 }
 
@@ -98,5 +97,9 @@ void			find_optimal_path(t_lem *lem, t_ant *army)
 	search_optimal_count_of_paths(lem, listpath, min_steps, army);
 	ft_free_path(&listpath);
 	renovate_listpath(lem->listpath);
-	lem->visual ? draw_graph(lem, lem->listpath, 1) : 0;
+	if (lem->visual)
+	{
+		draw_graph(lem, lem->listpath, 1);
+		set_path_color(lem->listpath);
+	}
 }
