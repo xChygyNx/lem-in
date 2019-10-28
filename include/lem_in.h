@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/26 17:06:48 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/26 17:28:51 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@
 # define USAGE 106
 
 # define SEP 32
+
+typedef union			u_color
+{
+	struct 				s_rgb
+	{
+			unsigned char	blue:8;
+			unsigned char	green:8;
+			unsigned char	red:8;
+	}					t_rgb;
+	unsigned int		color;	
+}						t_color;
 
 typedef struct			s_adj
 {
@@ -105,6 +116,7 @@ typedef struct			s_ant
 	float				dy;
 	float				x;
 	float				y;
+	union u_color		color;
 }						t_ant;
 
 void					ft_exit(t_lem **lem, int err);
