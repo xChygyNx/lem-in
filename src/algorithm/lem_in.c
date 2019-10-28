@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 15:43:01 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:25:05 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			visual_mode(t_lem *lem, t_ant *army)
 	draw_intro(lem);
 	draw_graph(lem, NULL, 1);
 	find_optimal_path(lem, army);
-	lem->vis->delay = 2;
+	lem->vis->delay = 250 / STEPS;
 	offensive(lem, army);
 	lem->visual ? draw_outro(lem) : 0;
 }

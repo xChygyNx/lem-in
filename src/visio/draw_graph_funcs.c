@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_graph_funcs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 17:08:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:36:51 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void		draw_vertex(t_visual *vis, t_vrx *vrx, char c)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, RED_LINE, 255);
 	else if (c == 'b')
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, BLUE_LINE, 255);
-	else if (c == 'g' && !vrx->type)
+	else if (c == 'g')
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, GREEN_LINE, 255);
-	else if (c == 'y' && !vrx->type)
+	else if (c == 'y')
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius, YELLOW, 255);
 	if (vrx->type == START)
 		filledCircleRGBA(vis->render, vrx->x, vrx->y, vis->radius - 3, START_COLOR, 255);
