@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 16:50:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/28 15:48:27 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	while (i < min_paths && (path = bfs(lem)))
 	{
 		redirect_lem(path, OFF);
-		if (!add_listpath(listpath, path))
+		if (!add_listpath(listpath, path, i % 11))
 		{
 			ft_free_path(listpath);
 			ft_free_one_path(&path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_moves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:41:56 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 17:33:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:05:04 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 static void		paint_ants(t_visual *vis, t_ant *army, int meat)
 {
-	int rad;
+	int		rad_border;
+	int		rad_fill;
 
 	event(vis);
 	if (vis->quit)
 	{
-		rad = vis->radius / 3 > 1 ? vis->radius / 3 : 2;
+		rad_border = vis->radius / 3 > 2 ? vis->radius / 3 : 3;
+		rad_fill = rad_border > 5 ? rad_border - 2 : rad_border - 1;
 		while (meat--)
 		{
-			filledCircleRGBA(vis->render, army->x, army->y, rad, 255, 255,\
-			255, 255);
+			filledCircleRGBA(vis->render, army->x, army->y, rad_border, 255,\
+			255, 255, 255);
+			filledCircleRGBA(vis->render, army->x, army->y, rad_fill,\
+			army->path->color.t_rgb.red, army->path->color.t_rgb.green,\
+			army->path->color.t_rgb.blue, 255);
 			army = army->next;
 		}
 	}

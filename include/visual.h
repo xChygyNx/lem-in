@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/27 11:22:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/28 15:13:19 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@
 # define BLUE_LINE 0, 0, 100
 # define BLACK 0, 0, 0
 # define YELLOW 255, 255, 0
+
+# define U_RED 255
+# define U_BLUE 16711680
+# define U_GOLD 55295
+# define U_PURPLE 8388736
+# define U_BROWN 1262987
+# define U_GREEN 25600
+# define U_ORANGE 17916
+# define U_AQUA 16776960
+# define U_INDIGO 8519755
+# define U_PINK 13353215
+# define U_WHITE 16777215
+
 
 # define STEPS	100
 

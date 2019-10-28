@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 13:52:15 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 15:37:01 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@
 # define USAGE 106
 
 # define SEP 32
-
-typedef union			u_color
-{
-	struct 				s_rgb
-	{
-			unsigned char	blue:8;
-			unsigned char	green:8;
-			unsigned char	red:8;
-	}					t_rgb;
-	unsigned int		color;	
-}						t_color;
 
 typedef struct			s_adj
 {
@@ -104,6 +93,7 @@ typedef struct			s_path
 {
 	struct s_vrx		*vrx;
 	struct s_path		*next;
+	union u_color		color;
 }						t_path;
 
 typedef struct			s_ant
@@ -165,7 +155,7 @@ void					ft_free_path(t_listpath **listpath_to_del);
 
 void					ft_free_one_path(t_path **path_to_del);
 
-int						add_listpath(t_listpath **listpath, t_path *path);
+int						add_listpath(t_listpath **listpath, t_path *path, char style);
 
 int						add_path_to_begin(t_path **begin, t_vrx *vrx);
 
@@ -248,6 +238,8 @@ void					draw_path(t_visual *vis, t_path *path, char color);
 void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
 
 void					draw_outro(t_lem *lem);
+
+void					set_path_color(t_path *path, char style);
 
 /*
 ** VISIO UTILITY

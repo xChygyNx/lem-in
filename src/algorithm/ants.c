@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 11:26:10 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/26 17:37:11 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 14:41:09 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		soldiers_commission(t_ant **army)
 	}
 }
 
-t_ant		*new_soldier(int serial_number, char style)
+t_ant		*new_soldier(int serial_number)
 {
 	t_ant	*soldier;
 
@@ -82,9 +82,6 @@ t_ant		*new_soldier(int serial_number, char style)
 	soldier->path = NULL;
 	soldier->next = NULL;
 	soldier->prev = NULL;
-	soldier->color.t_rgb.red = red_spectrum (style);
-	soldier->color.t_rgb.green = green_spectrum (style);
-	soldier->color.t_rgb.blue = blue_spectrum (style);
 	return (soldier);
 }
 
@@ -92,17 +89,15 @@ t_ant		*create_army(int number_of_soldiers)
 {
 	t_ant	*army;
 	t_ant	*soldier;
-	int		color;
 
 	if (!(army = new_soldier(number_of_soldiers)))
 		return (NULL);
 	army ? army->next = NULL : 0;
 	soldier = army;
 	number_of_soldiers--;
-	color = 0;
 	while (number_of_soldiers)
 	{
-		if (!(soldier->prev = new_soldier(number_of_soldiers, color++ % 10)))
+		if (!(soldier->prev = new_soldier(number_of_soldiers)))
 		{
 			dissolve_army(&army);
 			return (NULL);

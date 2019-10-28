@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/27 14:34:37 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/28 14:44:58 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
 	SDL_Delay(lem->vis->delay * 3);
 }
 
-static int		wait(t_visual *vis, int time)
+static int		our_wait(t_visual *vis, int time)
 {
 	int i;
 
@@ -68,10 +68,10 @@ static void		wait2go(t_visual *vis, SDL_Texture *text2,\
 		SDL_SetRenderDrawColor(vis->render, 0, 0, 0, 0);
 		SDL_RenderClear(vis->render);
 		texture2render(vis->render, vis->texture, rect1);
-		if (wait(vis, 500) < 1)
+		if (our_wait(vis, 500) < 1)
 			break ;
 		texture2render(vis->render, text2, rect2);
-		if (wait(vis, 500) < 1)
+		if (our_wait(vis, 500) < 1)
 			break ;
 	}
 }
