@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 15:48:27 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:36:29 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 	while (i < min_paths && (path = bfs(lem)))
 	{
 		redirect_lem(path, OFF);
-		if (!add_listpath(listpath, path, i % 11))
+		if (!add_listpath(listpath, path))
 		{
 			ft_free_path(listpath);
 			ft_free_one_path(&path);
@@ -83,6 +83,7 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 		else
 			break ;
 	}
+	set_path_color(lem);
 	ft_free_path(&paths);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:14:11 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 16:05:06 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:33:53 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_path		*min_path(t_listpath *paths)
 	return (min_len_path->path);
 }
 
-static t_listpath	*new_listpath(t_path *path, char style)
+static t_listpath	*new_listpath(t_path *path)
 {
 	t_listpath	*listpath_t;
 
@@ -41,17 +41,16 @@ static t_listpath	*new_listpath(t_path *path, char style)
 	listpath_t->path = path;
 	listpath_t->path_len = path_len(path);
 	listpath_t->next = NULL;
-	set_path_color(listpath_t->path, style);
 	return (listpath_t);
 }
 
-int					add_listpath(t_listpath **listpath, t_path *path, char style)
+int					add_listpath(t_listpath **listpath, t_path *path)
 {
 	t_listpath *temp;
 
 	if (!*listpath)
 	{
-		if (!(*listpath = new_listpath(path, style)))
+		if (!(*listpath = new_listpath(path)))
 		{
 			ft_free_one_path(&path);
 			return (0);
@@ -62,7 +61,7 @@ int					add_listpath(t_listpath **listpath, t_path *path, char style)
 		temp = *listpath;
 		while (temp->next)
 			temp = temp->next;
-		if (!(temp->next = new_listpath(path, style)))
+		if (!(temp->next = new_listpath(path)))
 		{
 			ft_free_one_path(&path);
 			return (0);
