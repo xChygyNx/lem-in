@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 17:02:31 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:41:14 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ typedef struct			s_adj
 
 typedef struct			s_lem
 {
+	char				*map;
 	struct s_vrx		*vrx;
 	int					ant_c;
 	int					vert_c;
 	int					edge_c;
-	int					reserve;
-	int					heroes;
 	struct s_listpath	*listpath;
-	char				*map;
 	struct s_visual		*vis;
 	char				visual;
 	char				without_map;
@@ -66,13 +64,11 @@ typedef struct			s_vrx
 	char				*name;
 	int					x;
 	int					y;
-	char				type;
 	struct s_vrx		*next;
+	struct s_vrx		*anc;
+	char				type;
 	char				visit;
 	char				sep;
-	int					ant;
-	struct s_vrx		*anc;
-	struct s_visual		*vis;
 }						t_vrx;
 
 typedef struct			s_queue
@@ -203,10 +199,6 @@ void					visit_listpath(t_listpath *listpath);
 
 void					lem_in(t_lem *lem);
 
-void					draw_edges(t_visual *vis, t_vrx *vrx);
-
-int						almost_complete_mission(t_ant *army, int meat);
-
 /*
 ** VISIO FUNCTIONS
 */
@@ -234,20 +226,19 @@ void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to,\
 						char c);
 
+void					draw_edges(t_visual *vis, t_vrx *vrx);
+
 void					draw_listpath(t_visual *vis, t_listpath *lp);
 
 void					draw_path(t_visual *vis, t_path *path);
 
-void					draw_move_ants(t_lem *lem, t_ant *army, int meat,\
-						int fresh_meat);
+void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
 
 void					draw_outro(t_lem *lem);
 
 void					set_path_color(t_listpath *listpath);
 
-void					counter_reserve(t_lem *lem, int fresh_meat);
-
-void					counter_heroes(t_lem *lem, t_ant *army, int meat);
+void					draw_counters(t_lem *lem, t_ant *army, int meat);
 
 /*
 ** VISIO UTILITY

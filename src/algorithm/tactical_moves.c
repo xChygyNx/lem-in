@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tactical_moves.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 16:40:29 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:56:54 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int			almost_complete_mission(t_ant *army, int meat)
-{
-	int		heroes;
-
-	heroes = 0;
-	while (army && meat--)
-	{
-		if (army->path->next->vrx->type == END)
-			heroes++;
-		army = army->next;
-	}
-	return (heroes);
-}
 
 static int	go_to_fight(t_listpath *paths, t_ant *army)
 {
@@ -57,22 +43,15 @@ static void	step_to_win(t_ant *army, int number)
 void		offensive(t_lem *lem, t_ant *army)
 {
 	int		meat;
-	int		veterans;
-	int		fresh_meat;
-	int		heroes;
 
 	routing(lem->listpath, army);
-	veterans = 0;
 	while (army->prev)
 		army = army->prev;
 	while (army)
 	{
 		meat = go_to_fight(lem->listpath, army);
-		heroes = almost_complete_mission(army, meat);
-		fresh_meat = meat - veterans + heroes;
-		veterans = meat;
 		if (lem->visual)
-			draw_move_ants(lem, army, meat, fresh_meat);
+			draw_move_ants(lem, army, meat);
 		step_to_win(army, meat);
 		soldiers_commission(&army);
 	}

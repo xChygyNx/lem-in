@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_moves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:41:56 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 16:51:04 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:41:22 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,22 @@ static void		move_ants(t_ant *army, int meat)
 	}
 }
 
-void			draw_move_ants(t_lem *lem, t_ant *army, int meat,\
-				int fresh_meat)
+void			draw_move_ants(t_lem *lem, t_ant *army, int meat)
 {
 	int		i;
 
 	set_ants_dislocation(army, meat);
 	i = STEPS > 0 ? STEPS : 0;
-	counter_reserve(lem, fresh_meat);
 	while (i--)
 	{
 		draw_graph(lem, lem->listpath, 0);
 		move_ants(army, meat);
 		paint_ants(lem->vis, army, meat);
+		draw_counters(lem, army, meat);
 		SDL_RenderPresent(lem->vis->render);
 		SDL_Delay(lem->vis->delay);
 		if (!lem->visual)
 			break ;
 	}
-	counter_heroes(lem, army, meat);
 	SDL_Delay(100);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_lem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 17:48:13 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 16:40:07 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:37:12 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ t_lem				*create_lem(int fd)
 	while (lines[i] && invalid_com(lines[i]))
 		++i;
 	lem->ant_c = ft_atoi(lines[i]);
-	lem->reserve = lem->ant_c;
-	lem->heroes = 0;
 	if (ft_strlen(lines[i]) == 0 || ft_isdigitstr(lines[i]) < 1 ||\
 		ft_int_len(lem->ant_c) != ft_strlen(lines[i]) || lem->ant_c <= 0)
 		ft_exit(&lem, INVALID_INPUT);

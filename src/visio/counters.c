@@ -3,46 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   counters.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 12:12:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 17:47:11 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:48:59 by aks              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	counter_reserve(t_lem *lem, int fresh_meat)
+static int		num_of_soldiers(t_ant *army)
 {
-	char			*reserve_str;
-	SDL_Rect		rect;
-	t_color			c;
-	SDL_Texture		*texture;
+	int i;
 
-	lem->reserve = lem->reserve - fresh_meat > 0 ?\
-	lem->reserve - fresh_meat : 0;
-	reserve_str = ft_itoa(lem->reserve);
-	reserve_str = ft_strjoin_s("Reserve: ", reserve_str);
-	rect = get_rectangle(100, 20, 10, 10);
-	c.color = ~0;
-	texture = text2texture(lem->vis->render, lem->vis->font, reserve_str, c);
-	free(reserve_str);
-	texture2render(lem->vis->render, texture, rect);
+	i = 0;
+	while (army)
+	{
+		army = army->next;
+		++i;
+	}
+	return (i);
 }
 
-void	counter_heroes(t_lem *lem, t_ant *army, int meat)
+static char		*strjoinint(char *str, int n)
 {
-	char		*heroes_str;
-	SDL_Rect	rect;
-	t_color		c;
-	SDL_Texture	*texture;
+	char	*num;
+	char	*join;
 
-	lem->heroes += almost_complete_mission(army, meat);
-	heroes_str = ft_itoa(lem->heroes);
-	heroes_str = ft_strjoin_s("Finish: ", heroes_str);
-	rect = get_rectangle(100, 20, 10, 50);
+	if (!(num = ft_itoa(n)))
+		return (NULL);
+	if (!(join = ft_strjoin_s(str, num)))
+	{
+		free(num);
+		return (NULL);
+	}
+	return(join);
+}
+
+void			draw_counters(t_lem *lem, t_ant *army, int meat)
+{
+	char		*str;
+	t_color		c;
+	SDL_Rect	rect;
+	int			num;
+
+	num = num_of_soldiers(army);
 	c.color = ~0;
-	texture = text2texture(lem->vis->render, lem->vis->font, heroes_str, c);
-	free(heroes_str);
-	texture2render(lem->vis->render, texture, rect);
+	if (!(str = strjoinint("Finish:  ", lem->ant_c - num)))
+		ft_exit(&lem, MALLOC_FAILURE);
+	lem->vis->texture = text2texture(lem->vis->render, lem->vis->font, str, c);
+	rect = get_rectangle(100, 20, 10, 30);
+	SDL_RenderCopy(lem->vis->render, lem->vis->texture, NULL, &rect);
+	free(str);
+	SDL_DestroyTexture(lem->vis->texture);
+	if (!(str = strjoinint("Reserve: ", num - meat)))
+		ft_exit(&lem, MALLOC_FAILURE);
+	lem->vis->texture = text2texture(lem->vis->render, lem->vis->font, str, c);
+	rect = get_rectangle(100, 20, 10, 10);
+	SDL_RenderCopy(lem->vis->render, lem->vis->texture, NULL, &rect);
+	free(str);
+	SDL_DestroyTexture(lem->vis->texture);
+	lem->vis->texture = NULL;
 }
