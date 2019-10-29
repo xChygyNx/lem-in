@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 22:59:06 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 15:15:17 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct			s_lem
 	int					ant_c;
 	int					vert_c;
 	int					edge_c;
+	int					reserve;
+	int					heroes;
 	struct s_listpath	*listpath;
 	char				*map;
 	struct s_visual		*vis;
@@ -203,6 +205,8 @@ void					lem_in(t_lem *lem);
 
 void					draw_edges(t_visual *vis, t_vrx *vrx);
 
+int						almost_complete_mission(t_ant *army, int meat);
+
 /*
 ** VISIO FUNCTIONS
 */
@@ -233,11 +237,16 @@ void					draw_listpath(t_visual *vis, t_listpath *lp);
 
 void					draw_path(t_visual *vis, t_path *path);
 
-void					draw_move_ants(t_lem *lem, t_ant *army, int meat);
+void					draw_move_ants(t_lem *lem, t_ant *army, int meat,\
+						int fresh_meat);
 
 void					draw_outro(t_lem *lem);
 
 void					set_path_color(t_listpath *listpath);
+
+void					counter_reserve(t_lem *lem, int fresh_meat);
+
+void					counter_heroes(t_lem *lem, t_ant *army, int meat);
 
 /*
 ** VISIO UTILITY
