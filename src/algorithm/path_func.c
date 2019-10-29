@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:10:27 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 16:39:05 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:19:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,17 @@ void		visit_listpath(t_listpath *listpath)
 		}
 		listpath = listpath->next;
 	}
+}
+
+int			count_paths(t_listpath *listpath)
+{
+	int	i;
+
+	i = 0;
+	while (listpath)
+	{
+		++i;
+		listpath = listpath->next;
+	}
+	return (i);
 }

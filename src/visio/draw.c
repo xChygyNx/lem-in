@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 19:56:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/29 22:59:45 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ void			draw_graph(t_lem *lem, t_listpath *listpath, char f)
 		draw_vertex(lem->vis, vrx, 'b');
 		vrx = vrx->next;
 	}
-	set_path_color(listpath);
 	draw_listpath(lem->vis, listpath);;
 	f ? SDL_RenderPresent(lem->vis->render) : 0;
-	SDL_Delay(lem->vis->delay * 3);
+	usleep(lem->vis->delay * 3);
 }
 
 static int		ft_wait(t_visual *vis, int time)
@@ -55,7 +54,7 @@ static int		ft_wait(t_visual *vis, int time)
 					return (-1);
 			}
 		}
-		SDL_Delay(1);
+		usleep(1000);
 	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 18:32:00 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:06:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ static t_visual	*new_visio(void)
 	if (!(vis = (t_visual*)malloc(sizeof(t_visual))))
 		return (NULL);
 	vis->win = NULL;
-	vis->surface = NULL;
 	vis->render = NULL;
 	vis->texture = NULL;
 	vis->quit = 1;
 	vis->delay = 0;
-	vis->pass_print_paths = 0;
+	vis->pass = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
@@ -34,8 +33,8 @@ void			drop_visio(t_visual **vis)
 	if (vis && *vis)
 	{
 		SDL_DestroyRenderer((*vis)->render);
-		SDL_DestroyWindow((*vis)->win);
 		SDL_DestroyTexture((*vis)->texture);
+		SDL_DestroyWindow((*vis)->win);
 		TTF_CloseFont((*vis)->font);
 		(*vis)->win = NULL;
 		SDL_Quit();
@@ -67,7 +66,7 @@ void			initilize_visio(t_lem *lem)
 		if (!(lem->vis->font = TTF_OpenFont("./fonts/PTC55F.ttf", 20)))
 			ft_exit(&lem, 0);
 		lem->vis->line_w = ft_max(lem->vis->radius / 3, 2);
-		lem->vis->delay = 2500.0 / lem->edge_c;
+		lem->vis->delay = ft_min(2500000 / lem->edge_c, 200000);
 		lem->design_map ? design_map(lem) : 0;
 	}
 }
@@ -83,12 +82,12 @@ void			event(t_visual *vis)
 			if (vis->e.key.keysym.sym == SDLK_ESCAPE)
 				vis->quit = 0;
 			if (vis->e.key.keysym.sym == SDLK_s)
-				vis->delay += 50;
+				vis->delay *= 1.25;
 			if (vis->e.key.keysym.sym == SDLK_f)
-				vis->delay -= 50;
+				vis->delay /= 1.25;
 			if (vis->e.key.keysym.sym == SDLK_p)
-				vis->pass_print_paths = 1;
-			vis->delay = ft_min(vis->delay, 250);
+				vis->pass = 1;
+			vis->delay = ft_min(vis->delay, 250000);
 			vis->delay = ft_max(vis->delay, 1);
 		}
 	}

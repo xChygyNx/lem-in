@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 19:15:36 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:01:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		first_pass(t_lem *lem, int min_paths)
 
 	while (min_paths-- && (path = bfs(lem)))
 	{
-		if (lem->visual || !lem->vis->pass_print_paths)
+		if (lem->visual && !lem->vis->pass)
 			draw_path(lem->vis, path);
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
@@ -55,7 +55,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 		visit_listpath(*listpath);
 	}
 	full_renovation_lem(lem);
-	lem->visual && !lem->vis->pass_print_paths ? draw_graph(lem, *listpath, 1) : 0;
+	lem->visual && !lem->vis->pass ? draw_graph(lem, *listpath, 1) : 0;
 	return (i);
 }
 
@@ -66,22 +66,23 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 	int			steps;
 
 	min_paths = 1;
-	while (1)
+	steps = MAX_INT;
+	while (min_steps <= steps && lem->ant_c > count_paths(paths))
 	{
 		min_paths++;
-		lem->visual && !lem->vis->pass_print_paths ? draw_graph(lem, NULL, 1) : 0;
+		lem->visual && !lem->vis->pass ? draw_graph(lem, NULL, 1) : 0;
 		if (suurballe(lem, &paths, min_paths) != min_paths)
 			break ;
 		steps = routing(paths, army);
-		if (min_steps >= steps)
+		if (min_steps > steps)
 		{
 			ft_free_path(&lem->listpath);
 			min_steps = steps;
 			lem->listpath = paths;
 			paths = NULL;
 		}
-		else
-			break ;
+		else if (min_steps == steps)
+			ft_free_path(&paths);
 	}
 	ft_free_path(&paths);
 }
@@ -99,7 +100,7 @@ void			find_optimal_path(t_lem *lem, t_ant *army)
 	renovate_listpath(lem->listpath);
 	if (lem->visual)
 	{
-		!lem->vis->pass_print_paths ? draw_graph(lem, lem->listpath, 1) : 0;
+		!lem->vis->pass ? draw_graph(lem, lem->listpath, 1) : 0;
 		set_path_color(lem->listpath);
 	}
 }

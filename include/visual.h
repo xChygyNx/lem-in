@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 19:55:48 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:06:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 # define A_DARKORANGE		4278226175
 # define A_MAGENTA 			4294902015
 
-# define STEPS				100
+# define STEPS				75
 
 typedef union				u_color
 {
@@ -82,7 +82,6 @@ typedef union				u_color
 typedef struct				s_visual
 {
 	SDL_Window				*win;
-	SDL_Surface				*surface;
 	SDL_Renderer			*render;
 	SDL_Texture				*texture;
 	SDL_Event				e;
@@ -91,7 +90,7 @@ typedef struct				s_visual
 	int						radius;
 	int						line_w;
 	int						delay;
-	char					pass_print_paths;
+	char					pass;
 }							t_visual;
 
 void						ft_free_visual(t_visual **vis);

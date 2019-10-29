@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_graph_funcs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 19:34:22 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 21:51:06 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,20 @@ void		draw_listpath(t_visual *vis, t_listpath *lp)
 
 void		draw_path(t_visual *vis, t_path *path)
 {
-	while (path->next && !vis->pass_print_paths)
+	while (path->next)
 	{
 		event(vis);
-		if (!vis->quit)
+		if (!vis->quit || vis->pass)
 			return ;
 		if (path->vrx->sep && path->next->vrx->sep)
 			draw_edge(vis, path->vrx, path->next->vrx, 'r');
 		else
 			draw_edge(vis, path->vrx, path->next->vrx, 'y');
-		SDL_Delay(vis->delay);
+		usleep(vis->delay);
 		draw_vertex(vis, path->vrx, 'y');
 		draw_vertex(vis, path->next->vrx, 'y');
 		path = path->next;
 		SDL_RenderPresent(vis->render);
 	}
-	SDL_Delay(vis->delay * 3);
+	usleep(vis->delay * 3);
 }

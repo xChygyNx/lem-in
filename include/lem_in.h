@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 19:51:28 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 21:19:57 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ void					offensive(t_lem *lem, t_ant *army);
 
 void					visit_listpath(t_listpath *listpath);
 
-void					lem_in(t_lem *lem);
+int						count_paths(t_listpath *listpath);
 
 /*
 ** VISIO FUNCTIONS

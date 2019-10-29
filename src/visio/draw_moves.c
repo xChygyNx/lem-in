@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:41:56 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 19:52:11 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/29 23:00:35 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ void			draw_move_ants(t_lem *lem, t_ant *army, int meat)
 		paint_ants(lem->vis, army, meat);
 		draw_counters(lem, army, meat);
 		SDL_RenderPresent(lem->vis->render);
-		SDL_Delay(lem->vis->delay);
 		if (!lem->visual)
 			break ;
 	}
-	SDL_Delay(100);
+	usleep(lem->vis->delay * 3);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 16:23:02 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 22:38:51 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			visual_mode(t_lem *lem, t_ant *army)
 	draw_intro(lem);
 	draw_graph(lem, NULL, 1);
 	find_optimal_path(lem, army);
-	lem->vis->delay = 250 / STEPS;
+	lem->vis->delay = 2000;
 	offensive(lem, army);
 	lem->visual ? draw_outro(lem) : 0;
 }
