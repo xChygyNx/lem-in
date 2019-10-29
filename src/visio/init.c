@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:27:26 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 22:59:55 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 18:32:00 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_visual	*new_visio(void)
 	vis->texture = NULL;
 	vis->quit = 1;
 	vis->delay = 0;
+	vis->pass_print_paths = 0;
 	ft_bzero((void*)&vis->e, 56);
 	return (vis);
 }
@@ -85,6 +86,8 @@ void			event(t_visual *vis)
 				vis->delay += 50;
 			if (vis->e.key.keysym.sym == SDLK_f)
 				vis->delay -= 50;
+			if (vis->e.key.keysym.sym == SDLK_p)
+				vis->pass_print_paths = 1;
 			vis->delay = ft_min(vis->delay, 250);
 			vis->delay = ft_max(vis->delay, 1);
 		}
