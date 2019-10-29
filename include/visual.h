@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 17:04:04 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 17:37:15 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct				s_visual
 	SDL_Renderer			*render;
 	SDL_Texture				*texture;
 	SDL_Event				e;
-	_TTF_Font				*font;
+	TTF_Font				*font;
 	char					quit;
 	int						radius;
 	int						line_w;
