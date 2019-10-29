@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   suurballe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 20:05:36 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 19:08:21 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 19:15:36 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		first_pass(t_lem *lem, int min_paths)
 
 	while (min_paths-- && (path = bfs(lem)))
 	{
-		if (lem->visual)
+		if (lem->visual || !lem->vis->pass_print_paths)
 			draw_path(lem->vis, path);
 		redirect_lem(path, OFF);
 		if (!dfs(lem, lem->vrx))
@@ -55,7 +55,7 @@ int				suurballe(t_lem *lem, t_listpath **listpath, int min_paths)
 		visit_listpath(*listpath);
 	}
 	full_renovation_lem(lem);
-	lem->visual ? draw_graph(lem, *listpath, 1) : 0;
+	lem->visual && !lem->vis->pass_print_paths ? draw_graph(lem, *listpath, 1) : 0;
 	return (i);
 }
 
@@ -69,7 +69,7 @@ static void		search_optimal_count_of_paths(t_lem *lem, t_listpath *paths,\
 	while (1)
 	{
 		min_paths++;
-		lem->visual ? draw_graph(lem, NULL, 1) : 0;
+		lem->visual && !lem->vis->pass_print_paths ? draw_graph(lem, NULL, 1) : 0;
 		if (suurballe(lem, &paths, min_paths) != min_paths)
 			break ;
 		steps = routing(paths, army);
@@ -99,7 +99,7 @@ void			find_optimal_path(t_lem *lem, t_ant *army)
 	renovate_listpath(lem->listpath);
 	if (lem->visual)
 	{
-		draw_graph(lem, lem->listpath, 1);
+		!lem->vis->pass_print_paths ? draw_graph(lem, lem->listpath, 1) : 0;
 		set_path_color(lem->listpath);
 	}
 }

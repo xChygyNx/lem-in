@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 17:37:15 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:32:00 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct				s_visual
 	int						radius;
 	int						line_w;
 	int						delay;
+	char					pass_print_paths;
 }							t_visual;
 
 void						ft_free_visual(t_visual **vis);

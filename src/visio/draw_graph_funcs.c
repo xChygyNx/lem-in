@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 16:49:55 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 19:34:22 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		draw_listpath(t_visual *vis, t_listpath *lp)
 
 void		draw_path(t_visual *vis, t_path *path)
 {
-	while (path->next)
+	while (path->next && !vis->pass_print_paths)
 	{
 		event(vis);
 		if (!vis->quit)
