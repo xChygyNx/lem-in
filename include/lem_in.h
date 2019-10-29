@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 15:15:17 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 17:02:31 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,8 @@ void					draw_graph(t_lem *lem, t_listpath *listpath, char f);
 
 void					draw_vertex(t_visual *vis, t_vrx *vrx, char c);
 
-void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c);
+void					draw_edge(t_visual *vis, t_vrx *from, t_vrx *to,\
+						char c);
 
 void					draw_listpath(t_visual *vis, t_listpath *lp);
 

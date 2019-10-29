@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 15:15:57 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 15:15:31 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:40:29 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			almost_complete_mission(t_ant *army, int meat)
 			heroes++;
 		army = army->next;
 	}
-	return(heroes);
+	return (heroes);
 }
 
 static int	go_to_fight(t_listpath *paths, t_ant *army)
@@ -70,7 +70,6 @@ void		offensive(t_lem *lem, t_ant *army)
 		meat = go_to_fight(lem->listpath, army);
 		heroes = almost_complete_mission(army, meat);
 		fresh_meat = meat - veterans + heroes;
-		//ft_printf("meat = %d, fresh meat = %d, veterans = %d, heroes = %d\n", meat, fresh_meat, veterans, heroes);
 		veterans = meat;
 		if (lem->visual)
 			draw_move_ants(lem, army, meat, fresh_meat);

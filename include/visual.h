@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:05 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/28 23:01:00 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 17:04:04 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,67 +32,67 @@
 ** VERTEX COLORS (RGBA - int)
 */
 
-#define V_STRT 			4280221470
-#define V_END 			4278190335
-#define V_RED 			4278190335
-#define V_BLUE 			4284743680
-#define V_GREEN 		4278228480
-#define V_YELLOW 		4278255615
-#define V_SIMP 			4284751390
+# define V_STRT				4280221470
+# define V_END 				4278190335
+# define V_RED 				4278190335
+# define V_BLUE				4284743680
+# define V_GREEN 			4278228480
+# define V_YELLOW 			4278255615
+# define V_SIMP				4284751390
 
 /*
 ** EDGE COLORS (RGBA - int)
 */
 
-#define E_BLUE 			4284743680
-#define E_RED 			2516582655
-#define E_GREEN 		2516620800
-#define E_YELLOW 		2516647935
+# define E_BLUE 			4284743680
+# define E_RED 				2516582655
+# define E_GREEN 			2516620800
+# define E_YELLOW 			2516647935
 
 /*
 ** ANT COLORS (RGBA - int)
 */
 
-# define A_MOCCASIN 	4290110719
-# define A_DARKTURQUOISE 4291939840
-# define A_BLUE			4294901760
-# define A_CYAN			4294967040
-# define A_LAWNREEN		4278254716
-# define A_DARJKHAKI	4285249469
-# define A_YELLOW		4278255615
-# define A_INDIANRED	4284243149
-# define A_FIREBRICK	4280427186
-# define A_DARKORANGE	4278226175
-# define A_MAGENTA 		4294902015
+# define A_MOCCASIN 		4290110719
+# define A_DARKTURQUOISE	4291939840
+# define A_BLUE				4294901760
+# define A_CYAN				4294967040
+# define A_LAWNREEN			4278254716
+# define A_DARJKHAKI		4285249469
+# define A_YELLOW			4278255615
+# define A_INDIANRED		4284243149
+# define A_FIREBRICK		4280427186
+# define A_DARKORANGE		4278226175
+# define A_MAGENTA 			4294902015
 
-# define STEPS			100
+# define STEPS				100
 
-typedef union		u_color
+typedef union				u_color
 {
-	struct			s_rgb
+	struct					s_rgb
 	{
-		unsigned char	red:8;
-		unsigned char	green:8;
-		unsigned char	blue:8;
-		unsigned char	alpha:8;
-	}				t_rgb;
-	unsigned int	color;
-}					t_color;
+		unsigned char		red:8;
+		unsigned char		green:8;
+		unsigned char		blue:8;
+		unsigned char		alpha:8;
+	}						t_rgb;
+	unsigned int			color;
+}							t_color;
 
-typedef struct		 		s_visual
+typedef struct				s_visual
 {
-	struct SDL_Window		*win;		// window окно
-	struct SDL_Surface		*surface;	// поверхность окна
-	struct SDL_Renderer		*render;	// изображение
-	struct SDL_Texture		*texture;	// для теста
-	union SDL_Event			e;			//event
-	struct _TTF_Font		*font; 		//шрифт для заставок
-	char					quit;		//флаг выхода
-	int						radius;		//радиус вершин
-	int						line_w;		//толщина линий
-	int						delay;		//скорость воспроизведения
+	SDL_Window				*win;
+	SDL_Surface				*surface;
+	SDL_Renderer			*render;
+	SDL_Texture				*texture;
+	SDL_Event				e;
+	_TTF_Font				*font;
+	char					quit;
+	int						radius;
+	int						line_w;
+	int						delay;
 }							t_visual;
 
-void		ft_free_visual(t_visual **vis);
+void						ft_free_visual(t_visual **vis);
 
 #endif

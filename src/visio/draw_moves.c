@@ -6,7 +6,7 @@
 /*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:41:56 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 15:13:43 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:51:04 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void		move_ants(t_ant *army, int meat)
 	}
 }
 
-void			draw_move_ants(t_lem *lem, t_ant *army, int meat, int fresh_meat)
+void			draw_move_ants(t_lem *lem, t_ant *army, int meat,\
+				int fresh_meat)
 {
 	int		i;
 

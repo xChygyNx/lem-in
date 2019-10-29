@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_graph_funcs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:47:13 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 22:55:16 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 16:49:55 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void		draw_edge(t_visual *vis, t_vrx *from, t_vrx *to, char c)
 	}
 }
 
-
 void		draw_edges(t_visual *vis, t_vrx *vrx)
 {
 	t_adj		*adj;
@@ -96,7 +95,7 @@ void		draw_path(t_visual *vis, t_path *path)
 		event(vis);
 		if (!vis->quit)
 			return ;
-		if(path->vrx->sep && path->next->vrx->sep)
+		if (path->vrx->sep && path->next->vrx->sep)
 			draw_edge(vis, path->vrx, path->next->vrx, 'r');
 		else
 			draw_edge(vis, path->vrx, path->next->vrx, 'y');

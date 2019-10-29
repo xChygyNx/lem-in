@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   listpath_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:14:11 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 23:03:29 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 16:28:07 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_listpath		*min_path(t_listpath *paths)
+static t_listpath	*min_path(t_listpath *paths)
 {
 	int			min_len;
 	t_listpath	*min_len_path;
@@ -47,7 +47,7 @@ static t_listpath	*new_listpath(t_path *path)
 
 int					add_listpath(t_listpath **listpath, t_path *path)
 {
-	t_listpath *temp;
+	t_listpath	*temp;
 
 	if (!*listpath)
 	{
@@ -74,8 +74,8 @@ int					add_listpath(t_listpath **listpath, t_path *path)
 int					routing(t_listpath *paths, t_ant *army)
 {
 	t_listpath	*mpath;
-	int		steps;
-	int		transit_time;
+	int			steps;
+	int			transit_time;
 
 	steps = 0;
 	transit_time = paths->path_len - 1;

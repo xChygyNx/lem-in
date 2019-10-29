@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:39:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/25 18:35:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:23:46 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void		usage(void)
 {
 	ft_fprintf(2, "USAGE:\n\t%-7s - print decision without input map\n\
-	%-7s - turn on visualization\n%-7s - design map\n", "[-wm]", "[-v]", "[-d]");
+	%-7s - turn on visualization\n%-7s - design map\n",\
+	"[-wm]", "[-v]", "[-d]");
 }
 
 void			ft_exit(t_lem **lem, int err)

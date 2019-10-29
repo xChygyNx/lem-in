@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aks <aks@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/28 19:17:58 by aks              ###   ########.fr       */
+/*   Updated: 2019/10/29 17:24:00 by pcredibl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		draw_graph(t_lem *lem, t_listpath *listpath, char f)
+void			draw_graph(t_lem *lem, t_listpath *listpath, char f)
 {
 	t_vrx	*vrx;
 
