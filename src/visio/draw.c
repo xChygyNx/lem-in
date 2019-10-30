@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 22:38:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/10/29 22:59:45 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:22:56 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			draw_outro(t_lem *lem)
 	if (!lem->vis->texture)
 		ft_exit(&lem, 0);
 	press = text2texture(lem->vis->render, lem->vis->font,\
-	"Press F to respest", c);
+	"Press F to respect", c);
 	if (!press)
 		ft_exit(&lem, 0);
 	welcome = get_rectangle(WIN_WIDTH - (INDENT * 2), INDENT, INDENT,\

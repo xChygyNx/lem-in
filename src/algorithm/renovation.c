@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   renovation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcredibl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 21:12:29 by astripeb          #+#    #+#             */
-/*   Updated: 2019/09/19 20:01:36 by pcredibl         ###   ########.fr       */
+/*   Updated: 2019/10/30 13:42:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void		unvisit(t_vrx *vertex)
+{
+	while (vertex)
+	{
+		vertex->visit = 0;
+		vertex = vertex->next;
+	}
+}
 
 static int	check_rev_dir(t_vrx *vrx, char *edge)
 {

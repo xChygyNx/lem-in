@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 14:57:27 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 21:19:57 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:20:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define SDL_INIT_ERROR 104
 # define SDL_WIN_ERROR 105
 # define USAGE 106
+# define INVALID_OPTION 107
 
 typedef struct			s_adj
 {
@@ -107,9 +108,13 @@ typedef struct			s_ant
 
 void					ft_exit(t_lem **lem, int err);
 
-t_lem					*create_lem(int fd);
+void					options(int ac, char **av, t_lem *lem);
 
-void					check_flags(char **av, t_lem *lem);
+/*
+** CREATE MAIN STRUCTURE FUNCTIONS
+*/
+
+t_lem					*create_lem(int fd);
 
 void					ft_edge(t_lem *lem, char **lines);
 
@@ -120,6 +125,10 @@ void					add_adj(t_lem *lem, char **v);
 void					add_link_adj_to_vrx(t_lem *lem);
 
 void					ft_del_lem(t_lem **lem_to_del);
+
+/*
+** VALIDATION FUNCTIONS
+*/
 
 char					vrx_info(char *s);
 
@@ -135,6 +144,14 @@ int						exist_vertex(t_vrx *vrx, char **vertexes);
 
 int						invalid_com(char *str);
 
+/*
+** DIRECTIONS FUNCTIONS
+*/
+
+t_vrx					*get_vrx(t_vrx *vrx, char *name);
+
+t_adj					*get_adj(t_adj *adj, char *name);
+
 void					change_dir(t_vrx *vrx, char *end, char dir);
 
 void					redirect_lem(t_path *path, char tumbler);
@@ -145,23 +162,13 @@ void					full_renovation_lem(t_lem *lem);
 
 void					unvisit(t_vrx *vertex);
 
-int						dfs(t_lem *lem, t_vrx *vrx);
-
-void					ft_free_path(t_listpath **listpath_to_del);
-
-void					ft_free_one_path(t_path **path_to_del);
-
-int						add_listpath(t_listpath **listpath, t_path *path);
-
-int						add_path_to_begin(t_path **begin, t_vrx *vrx);
-
-int						routing(t_listpath *paths, t_ant *army);
-
-int						path_len(t_path *path);
-
-void					renovate_listpath(t_listpath *listpath);
+/*
+** SUURBALLE ALGORITHM FUNCTIONS
+*/
 
 t_path					*bfs(t_lem *lem);
+
+int						dfs(t_lem *lem, t_vrx *vrx);
 
 t_queue					*new_queue(t_vrx *vrx, char weight);
 
@@ -171,14 +178,30 @@ int						free_queue(t_queue **queue);
 
 void					del_one_queue(t_queue **queue);
 
-t_vrx					*get_vrx(t_vrx *vrx, char *name);
-
-t_adj					*get_adj(t_adj *adj, char *name);
-
 int						suurballe(t_lem *lem, t_listpath **listpath,\
 						int min_paths);
 
 void					find_optimal_path(t_lem *lem, t_ant *army);
+
+/*
+** PATHS FUNCTIONS
+*/
+
+void					ft_free_path(t_listpath **listpath_to_del);
+
+void					ft_free_one_path(t_path **path_to_del);
+
+int						add_listpath(t_listpath **listpath, t_path *path);
+
+int						add_path_to_begin(t_path **begin, t_vrx *vrx);
+
+int						path_len(t_path *path);
+
+void					renovate_listpath(t_listpath *listpath);
+
+/*
+** ANTS FUNCTIONS
+*/
 
 void					dissolve_army(t_ant **first_soldier);
 
@@ -189,6 +212,8 @@ void					soldiers_commission(t_ant **army);
 t_ant					*new_soldier(int serial_number);
 
 t_ant					*create_army(int number_of_soldiers);
+
+int						routing(t_listpath *paths, t_ant *army);
 
 void					tactical_moves(t_lem *lem, t_ant *army,\
 						t_listpath *listpath);

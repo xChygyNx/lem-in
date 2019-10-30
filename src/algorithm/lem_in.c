@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:32:17 by pcredibl          #+#    #+#             */
-/*   Updated: 2019/10/29 22:38:51 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:03:00 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void			visual_mode(t_lem *lem, t_ant *army)
 	lem->visual ? draw_outro(lem) : 0;
 }
 
-int				main(int ac, char **av)
+int				main(int argc, char **argv)
 {
 	t_lem	*lem;
 	t_ant	*army;
 
 	lem = create_lem(0);
+	options(argc - 1, &argv[1], lem);
 	army = create_army(lem->ant_c);
-	ac > 1 ? check_flags(av, lem) : 0;
 	!lem->without_map ? ft_printf("%s\n", lem->map) : 0;
 	if (lem->visual)
 		visual_mode(lem, army);
