@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcredibl <pcredibl@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 15:47:32 by pcredibl          #+#    #+#              #
-#    Updated: 2019/10/29 14:27:48 by pcredibl         ###   ########.fr        #
+#    Updated: 2019/11/07 00:25:11 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= lem-in
 
-#LIBFTPRINTF_DIRS
-LIB_DIR			:= ./libftprintf
+#LIBFT_DIRS
+LIB_DIR			:= ./libft
+LIBFT			:= libft.a
 
 #PROJECT_DIRS
 INC_DIR			:= ./include
@@ -21,25 +22,16 @@ OBJ_DIR			:= ./obj
 SRC_DIR			:= ./src/algorithm
 SRC_VIS_DIR		:= ./src/visio
 
-LIBS			= -L $(LIB_DIR) -lftprintf
+LIBS			= -L $(LIB_DIR) -lft
 
 CC				:= gcc
-CFLAGS			= -g -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror
 
-LFLAGS			= -I $(LIB_DIR)/libft -I $(LIB_DIR)/inc -I $(INC_DIR)
+LFLAGS			= -I $(LIB_DIR)/inc -I $(INC_DIR)
 
 #SDL2_DIRS
-UNAME 			= $(shell uname -s)
-
-ifeq ($(UNAME), Linux)
-#	SDL2_INC		= /usr/include/SDL2
-	CFLAGS			+= $(shell sdl2-config --cflags)
-	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
-#	LFLAGS			+= -I $(SDL2_INC)
-else
-	CFLAGS			+= $(shell sdl2-config --cflags)
-	LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
-endif
+CFLAGS			+= $(shell sdl2-config --cflags)
+LIBS			+= $(shell sdl2-config --libs) -lSDL2_gfx -lSDL2_ttf -lm
 
 HEADERS			:= lem_in.h visual.h
 
@@ -59,16 +51,15 @@ OBJ				:= $(OBJ_LEM) $(OBJ_VIS)
 vpath %.c $(SRC_DIR) $(SRC_VIS_DIR)
 vpath %.o $(OBJ_DIR)
 vpath %.h $(INC_DIR) $(SDL2_INC)
+vpath %.a $(LIB_DIR)
 
 GREEN 			:= \033[0;32m
 RED 			:= \033[0;31m
 RESET			:= \033[0m
 
-all: $(NAME)
+all: lib $(NAME)
 
-$(NAME): $(OBJ) $(SDL_LIB) $(HEADERS)
-	$(MAKE) -C $(LIB_DIR)
-	echo "$(GREEN)libftprintf.a created$(RESET)"
+$(NAME): $(LIBFT) $(OBJ) $(SDL_LIB) $(HEADERS)
 	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJ)) $(LIBS) -o $@
 	echo "$(GREEN)DONE ✅$(RESET)"
 
@@ -79,6 +70,9 @@ $(OBJ_VIS):%.o:%.c $(HEADERS) | $(OBJ_DIR)
 $(OBJ_LEM):%.o:%.c $(HEADERS) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_DIR)/$@ -c $<
 	echo "$(GREEN)$@ was created$(RESET)"
+
+lib:
+	$(MAKE) -C $(LIB_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $@
@@ -95,6 +89,6 @@ fclean: clean
 
 re: fclean all
 
-.SILENT: all $(NAME) $(OBJ) $(OBJ_DIR) clean fclean re
+#.SILENT: all $(NAME) $(OBJ) $(OBJ_DIR) $(LIBFT) clean fclean re
 
 .PHONY: clean fclean re all libftprintf
